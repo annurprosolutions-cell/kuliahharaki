@@ -972,7 +972,7 @@ h2{font-weight:600}
       <a class="brand" href="#" data-go="home">
         <span class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span>
         <span>
-          <span class="brand-name">Kuliah Haraki</span>
+          <span class="brand-name" data-tetapan="laman_nama">Kuliah Haraki</span>
           <span class="brand-sub">Ilmu · Tarbiyah · Amal</span>
         </span>
       </a>
@@ -1014,24 +1014,24 @@ h2{font-weight:600}
   </header>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="heroSection">
     <div class="streaks" data-streaks="hero" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <div>
         <div class="rule"></div>
-        <p class="kicker" style="color:#8FB3A2">Kuliah dalam talian · Bahasa Melayu</p>
-        <h1 style="margin-top:14px">Menuntut ilmu tanpa terikat masa dan tempat.</h1>
-        <p class="hero-lede">Setiap kuliah ada video dan nota bertulis dalam satu skrin. Mula dengan kuliah percuma, naik taraf ahli penuh bila mahu ikuti siri yang lebih mendalam.</p>
+        <p class="kicker" style="color:#8FB3A2" data-tetapan="laman_tagline">Kuliah dalam talian · Bahasa Melayu</p>
+        <h1 style="margin-top:14px" data-tetapan="hero_tajuk">Menuntut ilmu tanpa terikat masa dan tempat.</h1>
+        <p class="hero-lede" data-tetapan="hero_lede">Setiap kuliah ada video dan nota bertulis dalam satu skrin. Mula dengan kuliah percuma, naik taraf ahli penuh bila mahu ikuti siri yang lebih mendalam.</p>
         <div class="hero-actions">
-          <button class="btn primary lg" data-go="auth" data-mode="daftar">Daftar percuma
+          <button class="btn primary lg" data-go="auth" data-mode="daftar"><span data-tetapan="hero_btn_1">Daftar percuma</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9m0 0-3.5-3.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <button class="btn outline lg" data-go="lesson">Tonton kuliah percuma</button>
+          <button class="btn outline lg" data-go="lesson" data-tetapan="hero_btn_2">Tonton kuliah percuma</button>
         </div>
         <div class="hero-stats">
-          <div><b class="tnum">42</b><span>kuliah video</span></div>
-          <div><b class="tnum">180+</b><span>nota &amp; bahan PDF</span></div>
-          <div><b class="tnum">2,400</b><span>peserta berdaftar</span></div>
+          <div><b class="tnum" data-tetapan="stat_1_nilai">42</b><span data-tetapan="stat_1_label">kuliah video</span></div>
+          <div><b class="tnum" data-tetapan="stat_2_nilai">180+</b><span data-tetapan="stat_2_label">nota &amp; bahan PDF</span></div>
+          <div><b class="tnum" data-tetapan="stat_3_nilai">2,400</b><span data-tetapan="stat_3_label">peserta berdaftar</span></div>
         </div>
       </div>
       <div class="preview-card">
@@ -1073,10 +1073,10 @@ h2{font-weight:600}
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="kicker">Siri kuliah</p>
-          <h2 style="margin-top:10px">Pilih peringkat, mula menuntut</h2>
+          <p class="kicker" data-tetapan="siri_kicker">Siri kuliah</p>
+          <h2 style="margin-top:10px" data-tetapan="siri_tajuk">Pilih peringkat, mula menuntut</h2>
           <div class="ornament"><i></i><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.4" stroke="currentColor" stroke-width="1.4"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.4" stroke="currentColor" stroke-width="1.4" transform="rotate(45 12 12)"/></svg><i></i></div>
-          <p style="margin-top:14px">Kuliah percuma terbuka untuk sesiapa yang berdaftar. Siri peringkat peralihan dan lanjutan untuk ahli penuh.</p>
+          <p style="margin-top:14px" data-tetapan="siri_lede">Kuliah percuma terbuka untuk sesiapa yang berdaftar. Siri peringkat peralihan dan lanjutan untuk ahli penuh.</p>
         </div>
         <button class="btn outline" data-demo="toast">Semua 42 kuliah</button>
       </div>
@@ -1307,6 +1307,7 @@ h2{font-weight:600}
           <span class="badge vip">AHLI PENUH</span>
           <div class="plan-price"><b data-price>RM19</b><span data-period>/bulan</span></div>
           <p style="font-size:14px;color:var(--ink-2)" data-price-note>Dibil bulanan. Boleh berhenti bila-bila.</p>
+          <p class="hint" data-tetapan="yuran_nota" style="margin-top:6px">Boleh berhenti bila-bila. Tiada kontrak.</p>
           <ul>
             <li><span class="check">&check;</span> Semua 42 kuliah video</li>
             <li><span class="check">&check;</span> Semua nota, rujukan &amp; bahan usrah</li>
@@ -1371,7 +1372,7 @@ h2{font-weight:600}
         <div class="foot-about">
           <div class="brand">
             <span class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span>
-            <span><span class="brand-name" style="color:#fff">Kuliah Haraki</span><span class="brand-sub">Ilmu · Tarbiyah · Amal</span></span>
+            <span><span class="brand-name" style="color:#fff" data-tetapan="laman_nama">Kuliah Haraki</span><span class="brand-sub">Ilmu · Tarbiyah · Amal</span></span>
           </div>
           <p>Platform kuliah dalam talian untuk peserta usrah, halaqah dan sesiapa yang mahu menuntut ilmu secara berterusan.</p>
           <div class="socials">
@@ -1403,14 +1404,14 @@ h2{font-weight:600}
           <h4>Hubungi</h4>
           <ul>
             <li>Melaka, Malaysia</li>
-            <li><a href="#" data-demo="toast">salam@kuliahharaki.com</a></li>
+            <li><a href="#" data-demo="toast" data-tetapan="emel_hubungan">salam@kuliahharaki.com</a></li>
             <li>+60 12-345 6789</li>
             <li style="margin-top:14px"><span class="badge new">Isnin–Jumaat · 9 pagi – 6 petang</span></li>
           </ul>
         </div>
       </div>
       <div class="foot-bottom">
-        <span>&copy; 2026 Kuliah Haraki. Hak cipta terpelihara. SSM 000000000-X</span>
+        <span data-tetapan="footer_hakmilik">&copy; 2026 Kuliah Haraki. Hak cipta terpelihara. SSM 000000000-X</span>
         <span class="pay-methods">Kaedah bayaran: <i>FPX</i><i>VISA</i><i>MASTERCARD</i><i>DUITNOW</i></span>
       </div>
     </div>
@@ -1534,7 +1535,7 @@ h2{font-weight:600}
   <div class="app">
     <div class="app-wrap">
       <div class="topbar">
-        <a class="brand" href="#" data-go="home"><span class="mark sm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span><span class="brand-name">Kuliah Haraki</span></a>
+        <a class="brand" href="#" data-go="home"><span class="mark sm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span><span class="brand-name" data-tetapan="laman_nama">Kuliah Haraki</span></a>
         <div class="navpills" role="tablist" aria-label="Menu peserta">
           <button role="tab" aria-selected="true">
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="5" height="5" rx="1.3" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="2" width="5" height="5" rx="1.3" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="5" height="5" rx="1.3" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="5" height="5" rx="1.3" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -1709,7 +1710,7 @@ h2{font-weight:600}
   <div class="app">
     <div class="app-wrap">
       <div class="topbar">
-        <a class="brand" href="#" data-go="home"><span class="mark sm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span><span class="brand-name">Kuliah Haraki</span></a>
+        <a class="brand" href="#" data-go="home"><span class="mark sm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span><span class="brand-name" data-tetapan="laman_nama">Kuliah Haraki</span></a>
         <div class="navpills" role="tablist" aria-label="Menu peserta">
           <button role="tab" aria-selected="false" data-go="dash">Utama</button>
           <button role="tab" aria-selected="true">Kuliah saya</button>
@@ -1756,7 +1757,7 @@ h2{font-weight:600}
         <div class="lesson-grid" id="lessonGrid">
           <div class="lesson-main">
             <div class="player" id="player">
-              <div class="stage">
+              <div class="stage" id="lessonStage">
                 <div class="art art1 stage-art"></div>
                 <div class="stage-veil"></div>
                 <span class="dummy-note">Video dummy · belum disambung</span>
@@ -2011,13 +2012,14 @@ h2{font-weight:600}
   <div class="app">
     <div class="app-wrap">
       <div class="topbar">
-        <a class="brand" href="#" data-go="home"><span class="mark sm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span><span class="brand-name">Kuliah Haraki</span></a>
+        <a class="brand" href="#" data-go="home"><span class="mark sm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span><span class="brand-name" data-tetapan="laman_nama">Kuliah Haraki</span></a>
         <div class="navpills" role="tablist" aria-label="Menu admin">
           <button role="tab" aria-selected="true" data-atab="ringkasan">Ringkasan</button>
           <button role="tab" aria-selected="false" data-atab="kursus">Siri kuliah</button>
           <button role="tab" aria-selected="false" data-atab="muatnaik">Muat naik</button>
           <button role="tab" aria-selected="false" data-atab="ahli">Ahli</button>
           <button role="tab" aria-selected="false" data-atab="langganan">Yuran</button>
+          <button role="tab" aria-selected="false" data-atab="tetapan">Tetapan laman</button>
         </div>
         <div class="topbar-right">
           <button class="role-chip" data-demo="toast">
@@ -2580,6 +2582,29 @@ h2{font-weight:600}
             </div>
           </div>
         </div>
+
+        <!-- ===== TETAPAN LAMAN (SUPERADMIN) ===== -->
+        <div data-apane="tetapan" hidden>
+          <div class="page-head" style="margin-bottom:16px">
+            <div class="page-head-top">
+              <div>
+                <h1>Tetapan laman</h1>
+                <p class="sub">Ubah tajuk, gambar hero, harga dan maklumat laman tanpa sentuh kod</p>
+              </div>
+              <div style="display:flex;gap:10px">
+                <button class="btn outline" id="tetapanMuatSemula">Muat semula</button>
+                <button class="btn primary" id="tetapanSimpan">Simpan semua</button>
+              </div>
+            </div>
+          </div>
+          <div id="tetapanKandungan">
+            <div class="panel-card">
+              <div class="panel-title"><h3>Tetapan laman</h3><span class="badge draft">MENUNGGU</span></div>
+              <p class="hint">Log masuk sebagai pentadbir untuk memuat tetapan.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -2760,10 +2785,13 @@ h2{font-weight:600}
     if (t){
       document.querySelectorAll("[data-cycle]").forEach(function(b){ b.setAttribute("aria-pressed", b === t ? "true" : "false"); });
       var tahunan = t.dataset.cycle === "tahun";
-      document.querySelector("[data-price]").textContent = tahunan ? "RM390" : "RM39";
+      var T = window.KH_TETAPAN || {};
+      var hb = T.harga_bulanan || "19", ht = T.harga_tahunan || "190";
+      var jimat = (parseFloat(hb) * 12) - parseFloat(ht);
+      document.querySelector("[data-price]").textContent = "RM" + (tahunan ? ht : hb);
       document.querySelector("[data-period]").textContent = tahunan ? "/tahun" : "/bulan";
       document.querySelector("[data-price-note]").textContent = tahunan
-        ? "Dibil sekali setahun. Jimat RM78 berbanding bulanan."
+        ? ("Dibil sekali setahun." + (jimat > 0 ? " Jimat RM" + jimat + " berbanding bulanan." : ""))
         : "Dibil bulanan. Batal bila-bila.";
       return;
     }
@@ -2965,14 +2993,37 @@ h2{font-weight:600}
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+/* --- fasa 4: pemain video sebenar --- */
+#lessonStage.real{background:#000}
+#lessonStage.real iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+#lessonStage.real .stage-art,#lessonStage.real .stage-veil,
+#lessonStage.real .dummy-note,#lessonStage.real .stage-caption,
+#lessonStage.real .play-big{display:none!important}
+.player.real .controls{display:none}
+.vid-nota{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface-2,#F4F6F8);
+  border-top:1px solid var(--line,#E3E7EC);font-size:12.5px;color:var(--ink-3,#6B7684)}
+/* --- fasa 4: borang tetapan laman --- */
+.tt-grid{display:grid;gap:16px}
+.tt-row{display:grid;grid-template-columns:230px 1fr;gap:16px;align-items:start;
+  padding:14px 0;border-bottom:1px solid var(--line,#E3E7EC)}
+.tt-row:last-child{border-bottom:0}
+.tt-row label{font-size:13.5px;font-weight:600;line-height:1.4}
+.tt-row label small{display:block;font-weight:400;color:var(--ink-3,#6B7684);margin-top:3px;font-size:12px}
+.tt-row .kunci{font-family:ui-monospace,monospace;font-size:11px;color:var(--ink-3,#6B7684)}
+.tt-prev{margin-top:8px;display:flex;align-items:center;gap:12px}
+.tt-prev img{max-height:88px;border-radius:8px;border:1px solid var(--line,#E3E7EC)}
+@media (max-width:820px){.tt-row{grid-template-columns:1fr}}
+</style>
 <script>
 /* =====================================================================
-   FASA 3 — SAMBUNGAN SUPABASE SEBENAR
-   Log masuk, daftar, log keluar, sesi kekal, dan ujian akses langsung.
+   KULIAH HARAKI — FASA 3 + FASA 4
+   Fasa 3: Auth Supabase (log masuk / daftar / sesi kekal)
+   Fasa 4: (a) video hibrid YouTube + Bunny Stream
+           (b) tetapan laman untuk superadmin
 
    >>> SATU BENDA SAHAJA PERLU DIISI: kunci anon di bawah. <<<
-   Cara dapat: Supabase > Project Settings > API keys > salin kunci
-   "anon" atau "publishable". Kunci ini SELAMAT diletak dalam fail ini.
+   Supabase > Project Settings > API keys > salin kunci "anon".
    JANGAN sekali-kali letak kunci "service_role" di sini.
    ===================================================================== */
 const SB_URL  = 'https://lkntcbcpfxjuxexillow.supabase.co';
@@ -2985,29 +3036,39 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
   var adaLib   = !!(window.supabase && window.supabase.createClient);
   var sedia    = adaKunci && adaLib;
   var sb = sedia ? window.supabase.createClient(SB_URL, SB_ANON) : null;
-  var state = { user: null, profil: null, langganan: null };
+
+  var state = {
+    user: null, profil: null, langganan: null,
+    kuliah: [], tetapan: [], kuliahAktif: null
+  };
 
   var $  = function (s) { return document.querySelector(s); };
   var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var esc = function (t) {
+    return String(t == null ? '' : t)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  };
 
   var skrin = { home: '#view-home', auth: '#view-auth', dash: '#view-dash',
                 lesson: '#view-lesson', admin: '#view-admin' };
 
   function go(nama) {
-    Object.keys(skrin).forEach(function (k) { $(skrin[k]).hidden = (k !== nama); });
+    Object.keys(skrin).forEach(function (k) {
+      var el = $(skrin[k]); if (el) el.hidden = (k !== nama);
+    });
     window.scrollTo(0, 0);
   }
 
   var toastTimer;
   function say(msg, ms) {
-    var t = $('#toast');
+    var t = $('#toast'); if (!t) return;
     $('#toastText').textContent = msg;
     t.classList.add('show');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function () { t.classList.remove('show'); }, ms || 3200);
   }
 
-  /* ---------- terjemah mesej ralat Supabase ---------- */
   var ralat = {
     'Invalid login credentials': 'Emel atau kata laluan salah.',
     'Email not confirmed': 'Emel belum disahkan. Sila semak peti masuk anda.',
@@ -3024,15 +3085,374 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
       : 'Pustaka supabase-js gagal dimuat. Semak sambungan internet atau adblock.';
   }
 
-  /* ---------- butang dalam borang semasa menunggu ---------- */
-  function sibuk(btn, on, teksAsal) {
+  function sibuk(btn, on) {
+    if (!btn) return;
     btn.disabled = on;
     btn.style.opacity = on ? '.6' : '';
     if (on) { btn.dataset.asal = btn.innerHTML; btn.textContent = 'Sila tunggu...'; }
     else if (btn.dataset.asal) { btn.innerHTML = btn.dataset.asal; }
   }
 
-  /* ================= AUTENTIKASI ================= */
+  function jam(saat) {
+    saat = parseInt(saat || 0, 10);
+    var m = Math.floor(saat / 60), s = saat % 60;
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  /* =====================================================================
+     BAHAGIAN A — TETAPAN LAMAN
+     ===================================================================== */
+
+  function petaTetapan() {
+    var p = {};
+    state.tetapan.forEach(function (t) { p[t.kunci] = t.nilai; });
+    return p;
+  }
+
+  async function muatTetapan() {
+    if (!sedia) return;
+    var r = await sb.from('tetapan_laman')
+      .select('kunci, nilai, label, kumpulan, jenis, urutan')
+      .order('urutan');
+    if (r.error) { console.warn('[tetapan]', r.error.message); return; }
+    state.tetapan = r.data || [];
+    window.KH_TETAPAN = petaTetapan();
+    pakaiTetapan();
+  }
+
+  function pakaiTetapan() {
+    var T = window.KH_TETAPAN || {};
+
+    // 1. semua elemen bertanda data-tetapan
+    $$('[data-tetapan]').forEach(function (el) {
+      var k = el.dataset.tetapan;
+      if (!(k in T) || T[k] == null || T[k] === '') return;
+      el.textContent = T[k];
+      if (el.tagName === 'A' && k === 'emel_hubungan') el.href = 'mailto:' + T[k];
+    });
+
+    // 2. tajuk tab pelayar
+    if (T.laman_nama) {
+      document.title = T.laman_nama + ' · Kuliah dalam talian';
+    }
+
+    // 3. gambar latar hero (kalau ada)
+    var hero = $('#heroSection');
+    if (hero) {
+      if (T.hero_gambar_url) {
+        hero.style.backgroundImage =
+          'linear-gradient(rgba(10,26,20,.72), rgba(10,26,20,.86)), url("' + T.hero_gambar_url + '")';
+        hero.style.backgroundSize = 'cover';
+        hero.style.backgroundPosition = 'center';
+        var sk = hero.querySelector('.streaks'); if (sk) sk.style.opacity = '.35';
+      } else {
+        hero.style.backgroundImage = '';
+        var sk2 = hero.querySelector('.streaks'); if (sk2) sk2.style.opacity = '';
+      }
+    }
+
+    // 4. harga di seluruh laman
+    if (T.harga_bulanan) {
+      $$('.price-tag').forEach(function (el) {
+        if (/^RM\d/.test(el.textContent)) {
+          el.innerHTML = 'RM' + esc(T.harga_bulanan) + '<small>/bln</small>';
+        }
+      });
+      var p = $('[data-price]');
+      var aktifTahunan = !!$('[data-cycle="tahun"][aria-pressed="true"]');
+      if (p) p.textContent = 'RM' + (aktifTahunan ? (T.harga_tahunan || '') : T.harga_bulanan);
+      $$('[data-demo="upgrade"]').forEach(function (b) {
+        if (/RM\d/.test(b.textContent)) {
+          b.textContent = 'Jadi ahli penuh · RM' + T.harga_bulanan + '/bln';
+        }
+      });
+      var amt = $('.modal-plan .amt');
+      if (amt) amt.innerHTML = 'RM' + esc(T.harga_bulanan) + '<small>/bln</small>';
+    }
+  }
+
+  /* ---------- borang tetapan dalam panel admin ---------- */
+
+  function renderBorangTetapan() {
+    var wadah = $('#tetapanKandungan');
+    if (!wadah) return;
+
+    if (!sedia) {
+      wadah.innerHTML = '<div class="panel-card"><div class="panel-title"><h3>Tetapan laman</h3>' +
+        '<span class="badge hold">TIADA SAMBUNGAN</span></div>' +
+        '<p class="hint">' + esc(mesejTakSedia()) + '</p></div>';
+      return;
+    }
+    if (!isPentadbir()) {
+      wadah.innerHTML = '<div class="panel-card"><div class="panel-title"><h3>Tetapan laman</h3>' +
+        '<span class="badge draft">AKSES DITOLAK</span></div>' +
+        '<p class="hint">Hanya akaun berperanan <b>pentadbir</b> boleh mengubah tetapan laman. ' +
+        'Database akan menolak sebarang percubaan lain walaupun borang ini dipaksa buka.</p></div>';
+      return;
+    }
+
+    var kumpulan = {};
+    state.tetapan.forEach(function (t) {
+      (kumpulan[t.kumpulan] = kumpulan[t.kumpulan] || []).push(t);
+    });
+
+    var html = '';
+    Object.keys(kumpulan).forEach(function (nama) {
+      html += '<div class="panel-card" style="margin-bottom:16px">' +
+              '<div class="panel-title"><h3>' + esc(nama) + '</h3></div><div class="tt-grid">';
+      kumpulan[nama].forEach(function (t) {
+        html += '<div class="tt-row">' +
+                '<label for="tt-' + esc(t.kunci) + '">' + esc(t.label) +
+                '<small class="kunci">' + esc(t.kunci) + '</small></label><div>' +
+                medanTetapan(t) + '</div></div>';
+      });
+      html += '</div></div>';
+    });
+    wadah.innerHTML = html;
+  }
+
+  function medanTetapan(t) {
+    var id = 'tt-' + t.kunci, v = t.nilai == null ? '' : t.nilai;
+    if (t.jenis === 'teks_panjang' || t.jenis === 'html') {
+      return '<textarea class="textarea" id="' + esc(id) + '" data-kunci="' + esc(t.kunci) +
+             '" rows="3">' + esc(v) + '</textarea>';
+    }
+    if (t.jenis === 'suis') {
+      return '<select class="select" id="' + esc(id) + '" data-kunci="' + esc(t.kunci) + '">' +
+             '<option value="0"' + (v !== '1' ? ' selected' : '') + '>Tidak</option>' +
+             '<option value="1"' + (v === '1' ? ' selected' : '') + '>Ya</option></select>';
+    }
+    if (t.jenis === 'gambar') {
+      return '<input class="input" id="' + esc(id) + '" data-kunci="' + esc(t.kunci) +
+             '" type="text" value="' + esc(v) + '" placeholder="Biar kosong = guna corak asal">' +
+             '<div class="tt-prev">' +
+               '<input type="file" accept="image/*" data-naik-gambar="' + esc(t.kunci) + '">' +
+               (v ? '<img src="' + esc(v) + '" alt="Pratonton">' : '') +
+             '</div>' +
+             '<p class="hint" style="margin-top:6px">Pilih fail untuk muat naik. ' +
+             'Pautan akan diisi automatik selepas siap.</p>';
+    }
+    var jenisInput = t.jenis === 'nombor' ? 'number' : 'text';
+    return '<input class="input" id="' + esc(id) + '" data-kunci="' + esc(t.kunci) +
+           '" type="' + jenisInput + '" value="' + esc(v) + '">';
+  }
+
+  async function simpanTetapan() {
+    var btn = $('#tetapanSimpan');
+    if (!sedia) { say(mesejTakSedia(), 5000); return; }
+    if (!isPentadbir()) { say('Hanya pentadbir boleh simpan tetapan.', 4000); return; }
+
+    var ubah = [];
+    $$('#tetapanKandungan [data-kunci]').forEach(function (el) {
+      var kunci = el.dataset.kunci;
+      var asal = state.tetapan.filter(function (t) { return t.kunci === kunci; })[0];
+      var baru = el.value;
+      if (!asal || (asal.nilai || '') === baru) return;
+      ubah.push({ kunci: kunci, nilai: baru });
+    });
+
+    if (!ubah.length) { say('Tiada perubahan untuk disimpan.'); return; }
+
+    sibuk(btn, true);
+    var gagal = null;
+    for (var i = 0; i < ubah.length; i++) {
+      var r = await sb.from('tetapan_laman')
+        .update({ nilai: ubah[i].nilai })
+        .eq('kunci', ubah[i].kunci)
+        .select('kunci');
+      if (r.error) { gagal = r.error.message; break; }
+      if (!r.data || !r.data.length) { gagal = 'Ditolak oleh RLS (bukan pentadbir).'; break; }
+    }
+    sibuk(btn, false);
+
+    if (gagal) { say('Gagal simpan — ' + gagal, 5000); return; }
+    await muatTetapan();
+    renderBorangTetapan();
+    say(ubah.length + ' tetapan disimpan dan laman dikemas kini.', 4000);
+  }
+
+  async function naikGambar(input) {
+    var kunci = input.dataset.naikGambar;
+    var fail = input.files && input.files[0];
+    if (!fail) return;
+    if (!isPentadbir()) { say('Hanya pentadbir boleh muat naik gambar.', 4000); return; }
+    if (fail.size > 5 * 1024 * 1024) { say('Gambar terlalu besar. Maksimum 5 MB.', 4500); return; }
+
+    say('Memuat naik gambar...', 6000);
+    var sambungan = (fail.name.split('.').pop() || 'jpg').toLowerCase();
+    var laluan = kunci + '-' + Date.now() + '.' + sambungan;
+
+    var r = await sb.storage.from('laman-aset').upload(laluan, fail, { upsert: true });
+    if (r.error) { say('Gagal muat naik — ' + r.error.message, 5000); return; }
+
+    var pautan = sb.storage.from('laman-aset').getPublicUrl(laluan).data.publicUrl;
+    var medan = $('#tt-' + kunci);
+    if (medan) medan.value = pautan;
+
+    var u = await sb.from('tetapan_laman').update({ nilai: pautan }).eq('kunci', kunci).select('kunci');
+    if (u.error || !u.data || !u.data.length) {
+      say('Gambar dimuat naik tetapi gagal disimpan. Tekan "Simpan semua".', 6000);
+      return;
+    }
+    await muatTetapan();
+    renderBorangTetapan();
+    say('Gambar dimuat naik dan digunakan.', 4000);
+  }
+
+  /* =====================================================================
+     BAHAGIAN B — VIDEO HIBRID (YouTube + Bunny Stream)
+     ===================================================================== */
+
+  function urlVideo(k) {
+    var T = window.KH_TETAPAN || {};
+    if (!k || !k.video_id) return null;
+
+    if (k.video_sumber === 'youtube') {
+      return {
+        url: 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(k.video_id) +
+             '?rel=0&modestbranding=1&playsinline=1',
+        nota: 'YouTube · kuliah percuma'
+      };
+    }
+    if (k.video_sumber === 'bunny') {
+      if (!T.bunny_pustaka_id) return { ralat: 'Bunny Library ID belum diisi dalam Tetapan laman > Video.' };
+      return {
+        url: 'https://iframe.mediadelivery.net/embed/' + encodeURIComponent(T.bunny_pustaka_id) +
+             '/' + encodeURIComponent(k.video_id) + '?autoplay=false&preload=true',
+        nota: 'Bunny Stream · dikunci pada domain laman ini'
+      };
+    }
+    return null;
+  }
+
+  function pasangPemain(k) {
+    var stage = $('#lessonStage');
+    var player = $('#player');
+    if (!stage || !player) return;
+
+    var v = urlVideo(k);
+
+    // tiada video sebenar -> kekalkan paparan dummy
+    if (!v || v.ralat) {
+      stage.classList.remove('real');
+      player.classList.remove('real');
+      var lama = stage.querySelector('iframe'); if (lama) lama.remove();
+      var nota = stage.querySelector('.dummy-note');
+      if (nota) {
+        nota.textContent = v && v.ralat ? v.ralat
+          : (k ? 'Video belum dimuat naik untuk kuliah ini' : 'Video dummy · belum disambung');
+      }
+      return;
+    }
+
+    stage.classList.add('real');
+    player.classList.add('real');
+    var fr = stage.querySelector('iframe');
+    if (!fr) {
+      fr = document.createElement('iframe');
+      fr.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen');
+      fr.setAttribute('allowfullscreen', '');
+      fr.setAttribute('loading', 'lazy');
+      fr.title = 'Pemain video kuliah';
+      stage.appendChild(fr);
+    }
+    if (fr.src !== v.url) fr.src = v.url;
+
+    var jalur = player.querySelector('.vid-nota');
+    if (!jalur) {
+      jalur = document.createElement('div');
+      jalur.className = 'vid-nota';
+      player.appendChild(jalur);
+    }
+    jalur.textContent = v.nota;
+  }
+
+  /* ---------- buka satu kuliah ---------- */
+
+  function bukaKuliah(id) {
+    var k = state.kuliah.filter(function (x) { return x.id === id; })[0];
+    if (!k) { say('Kuliah tidak dijumpai.'); return; }
+    state.kuliahAktif = k;
+
+    var h1 = $('#view-lesson .page-head-top h1');
+    if (h1) h1.textContent = k.tajuk;
+
+    var sub = $('#view-lesson .page-head-top .sub');
+    if (sub) sub.textContent = (k.ringkasan || '') + (k.tempoh_saat ? ' · ' + jam(k.tempoh_saat) : '');
+
+    var lencana = $('#view-lesson .pilltabs .badge');
+    if (lencana) {
+      var vip = k.akses === 'ahli';
+      lencana.className = 'badge ' + (vip ? 'vip' : 'free');
+      lencana.style.height = '36px'; lencana.style.padding = '0 14px'; lencana.style.borderRadius = '999px';
+      lencana.textContent = vip ? 'KULIAH AHLI PENUH' : 'KULIAH PERCUMA';
+    }
+
+    var nota = $('#view-lesson .panel-body [data-pane="nota"]');
+    if (nota) {
+      if (k.nota_html) {
+        nota.innerHTML = '<h3>' + esc(k.tajuk) + '</h3>' +
+          '<div class="note-meta"><span>' + (k.akses === 'ahli' ? 'Ahli penuh' : 'Percuma') + '</span>' +
+          '<span>' + jam(k.tempoh_saat) + '</span></div>' + k.nota_html;
+      } else {
+        nota.innerHTML = '<h3>' + esc(k.tajuk) + '</h3>' +
+          '<p class="hint">Nota bertulis belum ditambah untuk kuliah ini.</p>';
+      }
+    }
+
+    pasangPemain(k);
+    go('lesson');
+  }
+
+  /* ---------- senarai kuliah pada dashboard ---------- */
+
+  function renderSenaraiKuliah() {
+    var induk = $('#view-dash .dash-right');
+    if (!induk) return;
+
+    var kad = $('#panelKuliah');
+    if (!kad) {
+      kad = document.createElement('div');
+      kad.className = 'panel-card';
+      kad.id = 'panelKuliah';
+      induk.insertBefore(kad, induk.firstChild);
+    }
+
+    var tr = taraf();
+    var kepala = '<div class="panel-title"><h3>Kuliah anda</h3>' +
+      '<span class="badge ' + (tr === 'Percuma' ? 'free' : 'vip') + '">' + esc(tr.toUpperCase()) + '</span></div>';
+
+    if (!sedia) {
+      kad.innerHTML = kepala + '<p class="hint">' + esc(mesejTakSedia()) + '</p>';
+      return;
+    }
+    if (!state.kuliah.length) {
+      kad.innerHTML = kepala + '<p class="hint">Tiada kuliah yang boleh dicapai oleh akaun ini.</p>';
+      return;
+    }
+
+    var baris = state.kuliah.map(function (k) {
+      var vip = k.akses === 'ahli';
+      var adaVid = !!(k.video_id && k.video_sumber !== 'tiada');
+      return '<div class="row-item ' + (vip ? 'warn' : 'done') + '">' +
+        '<div class="rt"><b>' + esc(k.tajuk) + '</b><small>' +
+        (vip ? 'Ahli penuh' : 'Percuma') + ' · ' + jam(k.tempoh_saat) + ' · ' +
+        (adaVid ? esc(k.video_sumber) : 'video belum ada') + '</small></div>' +
+        '<button class="btn sm outline" data-buka="' + esc(k.id) + '"' +
+        (adaVid ? '' : ' disabled style="opacity:.5"') + '>Tonton</button></div>';
+    }).join('');
+
+    kad.innerHTML = kepala +
+      '<div class="switch-row" style="margin-bottom:14px"><div class="sr"><b>' + esc(namaPapar()) + '</b>' +
+      '<small>' + esc(state.user ? state.user.email : 'belum log masuk') + '</small></div></div>' +
+      '<div class="row-list">' + baris + '</div>' +
+      '<p class="hint" style="margin-top:14px">Senarai ini datang terus daripada database. ' +
+      'Kuliah berbayar hanya muncul apabila langganan aktif — disekat oleh RLS, bukan oleh kod di pelayar.</p>';
+  }
+
+  /* =====================================================================
+     BAHAGIAN C — AUTENTIKASI (dari fasa 3)
+     ===================================================================== */
 
   async function masuk(e) {
     e.preventDefault();
@@ -3073,19 +3493,43 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
 
   async function logKeluar() {
     if (sb) { await sb.auth.signOut(); }
-    state = { user: null, profil: null, langganan: null };
+    state.user = null; state.profil = null; state.langganan = null;
+    state.kuliah = []; state.kuliahAktif = null;
+    await muatKatalogAwam();
     renderKeluar();
     go('home');
     say('Anda telah log keluar.');
   }
 
-  /* ================= MUAT DATA SESI ================= */
+  /* ================= MUAT DATA ================= */
+
+  function isPentadbir() {
+    return !!(state.profil && state.profil.peranan === 'pentadbir');
+  }
+
+  async function muatKatalogAwam() {
+    if (!sedia) return;
+    var r = await sb.from('katalog_kuliah')
+      .select('id, tajuk, ringkasan, tempoh_saat, akses, urutan, video_sumber, video_id')
+      .order('urutan');
+    state.kuliah = (r.data || []).map(function (k) {
+      k.video_sumber = k.video_sumber || 'tiada';
+      return k;
+    });
+    if (r.error) console.warn('[katalog]', r.error.message);
+  }
 
   async function muatSesi() {
     if (!sedia) { renderKeluar(); return; }
+
     var s = await sb.auth.getSession();
     var sesi = s.data.session;
-    if (!sesi) { renderKeluar(); return; }
+
+    if (!sesi) {
+      await muatKatalogAwam();
+      renderKeluar();
+      return;
+    }
 
     state.user = sesi.user;
     var kini = new Date().toISOString();
@@ -3095,12 +3539,17 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
       sb.from('langganan').select('pelan, status, tamat_pada')
         .eq('status', 'aktif').gt('tamat_pada', kini)
         .order('tamat_pada', { ascending: false }).limit(1),
-      sb.from('kuliah').select('tajuk, akses, video_uid, tempoh_saat').order('urutan')
+      sb.from('kuliah')
+        .select('id, tajuk, ringkasan, akses, video_sumber, video_id, nota_html, tempoh_saat, urutan')
+        .eq('status', 'terbit').order('urutan')
     ]);
 
     state.profil    = hasil[0].data;
     state.langganan = (hasil[1].data && hasil[1].data[0]) || null;
-    renderMasuk(hasil[2].data || [], hasil[2].error);
+    state.kuliah    = hasil[2].data || [];
+    if (hasil[2].error) console.warn('[kuliah]', hasil[2].error.message);
+
+    renderMasuk();
   }
 
   /* ================= RENDER ================= */
@@ -3114,7 +3563,8 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
     return n.trim().split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase();
   }
   function taraf() {
-    if (state.profil && state.profil.peranan === 'pentadbir') return 'Pentadbir';
+    if (isPentadbir()) return 'Pentadbir';
+    if (!state.user) return 'Pelawat';
     return state.langganan ? 'Ahli Penuh' : 'Percuma';
   }
 
@@ -3134,21 +3584,35 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
     });
   }
 
-  function renderMasuk(kuliah, ralatKuliah) {
+  function pasangButangAdmin() {
+    var pills = $('#view-dash .navpills');
+    if (!pills) return;
+    var ada = pills.querySelector('[data-go="admin"]');
+    if (isPentadbir()) {
+      if (!ada) {
+        var b = document.createElement('button');
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-selected', 'false');
+        b.setAttribute('data-go', 'admin');
+        b.textContent = 'Panel admin';
+        pills.appendChild(b);
+      }
+    } else if (ada) { ada.remove(); }
+  }
+
+  function renderMasuk() {
     var nama = namaPapar(), tr = taraf();
 
-    // topbar: keahlian + avatar + butang log keluar
     $$('#view-dash .role-chip b, #view-lesson .role-chip b').forEach(function (el) { el.textContent = tr; });
     $$('#view-dash .topbar-right .avatar, #view-lesson .topbar-right .avatar').forEach(function (el) {
       el.textContent = inisial(nama);
     });
     pasangButangKeluar();
+    pasangButangAdmin();
 
-    // ucapan pada dashboard
     var greet = $('#view-dash .greet');
     if (greet) greet.textContent = 'Selamat datang, ' + nama;
 
-    // butang header laman utama
     var ghost = $('#view-home .header-cta .btn.ghost');
     var prim  = $('#view-home .header-cta .btn.primary');
     if (ghost) {
@@ -3162,11 +3626,14 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
       prim.onclick = function () { go('dash'); };
     }
 
-    panelUjian(kuliah, ralatKuliah);
+    renderSenaraiKuliah();
+    renderBorangTetapan();
   }
 
   function renderKeluar() {
     $$('[data-keluar]').forEach(function (b) { b.remove(); });
+    var adminPill = $('#view-dash .navpills [data-go="admin"]');
+    if (adminPill) adminPill.remove();
 
     var ghost = $('#view-home .header-cta .btn.ghost');
     var prim  = $('#view-home .header-cta .btn.primary');
@@ -3180,83 +3647,45 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
       prim.setAttribute('data-go', 'auth'); prim.setAttribute('data-mode', 'daftar');
       prim.onclick = null;
     }
-    panelUjian(null, null);
+    renderSenaraiKuliah();
+    renderBorangTetapan();
   }
 
-  /* ---------- panel ujian akses langsung pada dashboard ---------- */
-  function panelUjian(kuliah, ralatKuliah) {
-    var induk = $('#view-dash .dash-right');
-    if (!induk) return;
-
-    var kad = $('#panelSupabase');
-    if (!kad) {
-      kad = document.createElement('div');
-      kad.className = 'panel-card';
-      kad.id = 'panelSupabase';
-      induk.appendChild(kad);
-    }
-
-    if (!sedia) {
-      kad.innerHTML = !adaKunci
-        ? '<div class="panel-title"><h3>Sambungan Supabase</h3>' +
-          '<span class="badge hold">BELUM DISETKAN</span></div>' +
-          '<p class="hint">Buka fail ini dalam editor teks, cari <b>SB_ANON</b> di bahagian bawah, ' +
-          'dan ganti dengan kunci anon daripada Supabase &gt; Project Settings &gt; API keys.</p>'
-        : '<div class="panel-title"><h3>Sambungan Supabase</h3>' +
-          '<span class="badge hold">PUSTAKA GAGAL DIMUAT</span></div>' +
-          '<p class="hint">Fail supabase-js tidak dapat dimuat turun daripada CDN. ' +
-          'Semak sambungan internet, atau matikan adblock untuk laman ini.</p>';
-      return;
-    }
-
-    if (!state.user) {
-      kad.innerHTML =
-        '<div class="panel-title"><h3>Sambungan Supabase</h3>' +
-        '<span class="badge draft">BELUM LOG MASUK</span></div>' +
-        '<p class="hint">Log masuk untuk melihat data sebenar daripada database.</p>';
-      return;
-    }
-
-    var baris = '';
-    if (ralatKuliah) {
-      baris = '<p class="hint" style="color:var(--bad)">Ralat membaca kuliah: ' + ralatKuliah.message + '</p>';
-    } else if (!kuliah || !kuliah.length) {
-      baris = '<p class="hint">Tiada kuliah yang boleh dicapai oleh akaun ini.</p>';
-    } else {
-      baris = '<div class="row-list">' + kuliah.map(function (k) {
-        var vip = k.akses === 'ahli';
-        return '<div class="row-item ' + (vip ? 'warn' : 'done') + '">' +
-          '<div class="rt"><b>' + k.tajuk + '</b>' +
-          '<small>' + (vip ? 'Ahli penuh' : 'Percuma') +
-          ' · video_uid: <em class="' + (vip ? 'warn' : 'done') + '">' +
-          (k.video_uid || 'tersembunyi') + '</em></small></div>' +
-          '<span class="badge ' + (vip ? 'vip' : 'free') + '">' + (vip ? 'AHLI' : 'PERCUMA') + '</span>' +
-          '</div>';
-      }).join('') + '</div>';
-    }
-
-    var tr = taraf();
-    kad.innerHTML =
-      '<div class="panel-title"><h3>Sambungan Supabase</h3>' +
-      '<span class="badge live">HIDUP</span></div>' +
-      '<div class="switch-row" style="margin-bottom:14px">' +
-        '<div class="sr"><b>' + namaPapar() + '</b>' +
-        '<small>' + state.user.email + ' · keahlian: ' + tr + '</small></div>' +
-        '<span class="badge ' + (tr === 'Percuma' ? 'free' : 'vip') + '">' + tr.toUpperCase() + '</span>' +
-      '</div>' +
-      '<p class="kicker" style="margin-bottom:10px">Kuliah yang akaun ini boleh capai</p>' +
-      baris +
-      '<p class="hint" style="margin-top:14px">Senarai ini datang terus daripada database. ' +
-      'Kuliah berbayar hanya muncul apabila langganan aktif — disekat oleh RLS, bukan oleh kod di pelayar.</p>';
-  }
-
-  /* ================= PASANG ================= */
+  /* =====================================================================
+     PASANG
+     ===================================================================== */
 
   document.addEventListener('DOMContentLoaded', function () {
     var fLogin  = $('#formLogin');
     var fDaftar = $('#formDaftar');
     if (fLogin)  fLogin.addEventListener('submit', masuk);
     if (fDaftar) fDaftar.addEventListener('submit', daftar);
+
+    // butang "Tonton" pada senarai kuliah
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-buka]');
+      if (b) { e.preventDefault(); bukaKuliah(b.dataset.buka); return; }
+
+      if (e.target.id === 'tetapanSimpan') { e.preventDefault(); simpanTetapan(); return; }
+      if (e.target.id === 'tetapanMuatSemula') {
+        e.preventDefault();
+        muatTetapan().then(renderBorangTetapan).then(function () { say('Tetapan dimuat semula.'); });
+        return;
+      }
+
+      // "Tonton kuliah percuma" pada hero -> buka kuliah percuma pertama
+      var hb = e.target.closest('[data-tetapan="hero_btn_2"]');
+      if (hb) {
+        var percuma = state.kuliah.filter(function (k) {
+          return k.akses === 'percuma' && k.video_id && k.video_sumber !== 'tiada';
+        })[0];
+        if (percuma) { e.preventDefault(); bukaKuliah(percuma.id); }
+      }
+    });
+
+    document.addEventListener('change', function (e) {
+      if (e.target.matches('[data-naik-gambar]')) naikGambar(e.target);
+    });
 
     if (!sedia) {
       renderKeluar();
@@ -3268,7 +3697,7 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
       if (peristiwa === 'SIGNED_OUT') renderKeluar();
     });
 
-    muatSesi();
+    muatTetapan().then(muatSesi);
   });
 })();
 </script>
