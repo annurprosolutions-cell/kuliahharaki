@@ -1,0 +1,3277 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuliah Haraki LMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600;700&family=Amiri:wght@400;700&display=swap">
+<style>
+  html{color-scheme:light}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+<style>
+/* ============================================================
+   AKADEMI RUZ — LMS UI KIT (demo UI sahaja, tiada integration)
+   Tema: rujukan skrin login gelap + app UI biru muda
+   ============================================================ */
+:root{
+  /* warna */
+  --brand:#E3122B;
+  --accent:#1257E5;
+  --accent-strong:#0B43BE;
+  --accent-soft:#E8F0FE;
+  --ink:#0C1830;
+  --ink-2:#55637E;
+  --ink-3:#8B96AE;
+  --line:#E1E7F5;
+  --line-strong:#CBD5EC;
+  --surface:#FFFFFF;
+  --surface-2:#F6F8FD;
+  --app-bg:#E9EFFC;
+  --night:#070B15;
+  --night-2:#0D1730;
+  --navy-card-a:#0E2560;
+  --navy-card-b:#081536;
+  --ok:#12784A;
+  --ok-soft:#E6F4EC;
+  --warn:#8A5A12;
+  --warn-soft:#FBF0DE;
+  --bad:#C21327;
+  --bad-soft:#FCE9EC;
+  --vip:#7A4B00;
+  --vip-soft:#FFF1D6;
+  --vip-line:#F0CF92;
+  /* bentuk */
+  --r-lg:20px;
+  --r-md:14px;
+  --r-sm:10px;
+  --r-pill:999px;
+  --shadow-card:0 1px 2px rgba(12,24,48,.04), 0 8px 24px rgba(12,24,48,.06);
+  --shadow-float:0 12px 32px rgba(9,20,45,.14);
+  --shadow-pop:0 24px 60px rgba(6,14,32,.28);
+  /* jarak */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:72px;
+  --wrap:1200px;
+  --font:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--surface);color:var(--ink);
+  font-family:var(--font);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;line-height:1.18;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(34px,4.4vw,54px);font-weight:800}
+h2{font-size:clamp(24px,2.6vw,34px);font-weight:700}
+h3{font-size:19px;font-weight:600}
+h4{font-size:15px;font-weight:600}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.muted{color:var(--ink-2)}
+.tnum{font-variant-numeric:tabular-nums}
+[hidden]{display:none !important}
+
+/* ---------- butang ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:44px;padding:0 18px;border-radius:var(--r-md);border:1px solid transparent;
+  background:transparent;font-size:14.5px;font-weight:600;cursor:pointer;
+  transition:background .15s ease,border-color .15s ease,color .15s ease,transform .06s ease;
+  white-space:nowrap;
+}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent-strong)}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.dark:hover{background:#08122a}
+.btn.outline{border-color:var(--line-strong);background:var(--surface);color:var(--ink)}
+.btn.outline:hover{border-color:var(--ink-3);background:var(--surface-2)}
+.btn.ghost{color:var(--ink);background:transparent}
+.btn.ghost:hover{background:var(--surface-2)}
+.btn.sm{height:36px;padding:0 13px;font-size:13.5px;border-radius:var(--r-sm)}
+.btn.lg{height:52px;padding:0 26px;font-size:16px}
+.btn.block{width:100%}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.icon-btn{
+  display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;
+  border-radius:10px;border:1px solid transparent;background:transparent;cursor:pointer;color:var(--ink-2);
+}
+.icon-btn:hover{background:var(--surface-2);color:var(--ink)}
+
+/* ---------- lencana ---------- */
+.badge{
+  display:inline-flex;align-items:center;gap:5px;height:23px;padding:0 9px;border-radius:7px;
+  font-size:11.5px;font-weight:700;letter-spacing:.02em;border:1px solid transparent;
+}
+.badge.free{background:var(--ok-soft);color:var(--ok);border-color:#CBE7D8}
+.badge.vip{background:var(--vip-soft);color:var(--vip);border-color:var(--vip-line)}
+.badge.new{background:var(--accent-soft);color:var(--accent-strong);border-color:#C9DCFB}
+.badge.draft{background:#EEF1F7;color:var(--ink-2);border-color:var(--line)}
+.badge.live{background:var(--ok-soft);color:var(--ok);border-color:#CBE7D8}
+.badge.hold{background:var(--warn-soft);color:var(--warn);border-color:#EFD9AE}
+
+/* ---------- kad & medan ---------- */
+.card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-card)}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:600;color:var(--ink-2)}
+.input,.select,.textarea{
+  height:44px;padding:0 13px;border-radius:var(--r-md);border:1px solid var(--line-strong);
+  background:var(--surface);font-size:14.5px;width:100%;transition:border-color .15s,box-shadow .15s;
+}
+.textarea{height:auto;padding:11px 13px;resize:vertical;line-height:1.6}
+.input:focus,.select:focus,.textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(18,87,229,.14)}
+.input::placeholder,.textarea::placeholder{color:var(--ink-3)}
+.select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-2) 50%),linear-gradient(135deg,var(--ink-2) 50%,transparent 50%);background-position:calc(100% - 17px) 19px,calc(100% - 12px) 19px;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+.hint{font-size:12.5px;color:var(--ink-3)}
+
+/* ---------- tanda jenama ---------- */
+.mark{
+  width:34px;height:34px;border-radius:11px;background:var(--brand);color:#fff;flex:none;
+  display:grid;place-items:center;font-size:19px;font-weight:600;line-height:1;
+}
+.mark.sm{width:28px;height:28px;border-radius:9px;font-size:16px}
+
+/* ============================================================
+   LAMAN AWAM
+   ============================================================ */
+.notice-bar{background:var(--ink);color:#D7DEEC;font-size:13px}
+.notice-bar .wrap{display:flex;align-items:center;justify-content:center;gap:10px;height:38px;text-align:center}
+.notice-bar strong{color:#fff;font-weight:600}
+.notice-bar a{color:#8FB6FF;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+.site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;gap:28px;height:72px}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand-name{font-size:16.5px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.brand-sub{display:block;font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.menu{display:flex;align-items:center;gap:2px;margin-left:6px}
+.menu>a,.menu .has-sub>button{
+  display:flex;align-items:center;gap:5px;height:38px;padding:0 12px;border-radius:9px;border:0;background:none;
+  font-size:14.5px;font-weight:500;color:var(--ink-2);cursor:pointer;
+}
+.menu>a:hover,.menu .has-sub>button:hover{color:var(--ink);background:var(--surface-2)}
+.menu>a.active{color:var(--ink);font-weight:600}
+.has-sub{position:relative}
+.submenu{
+  position:absolute;top:calc(100% + 8px);left:0;min-width:230px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow-float);padding:6px;
+  opacity:0;visibility:hidden;transform:translateY(-4px);transition:.16s ease;
+}
+.has-sub:hover .submenu,.has-sub:focus-within .submenu{opacity:1;visibility:visible;transform:none}
+.submenu a{display:flex;flex-direction:column;padding:9px 11px;border-radius:9px}
+.submenu a:hover{background:var(--surface-2)}
+.submenu b{font-size:14px;font-weight:600}
+.submenu span{font-size:12.5px;color:var(--ink-3)}
+.header-cta{margin-left:auto;display:flex;align-items:center;gap:8px}
+.menu-toggle{display:none}
+
+/* hero */
+.hero{position:relative;background:var(--night);color:#fff;overflow:hidden;isolation:isolate}
+.streaks{position:absolute;inset:0;overflow:hidden;z-index:0}
+.streak{position:absolute;left:74%;top:46%;height:2px;transform-origin:0 50%;border-radius:2px}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(125% 95% at 74% 46%, rgba(6,10,20,0) 0%, rgba(6,10,20,.5) 52%, rgba(6,10,20,.93) 100%);
+}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:88px 0 96px}
+.hero h1{color:#fff}
+.hero .rule{width:56px;height:4px;background:var(--brand);border-radius:3px;margin-bottom:22px}
+.hero-lede{margin-top:20px;font-size:17px;line-height:1.65;color:#AEB9CE;max-width:52ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero .btn.outline{background:transparent;border-color:rgba(255,255,255,.28);color:#fff}
+.hero .btn.outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.45)}
+.hero-stats{display:flex;gap:34px;margin-top:44px;padding-top:26px;border-top:1px solid rgba(255,255,255,.13)}
+.hero-stats b{display:block;font-size:24px;font-weight:700;letter-spacing:-.02em}
+.hero-stats span{font-size:12.5px;color:#93A0B8}
+
+/* kad pratonton dalam hero */
+.preview-card{
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);border-radius:22px;
+  padding:14px;backdrop-filter:blur(14px);box-shadow:var(--shadow-pop);
+}
+.preview-head{display:flex;align-items:center;gap:9px;padding:4px 6px 12px}
+.preview-head .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22)}
+.preview-head span{margin-left:6px;font-size:12px;color:#A9B4CA}
+.preview-stage{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:#0A1122}
+.preview-stage .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.preview-stage .play::after{content:"";border-left:14px solid var(--ink);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.preview-notes{display:grid;gap:9px;padding:14px 6px 4px}
+.preview-notes i{display:block;height:8px;border-radius:4px;background:rgba(255,255,255,.13)}
+.preview-notes i:nth-child(2){width:82%}
+.preview-notes i:nth-child(3){width:64%}
+.preview-foot{display:flex;align-items:center;justify-content:space-between;padding:12px 6px 4px;border-top:1px solid rgba(255,255,255,.1);margin-top:8px}
+.preview-foot small{font-size:12px;color:#95A1B9}
+
+/* jalur logo */
+.trust{border-bottom:1px solid var(--line);background:var(--surface)}
+.trust .wrap{display:flex;align-items:center;gap:38px;flex-wrap:wrap;padding-top:22px;padding-bottom:22px}
+.trust p{font-size:12.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.trust ul{display:flex;flex-wrap:wrap;gap:34px}
+.trust li{font-size:15px;font-weight:700;color:#9AA5BC;letter-spacing:-.01em}
+
+/* seksyen umum */
+.section{padding:76px 0}
+.section.tint{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}
+.section-head p{margin-top:10px;color:var(--ink-2);max-width:62ch}
+
+/* tab kategori */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:26px}
+.tab{
+  height:42px;padding:0 15px;border:0;background:none;cursor:pointer;font-size:14.5px;font-weight:600;
+  color:var(--ink-3);border-bottom:2px solid transparent;margin-bottom:-1px;
+}
+.tab:hover{color:var(--ink-2)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--brand)}
+
+/* grid kursus */
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.course{
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);overflow:hidden;
+  display:flex;flex-direction:column;transition:border-color .16s,box-shadow .16s,transform .16s;
+  text-align:left;padding:0;cursor:pointer;
+}
+.course:hover{border-color:var(--line-strong);box-shadow:var(--shadow-card);transform:translateY(-2px)}
+.thumb{position:relative;aspect-ratio:16/9;overflow:hidden}
+.thumb .play{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;
+  background:rgba(255,255,255,.94);display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25);
+}
+.thumb .play::after{content:"";border-left:14px solid var(--ink);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.thumb .dur{position:absolute;right:10px;bottom:10px;background:rgba(6,10,20,.82);color:#fff;font-size:11.5px;font-weight:600;padding:3px 7px;border-radius:6px}
+.thumb .acc{position:absolute;left:10px;top:10px}
+.course-body{padding:16px 17px 0;flex:1}
+.course-level{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.course h3{margin:7px 0 8px;font-size:17px;letter-spacing:-.015em}
+.course-desc{font-size:14px;color:var(--ink-2);line-height:1.55}
+.course-meta{display:flex;gap:14px;margin-top:12px;font-size:13px;color:var(--ink-3)}
+.course-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 17px;margin-top:14px;border-top:1px solid var(--line)}
+.tutor{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink-2)}
+.avatar{width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11.5px;font-weight:700;flex:none}
+.avatar.blue{background:var(--accent)}
+.avatar.lg{width:38px;height:38px;font-size:13.5px}
+.price-tag{font-size:14.5px;font-weight:700}
+.price-tag small{font-weight:500;color:var(--ink-3)}
+
+/* langkah */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--surface)}
+.step{padding:30px 28px;border-right:1px solid var(--line)}
+.step:last-child{border-right:0}
+.step-no{font-size:12px;font-weight:700;color:var(--brand);letter-spacing:.1em}
+.step h3{margin:12px 0 8px}
+.step p{font-size:14.5px;color:var(--ink-2)}
+
+/* ciri video+nota */
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.feature ul{display:grid;gap:14px;margin-top:24px}
+.feature li{display:flex;gap:11px;font-size:15px;color:var(--ink-2)}
+.check{width:21px;height:21px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none;margin-top:1px}
+.mock{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow-card);overflow:hidden}
+.mock-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.mock-bar i{width:9px;height:9px;border-radius:50%;background:var(--line-strong)}
+.mock-bar span{margin-left:8px;font-size:12px;color:var(--ink-3)}
+.mock-body{display:grid;grid-template-columns:1.35fr 1fr}
+.mock-video{aspect-ratio:16/10;position:relative}
+.mock-notes{padding:16px;border-left:1px solid var(--line);display:grid;gap:9px;align-content:start}
+.mock-notes b{font-size:13px}
+.mock-notes i{display:block;height:7px;border-radius:4px;background:#E7ECF7}
+.mock-notes i:nth-child(3){width:88%}
+.mock-notes i:nth-child(5){width:70%}
+
+/* harga */
+.plan-toggle{display:inline-flex;padding:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-pill);gap:4px}
+.plan-toggle button{height:36px;padding:0 18px;border:0;background:none;border-radius:var(--r-pill);font-size:14px;font-weight:600;color:var(--ink-2);cursor:pointer}
+.plan-toggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:860px;margin:32px auto 0}
+.plan{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:28px}
+.plan.highlight{border-color:var(--ink);box-shadow:var(--shadow-card);position:relative}
+.plan.highlight::before{
+  content:"PALING POPULAR";position:absolute;top:-11px;left:28px;background:var(--ink);color:#fff;
+  font-size:10.5px;font-weight:700;letter-spacing:.1em;padding:4px 10px;border-radius:6px;
+}
+.plan-price{display:flex;align-items:baseline;gap:6px;margin:16px 0 4px}
+.plan-price b{font-size:42px;font-weight:800;letter-spacing:-.03em}
+.plan-price span{color:var(--ink-3);font-size:14.5px}
+.plan ul{display:grid;gap:11px;margin:22px 0 26px}
+.plan li{display:flex;gap:10px;font-size:14.5px;color:var(--ink-2)}
+.plan li.off{color:var(--ink-3)}
+.dash{width:21px;height:21px;border-radius:50%;background:#F0F2F7;color:var(--ink-3);display:grid;place-items:center;font-size:12px;flex:none;margin-top:1px}
+
+/* testimoni */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.quote{border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;background:var(--surface)}
+.quote p{font-size:15px;line-height:1.65;color:var(--ink)}
+.quote footer{display:flex;align-items:center;gap:11px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.quote b{font-size:14px;display:block}
+.quote small{font-size:12.5px;color:var(--ink-3)}
+.stars{color:#E0A209;font-size:13px;letter-spacing:2px;margin-bottom:12px}
+
+/* jalur CTA */
+.cta-band{background:var(--ink);color:#fff;border-radius:var(--r-lg);padding:46px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.cta-band h2{color:#fff}
+.cta-band p{color:#A9B4CA;margin-top:10px;max-width:52ch}
+
+/* footer */
+.site-footer{background:var(--night);color:#94A0B7;padding-top:64px;font-size:14px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px}
+.foot-grid h4{color:#fff;font-size:13px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:16px}
+.foot-grid li{margin-bottom:10px}
+.foot-grid a:hover{color:#fff}
+.foot-about p{margin-top:16px;line-height:1.65;max-width:36ch}
+.socials{display:flex;gap:8px;margin-top:18px}
+.socials a{width:34px;height:34px;border-radius:9px;border:1px solid rgba(255,255,255,.15);display:grid;place-items:center;font-size:12px;font-weight:700;color:#B9C3D6}
+.socials a:hover{background:rgba(255,255,255,.08);color:#fff}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding:22px 0 30px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13px}
+.pay-methods{display:flex;gap:8px;align-items:center}
+.pay-methods i{font-style:normal;border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:3px 8px;font-size:11px;font-weight:600;color:#B9C3D6}
+</style>
+<style>
+/* ============================================================
+   SKRIN LOG MASUK / DAFTAR  (tema rujukan: latar gelap + garis cahaya)
+   ============================================================ */
+.auth{position:relative;min-height:100vh;background:var(--night);color:#fff;overflow:hidden;isolation:isolate;display:flex;flex-direction:column}
+.auth::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(120% 92% at 74% 46%, rgba(6,10,20,0) 0%, rgba(5,16,12,.62) 48%, rgba(5,16,12,.96) 100%);
+}
+.auth-top{position:relative;z-index:3;padding:24px 30px}
+.auth-back{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#A9B4CA;font-weight:500}
+.auth-back:hover{color:#fff}
+.auth-inner{position:relative;z-index:3;flex:1;display:grid;grid-template-columns:1fr 460px;gap:56px;align-items:center;max-width:1240px;margin:0 auto;width:100%;padding:20px 30px 60px}
+.auth-copy .rule{width:56px;height:4px;background:var(--brand);border-radius:3px;margin-bottom:24px}
+.auth-copy h1{color:#fff;font-size:clamp(36px,4.6vw,60px);line-height:1.08}
+.auth-copy p{margin-top:22px;color:#A2AEC5;font-size:16.5px;line-height:1.65;max-width:44ch}
+.auth-points{display:grid;gap:12px;margin-top:34px}
+.auth-points li{display:flex;gap:11px;align-items:center;font-size:14.5px;color:#BAC5D9}
+.auth-points .check{background:rgba(18,120,74,.22);color:#6BD69F}
+
+.auth-card{
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);border-radius:22px;
+  padding:26px;backdrop-filter:blur(18px);box-shadow:var(--shadow-pop);
+}
+.auth-brand{display:flex;align-items:center;gap:11px;margin-bottom:22px}
+.auth-brand b{font-size:15.5px;font-weight:700;line-height:1.15;display:block}
+.auth-brand span{font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8E9AB2}
+.auth-card h2{font-size:26px;color:#fff}
+.auth-card .lede{margin-top:8px;font-size:14px;color:#9AA6BE}
+.auth-form{display:grid;gap:15px;margin-top:22px}
+.auth-form .field label{color:#B7C2D6;font-size:13px}
+.auth-form .input{
+  background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.16);color:#fff;height:46px;border-radius:12px;
+}
+.auth-form .input::placeholder{color:#6C7893}
+.auth-form .input:focus{border-color:#5E8DF6;box-shadow:0 0 0 3px rgba(94,141,246,.2);background:rgba(255,255,255,.07)}
+.label-row{display:flex;align-items:center;justify-content:space-between}
+.label-row a{font-size:13px;color:#7FA8FF;font-weight:500}
+.label-row a:hover{text-decoration:underline}
+.pw-wrap{position:relative}
+.pw-wrap .icon-btn{position:absolute;right:5px;top:5px;color:#8E9AB2}
+.pw-wrap .icon-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+.check-row{display:flex;align-items:center;justify-content:space-between;font-size:13.5px;color:#B7C2D6}
+.check-row label{display:flex;align-items:center;gap:9px;cursor:pointer}
+.check-row input{width:17px;height:17px;accent-color:var(--accent)}
+.auth-form .btn.primary{height:48px;border-radius:12px}
+.auth-form .btn.outline{height:48px;border-radius:12px;background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.18);color:#DCE3F0}
+.auth-form .btn.outline:hover{background:rgba(255,255,255,.09)}
+.auth-foot{display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;color:#8E9AB2}
+.auth-foot a{color:#8E9AB2}
+.auth-foot a.on{color:#fff;font-weight:600}
+.auth-switch{margin-top:18px;text-align:center;font-size:13.5px;color:#9AA6BE}
+.auth-switch button{background:none;border:0;color:#7FA8FF;font-weight:600;cursor:pointer;font-size:13.5px}
+.auth-switch button:hover{text-decoration:underline}
+
+/* ============================================================
+   RANGKA APLIKASI (dashboard pelajar + panel admin)
+   ============================================================ */
+.app{min-height:100vh;background:var(--app-bg);padding:16px 16px 56px}
+.app-wrap{max-width:1280px;margin:0 auto}
+.topbar{
+  display:flex;align-items:center;gap:16px;background:var(--surface);border-radius:18px;
+  padding:11px 14px;box-shadow:var(--shadow-card);position:sticky;top:16px;z-index:40;
+}
+.topbar .brand-name{font-size:15px}
+.navpills{display:flex;gap:4px;margin:0 auto;background:var(--surface-2);border:1px solid var(--line);padding:4px;border-radius:var(--r-pill)}
+.navpills button{
+  display:flex;align-items:center;gap:7px;height:34px;padding:0 15px;border:0;background:none;border-radius:var(--r-pill);
+  font-size:13.5px;font-weight:600;color:var(--ink-2);cursor:pointer;transition:.15s;
+}
+.navpills button:hover{color:var(--ink)}
+.navpills button[aria-selected="true"]{background:var(--night-2);color:#fff}
+.topbar-right{display:flex;align-items:center;gap:10px;margin-left:auto}
+.role-chip{
+  display:flex;align-items:center;gap:9px;height:42px;padding:0 13px;border-radius:var(--r-pill);
+  border:1px solid var(--line);background:var(--surface);cursor:pointer;
+}
+.role-chip .rc-text{line-height:1.15;text-align:left}
+.role-chip small{display:block;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.role-chip b{font-size:13.5px;font-weight:600}
+.bell{position:relative}
+.bell::after{content:"";position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--brand);border:2px solid var(--surface)}
+
+.page{margin-top:16px;display:grid;gap:16px}
+.crumb{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-3)}
+.crumb a:hover{color:var(--ink)}
+.page-head{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 26px}
+.page-head-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+.page-head h1{font-size:27px;font-weight:700}
+.page-head .sub{margin-top:7px;font-size:13.5px;color:var(--ink-3)}
+.head-stat{text-align:right;line-height:1.1}
+.head-stat b{font-size:34px;font-weight:700;letter-spacing:-.03em}
+.head-stat span{font-size:13px;color:var(--accent);font-weight:500}
+.pilltabs{display:flex;gap:6px;margin-top:20px;flex-wrap:wrap}
+.pilltabs button{height:36px;padding:0 16px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-pill);font-size:13.5px;font-weight:600;color:var(--ink-2);cursor:pointer}
+.pilltabs button:hover{border-color:var(--line-strong);color:var(--ink)}
+.pilltabs button[aria-selected="true"]{background:var(--night-2);border-color:var(--night-2);color:#fff}
+
+/* susun atur dashboard */
+.dash-grid{display:grid;grid-template-columns:320px 1fr;gap:16px;align-items:start}
+.dash-right{display:grid;gap:16px}
+.dash-cols{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;align-items:start}
+.panel-card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px}
+.panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.panel-title h3{font-size:16.5px}
+
+/* cincin kemajuan */
+.ring-wrap{display:grid;place-items:center;margin:6px 0 14px;position:relative}
+.ring-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;line-height:1}
+.ring-label b{font-size:26px;font-weight:700}
+.ring-tag{
+  position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;
+  font-size:11px;font-weight:700;padding:4px 11px;border-radius:var(--r-pill);white-space:nowrap;
+}
+.greet{text-align:center;font-size:15.5px;font-weight:600;margin-top:14px}
+.big-pct{font-size:30px;font-weight:700;letter-spacing:-.03em;margin-top:18px}
+.big-pct span{font-size:13.5px;font-weight:500;color:var(--ink-2);margin-left:8px;letter-spacing:0}
+.seg-bars{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.seg-bars i{height:4px;border-radius:3px;display:block}
+.seg-bars b{display:block;font-size:19px;font-weight:700;margin-top:9px}
+.seg-bars small{font-size:11.5px;color:var(--ink-3);line-height:1.3;display:block}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:var(--r-md);margin-top:18px;overflow:hidden}
+.mini-stats div{padding:13px 8px;text-align:center;border-right:1px solid var(--line)}
+.mini-stats div:last-child{border-right:0}
+.mini-stats b{display:block;font-size:19px;font-weight:700}
+.mini-stats small{font-size:11px;color:var(--ink-3);line-height:1.25;display:block;margin-top:2px}
+
+/* kad navy sambung belajar */
+.focus-card{
+  border-radius:var(--r-lg);padding:22px 24px;color:#fff;
+  background:linear-gradient(115deg,var(--navy-card-a) 0%, var(--navy-card-b) 78%);
+  box-shadow:var(--shadow-card);
+}
+.focus-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.focus-head h3{color:#fff;font-size:18px}
+.focus-head p{font-size:13px;color:#9FB0D0;margin-top:5px}
+.focus-card .btn.outline{border-color:rgba(255,255,255,.3);color:#fff;background:rgba(255,255,255,.06)}
+.focus-card .btn.outline:hover{background:rgba(255,255,255,.14)}
+.focus-now{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-md);padding:13px 15px}
+.focus-thumb{width:112px;aspect-ratio:16/9;border-radius:9px;flex:none;position:relative;overflow:hidden}
+.focus-now .meta{flex:1;min-width:0}
+.focus-now .meta small{font-size:11.5px;color:#9FB0D0;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.focus-now .meta b{display:block;font-size:15.5px;margin:4px 0 8px;font-weight:600}
+.linebar{height:5px;border-radius:3px;background:rgba(255,255,255,.16);overflow:hidden}
+.linebar i{display:block;height:100%;border-radius:3px;background:#52C79A}
+.focus-next{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.next-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);padding:12px 13px;text-align:left;cursor:pointer;color:#fff}
+.next-item:hover{background:rgba(255,255,255,.11)}
+.next-item small{font-size:11px;color:#9FB0D0;display:block}
+.next-item b{font-size:13.5px;font-weight:600;display:block;margin-top:4px;line-height:1.35}
+
+/* senarai baris */
+.row-list{display:grid;gap:10px}
+.row-item{display:flex;align-items:center;gap:13px;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);border-left-width:3px}
+.row-item.crit{border-left-color:var(--bad)}
+.row-item.warn{border-left-color:var(--warn)}
+.row-item.info{border-left-color:var(--accent)}
+.row-item.done{border-left-color:var(--ok)}
+.row-item .rt{flex:1;min-width:0}
+.row-item b{display:block;font-size:14.5px;font-weight:600}
+.row-item small{font-size:12.5px;color:var(--ink-3)}
+.row-item small em{font-style:normal;font-weight:600}
+.row-item small em.crit{color:var(--bad)}
+.row-item small em.warn{color:var(--warn)}
+.row-item small em.info{color:var(--accent)}
+.row-item small em.done{color:var(--ok)}
+
+/* senarai kursus dengan progres */
+.mycourse{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.mycourse:last-child{border-bottom:0;padding-bottom:0}
+.mycourse .thumb-sm{width:74px;aspect-ratio:16/10;border-radius:9px;flex:none;position:relative;overflow:hidden}
+.mycourse .mc{flex:1;min-width:0}
+.mycourse b{font-size:14.5px;font-weight:600;display:block}
+.mycourse small{font-size:12.5px;color:var(--ink-3)}
+.bar{height:6px;border-radius:3px;background:#EDF1F9;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;border-radius:3px;background:var(--accent)}
+.bar.ok i{background:var(--ok)}
+.bar.warn i{background:#D89422}
+.pct{font-size:13px;font-weight:700;width:42px;text-align:right;flex:none}
+</style>
+<style>
+/* ============================================================
+   HALAMAN KELAS — pemain video + panel nota
+   ============================================================ */
+.lesson-grid{display:grid;grid-template-columns:minmax(0,1fr) 348px;gap:16px;align-items:start}
+.lesson-grid.theatre{grid-template-columns:minmax(0,1fr)}
+.lesson-grid.theatre .lesson-side{display:none}
+.lesson-main{display:grid;gap:16px;min-width:0}
+
+.player{background:#080D1A;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-card)}
+.stage{position:relative;aspect-ratio:16/9;overflow:hidden;background:#05080F}
+.stage-art{position:absolute;inset:0}
+.stage-veil{position:absolute;inset:0;background:radial-gradient(90% 80% at 50% 45%, rgba(4,8,16,.15), rgba(4,8,16,.82))}
+.stage-caption{position:absolute;left:22px;bottom:22px;right:22px;color:#fff;pointer-events:none}
+.stage-caption small{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#93A6C8}
+.stage-caption b{display:block;font-size:clamp(18px,2.2vw,26px);font-weight:700;letter-spacing:-.02em;margin-top:6px;max-width:22ch}
+.play-big{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;
+  border:0;background:rgba(255,255,255,.94);cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .16s, background .16s;
+}
+.play-big:hover{transform:translate(-50%,-50%) scale(1.05);background:#fff}
+.play-big::after{content:"";border-left:21px solid #0C1830;border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:6px}
+.player.playing .play-big{opacity:0;pointer-events:none}
+.player.playing .stage-caption{opacity:0;transition:opacity .3s}
+.dummy-note{
+  position:absolute;top:14px;left:14px;z-index:3;background:rgba(8,13,26,.72);border:1px solid rgba(255,255,255,.16);
+  color:#C7D2E6;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:5px 10px;border-radius:7px;
+}
+.controls{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#080D1A}
+.controls .icon-btn{color:#AFBBD2;width:34px;height:34px}
+.controls .icon-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+.seek{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.16);position:relative;cursor:pointer}
+.seek i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--brand)}
+.seek b{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.time{font-size:12.5px;color:#AFBBD2;font-variant-numeric:tabular-nums;min-width:86px;text-align:center}
+.speed{height:30px;padding:0 10px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#DCE3F0;font-size:12.5px;font-weight:600;cursor:pointer}
+.speed:hover{background:rgba(255,255,255,.1)}
+
+/* panel nota (boleh minimize / maximize) */
+.panel{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-card);display:flex;flex-direction:column;overflow:hidden}
+.panel-head{display:flex;align-items:center;gap:8px;padding:8px 12px 0;border-bottom:1px solid var(--line)}
+.panel-tabs{display:flex;gap:2px;flex:1;overflow-x:auto}
+.panel-tabs button{
+  height:42px;padding:0 14px;border:0;background:none;font-size:14px;font-weight:600;color:var(--ink-3);
+  border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap;
+}
+.panel-tabs button:hover{color:var(--ink-2)}
+.panel-tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--brand)}
+.win-btns{display:flex;gap:2px;padding-bottom:8px;flex:none}
+.win-btns .icon-btn{width:32px;height:32px;border:1px solid var(--line);border-radius:8px}
+.panel-body{padding:22px 24px 26px;overflow:auto}
+.panel.is-min .panel-body{display:none}
+.panel.is-min .panel-head{border-bottom:0}
+.panel.is-max{
+  position:fixed;inset:16px;z-index:120;box-shadow:var(--shadow-pop);
+}
+.panel.is-max .panel-body{flex:1}
+
+/* kandungan nota */
+.notes h3{font-size:20px;margin-bottom:6px}
+.notes .note-meta{font-size:12.5px;color:var(--ink-3);margin-bottom:20px;display:flex;gap:14px;flex-wrap:wrap}
+.notes h4{font-size:15.5px;margin:22px 0 8px}
+.notes p{font-size:15px;line-height:1.72;color:#26334C;max-width:72ch}
+.notes p + p{margin-top:12px}
+.notes ol{margin:12px 0 0 0;padding-left:20px;display:grid;gap:8px}
+.notes ol li{font-size:15px;line-height:1.65;color:#26334C;list-style:decimal}
+.notes .callout{
+  border:1px solid var(--line);border-left:3px solid var(--accent);background:var(--surface-2);
+  border-radius:var(--r-md);padding:14px 16px;margin:20px 0;
+}
+.notes .callout b{display:block;font-size:13.5px;margin-bottom:5px;color:var(--accent-strong)}
+.notes .callout p{font-size:14px;color:var(--ink-2)}
+.notes .snippet{
+  background:#0D1730;color:#D6E0F5;border-radius:var(--r-md);padding:14px 16px;margin:16px 0;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.7;overflow-x:auto;
+}
+.notes .snippet span{color:#7FA8FF}
+.note-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+.transcript{display:grid;gap:14px}
+.tr-line{display:flex;gap:14px;font-size:14.5px}
+.tr-line time{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums;flex:none;width:52px}
+.tr-line p{color:#26334C;line-height:1.6}
+.attach{display:grid;gap:10px}
+.attach a{display:flex;align-items:center;gap:13px;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r-md)}
+.attach a:hover{border-color:var(--line-strong);background:var(--surface-2)}
+.file-ico{width:38px;height:38px;border-radius:9px;background:var(--accent-soft);color:var(--accent-strong);display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
+.attach b{display:block;font-size:14.5px}
+.attach small{font-size:12.5px;color:var(--ink-3)}
+.qa{display:grid;gap:14px}
+.qa-item{border:1px solid var(--line);border-radius:var(--r-md);padding:15px 16px}
+.qa-item .qh{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.qa-item b{font-size:14px}
+.qa-item small{font-size:12px;color:var(--ink-3)}
+.qa-item p{font-size:14.5px;color:#26334C;line-height:1.6}
+.qa-reply{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);display:flex;gap:11px}
+.qa-reply p{font-size:14px;color:var(--ink-2)}
+
+/* sisi: senarai modul */
+.lesson-side{display:grid;gap:16px;position:sticky;top:88px}
+.side-card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-card);overflow:hidden}
+.side-head{padding:18px 20px;border-bottom:1px solid var(--line)}
+.side-head h3{font-size:16px}
+.side-head .bar{margin-top:12px}
+.side-head small{font-size:12.5px;color:var(--ink-3);display:block;margin-top:8px}
+.module{border-bottom:1px solid var(--line)}
+.module:last-child{border-bottom:0}
+.module-head{
+  width:100%;display:flex;align-items:center;gap:11px;padding:14px 20px;border:0;background:none;cursor:pointer;text-align:left;
+}
+.module-head:hover{background:var(--surface-2)}
+.module-head b{flex:1;font-size:14px;font-weight:600}
+.module-head small{font-size:12px;color:var(--ink-3)}
+.chev{width:16px;height:16px;flex:none;color:var(--ink-3);transition:transform .18s}
+.module.open .chev{transform:rotate(180deg)}
+.module-body{display:none;padding:0 12px 12px}
+.module.open .module-body{display:grid;gap:2px}
+.lesson-row{
+  display:flex;align-items:center;gap:11px;width:100%;padding:10px 10px;border:0;background:none;border-radius:10px;
+  cursor:pointer;text-align:left;
+}
+.lesson-row:hover{background:var(--surface-2)}
+.lesson-row.active{background:var(--accent-soft)}
+.lesson-row.active .lr-title{color:var(--accent-strong);font-weight:600}
+.lesson-row.locked{cursor:pointer}
+.lesson-row.locked .lr-title{color:var(--ink-3)}
+.lr-state{width:20px;height:20px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:10px;font-weight:800;border:1.5px solid var(--line-strong);color:transparent}
+.lr-state.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.lr-state.now{border-color:var(--accent);background:#fff;position:relative}
+.lr-state.now::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lr-state.lock{border:0;background:none;color:var(--ink-3);font-size:13px}
+.lr-body{flex:1;min-width:0}
+.lr-title{display:block;font-size:13.5px;line-height:1.4;color:var(--ink)}
+.lr-meta{font-size:11.5px;color:var(--ink-3);display:flex;gap:8px;margin-top:2px}
+.upsell{background:linear-gradient(120deg,#0E2560,#081536);color:#fff;border-radius:var(--r-lg);padding:20px 22px}
+.upsell h4{color:#fff;font-size:16px}
+.upsell p{font-size:13.5px;color:#A3B3D2;margin:8px 0 16px;line-height:1.6}
+.upsell .btn{width:100%;background:#fff;color:var(--ink)}
+.upsell .btn:hover{background:#EEF3FF}
+
+/* ============================================================
+   PANEL ADMIN
+   ============================================================ */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-card);overflow:hidden}
+.stat-strip>div{padding:20px 22px;border-right:1px solid var(--line)}
+.stat-strip>div:last-child{border-right:0}
+.stat-strip small{font-size:12px;color:var(--ink-3);font-weight:500}
+.stat-strip b{display:block;font-size:28px;font-weight:700;letter-spacing:-.03em;margin:6px 0 3px}
+.delta{font-size:12.5px;font-weight:600}
+.delta.up{color:var(--ok)}
+.delta.down{color:var(--bad)}
+.delta.flat{color:var(--ink-3)}
+
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.search{position:relative;flex:1;min-width:220px;max-width:340px}
+.search .input{padding-left:38px}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+.chip{
+  height:36px;padding:0 13px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-pill);
+  font-size:13px;font-weight:600;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:7px;
+}
+.chip:hover{border-color:var(--line-strong)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip .x{opacity:.65}
+
+.table-wrap{overflow-x:auto;border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow-card)}
+table{width:100%;border-collapse:collapse;min-width:760px}
+thead th{
+  text-align:left;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+  padding:14px 18px;border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;
+}
+tbody td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--surface-2)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.cell-title{display:flex;align-items:center;gap:12px}
+.cell-title .thumb-xs{width:52px;aspect-ratio:16/10;border-radius:7px;flex:none;overflow:hidden;position:relative}
+.cell-title b{display:block;font-size:14px;font-weight:600}
+.cell-title small{font-size:12px;color:var(--ink-3)}
+
+.seg{display:inline-flex;padding:3px;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;gap:2px}
+.seg button{height:26px;padding:0 10px;border:0;background:none;border-radius:7px;font-size:12px;font-weight:600;color:var(--ink-3);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(12,24,48,.12)}
+.seg button[aria-pressed="true"].v{color:var(--vip)}
+.switch{position:relative;width:42px;height:24px;border-radius:var(--r-pill);background:var(--line-strong);border:0;cursor:pointer;transition:background .18s;flex:none}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .18s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.switch[aria-checked="true"]{background:var(--ok)}
+.switch[aria-checked="true"]::after{transform:translateX(18px)}
+.switch-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md)}
+.switch-row .sr{flex:1}
+.switch-row b{display:block;font-size:14px;font-weight:600}
+.switch-row small{font-size:12.5px;color:var(--ink-3)}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-grid .full{grid-column:1/-1}
+.dropzone{
+  border:1.5px dashed var(--line-strong);border-radius:var(--r-md);background:var(--surface-2);
+  padding:30px 22px;text-align:center;cursor:pointer;transition:.16s;
+}
+.dropzone:hover{border-color:var(--accent);background:var(--accent-soft)}
+.dropzone .dz-ico{width:46px;height:46px;border-radius:13px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 12px;color:var(--accent)}
+.dropzone b{display:block;font-size:14.5px}
+.dropzone small{font-size:12.5px;color:var(--ink-3);display:block;margin-top:5px}
+.uploaded{display:flex;align-items:center;gap:13px;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r-md);margin-top:12px}
+.uploaded .bar{flex:1;margin-top:6px}
+.uploaded b{font-size:14px;display:block}
+.uploaded small{font-size:12px;color:var(--ink-3)}
+
+.editor{border:1px solid var(--line-strong);border-radius:var(--r-md);overflow:hidden}
+.editor-bar{display:flex;gap:2px;padding:7px 8px;border-bottom:1px solid var(--line);background:var(--surface-2);flex-wrap:wrap}
+.editor-bar button{
+  min-width:32px;height:30px;padding:0 9px;border:0;background:none;border-radius:7px;cursor:pointer;
+  font-size:13px;font-weight:600;color:var(--ink-2);
+}
+.editor-bar button:hover{background:var(--surface);color:var(--ink)}
+.editor-bar .divider{width:1px;background:var(--line);margin:4px 5px}
+.editor-area{padding:16px 18px;min-height:210px;font-size:15px;line-height:1.7;color:#26334C;outline:none}
+.editor-area:focus{background:#FCFDFF}
+.editor-area h4{margin:14px 0 6px;color:var(--ink)}
+.editor-area ul{list-style:disc;padding-left:20px;display:grid;gap:5px;margin:8px 0}
+.editor-foot{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--line);background:var(--surface-2);font-size:12.5px;color:var(--ink-3)}
+
+.access-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.access-card{border:1.5px solid var(--line);border-radius:var(--r-md);padding:15px 16px;cursor:pointer;background:var(--surface);text-align:left}
+.access-card:hover{border-color:var(--line-strong)}
+.access-card[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.access-card .ac-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.access-card b{font-size:14.5px}
+.access-card p{font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.radio-dot{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line-strong);display:grid;place-items:center;flex:none}
+.access-card[aria-pressed="true"] .radio-dot{border-color:var(--accent)}
+.access-card[aria-pressed="true"] .radio-dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent)}
+
+.bars{display:grid;gap:14px;margin-top:6px}
+.bars .brow{display:grid;grid-template-columns:104px 1fr 58px;align-items:center;gap:14px;font-size:13.5px}
+.bars .btrack{height:10px;border-radius:5px;background:#EDF1F9;overflow:hidden}
+.bars .btrack i{display:block;height:100%;border-radius:5px;background:var(--accent)}
+.bars .btrack i.alt{background:#8AB0F7}
+.bars b{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+
+/* ============================================================
+   MODAL, TOAST, PENUKAR SKRIN DEMO
+   ============================================================ */
+.overlay{position:fixed;inset:0;background:rgba(6,11,22,.55);backdrop-filter:blur(3px);z-index:200;display:grid;place-items:center;padding:20px}
+.modal{background:var(--surface);border-radius:var(--r-lg);width:min(460px,100%);box-shadow:var(--shadow-pop);overflow:hidden}
+.modal-head{padding:24px 26px 0;display:flex;justify-content:space-between;gap:14px}
+.modal-head h3{font-size:20px}
+.modal-body{padding:14px 26px 24px}
+.modal-body p{font-size:14.5px;color:var(--ink-2);line-height:1.6}
+.modal-plan{border:1px solid var(--line);border-radius:var(--r-md);padding:16px;margin-top:18px}
+.modal-plan .mp-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.modal-plan b{font-size:15px}
+.modal-plan .amt{font-size:26px;font-weight:800;letter-spacing:-.03em}
+.modal-plan .amt small{font-size:13px;font-weight:500;color:var(--ink-3)}
+.modal-plan li{display:flex;gap:9px;font-size:13.5px;color:var(--ink-2);margin-bottom:7px}
+.modal-foot{display:flex;gap:10px;padding:16px 26px 22px;border-top:1px solid var(--line)}
+.modal-foot .btn{flex:1}
+
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(16px);z-index:300;
+  background:var(--night-2);color:#fff;padding:13px 18px;border-radius:var(--r-md);font-size:14px;font-weight:500;
+  box-shadow:var(--shadow-pop);display:flex;align-items:center;gap:11px;opacity:0;pointer-events:none;transition:.22s ease;
+  max-width:calc(100vw - 40px);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast .tdot{width:8px;height:8px;border-radius:50%;background:#F0B429;flex:none}
+
+.demoswitch{
+  position:fixed;left:18px;bottom:18px;z-index:150;background:var(--surface);border:1px solid var(--line-strong);
+  border-radius:var(--r-md);box-shadow:var(--shadow-float);width:222px;overflow:hidden;
+}
+.demoswitch-head{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.demoswitch-head b{flex:1;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.demoswitch-head button{border:0;background:none;cursor:pointer;color:var(--ink-3);font-size:15px;line-height:1;padding:2px 4px}
+.demoswitch ul{padding:6px;display:grid;gap:2px}
+.demoswitch button.ds{width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:8px;font-size:13px;font-weight:500;color:var(--ink-2);cursor:pointer;display:flex;align-items:center;gap:9px}
+.demoswitch button.ds:hover{background:var(--surface-2);color:var(--ink)}
+.demoswitch button.ds[aria-current="true"]{background:var(--accent-soft);color:var(--accent-strong);font-weight:600}
+.demoswitch .num{width:18px;height:18px;border-radius:5px;background:var(--surface-2);border:1px solid var(--line);font-size:10px;font-weight:700;display:grid;place-items:center;color:var(--ink-3);flex:none}
+.demoswitch.collapsed ul{display:none}
+
+/* ============================================================
+   RESPONSIF
+   ============================================================ */
+@media (max-width:1080px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;padding:64px 0 72px}
+  .preview-card{max-width:520px}
+  .auth-inner{grid-template-columns:1fr;gap:34px;padding-top:8px}
+  .auth-copy{max-width:560px}
+  .auth-card{max-width:460px}
+  .course-grid,.quotes{grid-template-columns:repeat(2,1fr)}
+  .lesson-grid{grid-template-columns:1fr}
+  .lesson-side{position:static}
+  .dash-grid{grid-template-columns:1fr}
+  .stat-strip{grid-template-columns:repeat(2,1fr)}
+  .stat-strip>div:nth-child(2){border-right:0}
+  .stat-strip>div:nth-child(1),.stat-strip>div:nth-child(2){border-bottom:1px solid var(--line)}
+}
+@media (max-width:860px){
+  .menu,.header-cta .btn.ghost{display:none}
+  .menu-toggle{display:inline-flex;margin-left:auto;width:42px;height:42px;border-radius:11px;border:1px solid var(--line);background:var(--surface);align-items:center;justify-content:center;cursor:pointer}
+  .header-cta{margin-left:0;gap:8px}
+  .mobile-menu{display:grid;gap:2px;padding:10px 24px 18px;border-top:1px solid var(--line);background:var(--surface)}
+  .mobile-menu a{padding:11px 12px;border-radius:10px;font-size:15px;font-weight:500}
+  .mobile-menu a:hover{background:var(--surface-2)}
+  .section{padding:56px 0}
+  .steps{grid-template-columns:1fr}
+  .step{border-right:0;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:0}
+  .feature{grid-template-columns:1fr;gap:34px}
+  .plans{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .dash-cols{grid-template-columns:1fr}
+  .navpills{order:3;width:100%;margin:0;overflow-x:auto;justify-content:flex-start}
+  .topbar{flex-wrap:wrap;position:static}
+  .form-grid,.access-cards{grid-template-columns:1fr}
+  .focus-next{grid-template-columns:1fr}
+  .demoswitch{width:190px;left:12px;bottom:12px}
+}
+@media (max-width:620px){
+  .course-grid,.quotes{grid-template-columns:1fr}
+  .stat-strip{grid-template-columns:1fr}
+  .stat-strip>div{border-right:0;border-bottom:1px solid var(--line)}
+  .stat-strip>div:last-child{border-bottom:0}
+  .hero-stats{gap:22px;flex-wrap:wrap}
+  .cta-band{padding:32px 26px}
+  .foot-grid{grid-template-columns:1fr}
+  .page-head-top{flex-direction:column}
+  .head-stat{text-align:left}
+  .panel-body{padding:18px 16px 22px}
+  .app{padding:10px 10px 40px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
+</style>
+<style>
+/* ============================================================
+   TEMA KULIAH HARAKI — override palet, tipografi & corak
+   ============================================================ */
+:root{
+  --brand:#0B6B4F;
+  --accent:#0C6B4C;
+  --accent-strong:#08543B;
+  --accent-soft:#E3F1EA;
+  --gold:#9A6F16;
+  --gold-soft:#FBF2DE;
+  --gold-line:#E6CE96;
+  --ink:#10201B;
+  --ink-2:#4E6159;
+  --ink-3:#84958D;
+  --line:#E2EAE6;
+  --line-strong:#C7D8D1;
+  --surface:#FFFFFF;
+  --surface-2:#F5F9F7;
+  --app-bg:#E9F1ED;
+  --night:#05100C;
+  --night-2:#0A2019;
+  --navy-card-a:#0B4A36;
+  --navy-card-b:#041B14;
+  --ok:#12784A;
+  --ok-soft:#E4F2EA;
+  --warn:#8A5A12;
+  --warn-soft:#FBF1DE;
+  --bad:#B3261E;
+  --bad-soft:#FBEAE8;
+  --vip:#7A5A12;
+  --vip-soft:#FBF1DA;
+  --vip-line:#E7CE95;
+  --font-display:'Lora', Georgia, 'Times New Roman', serif;
+  --font-arab:'Amiri', 'Traditional Arabic', serif;
+}
+/* tipografi: tajuk guna serif supaya rasa lebih dekat dengan majlis ilmu */
+h1,h2,.plan-price b,.head-stat b,.stat-strip b,.big-pct{font-family:var(--font-display);letter-spacing:-.01em}
+h1{font-weight:700}
+h2{font-weight:600}
+.hero h1,.auth-copy h1{font-weight:600;line-height:1.15}
+.quote p,.notes p{font-family:var(--font-display);font-size:15.5px}
+
+/* tanda jenama: bintang lapan (khatam) */
+.mark{background:var(--brand);border-radius:10px}
+.mark svg{width:20px;height:20px}
+.mark.sm svg{width:16px;height:16px}
+
+/* corak geometri sebagai ganti gambar dummy */
+.art{position:absolute;inset:0}
+.art::after{
+  content:"";position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.11) 0 1px, transparent 1px 23px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.11) 0 1px, transparent 1px 23px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 23px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 23px);
+}
+.art::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(65% 60% at 50% 42%, rgba(255,255,255,.16), transparent 68%);
+}
+.art1{background:linear-gradient(140deg,#0B4A36 0%,#0F6B4C 55%,#052018 100%)}
+.art2{background:linear-gradient(140deg,#07403F 0%,#0B6362 58%,#04211F 100%)}
+.art3{background:linear-gradient(140deg,#5C4310 0%,#9A7420 58%,#33240A 100%)}
+.art4{background:linear-gradient(140deg,#4A2318 0%,#7C3C24 58%,#2A130C 100%)}
+.art5{background:linear-gradient(140deg,#1D2A2A 0%,#38504C 55%,#131C1B 100%)}
+.art6{background:linear-gradient(140deg,#0D3348 0%,#175A6E 58%,#08202D 100%)}
+
+/* kotak ayat */
+.ayah{
+  border:1px solid var(--gold-line);border-left:3px solid var(--gold);background:var(--gold-soft);
+  border-radius:var(--r-md);padding:18px 20px;margin:22px 0;
+}
+.ayah .ar{
+  font-family:var(--font-arab);font-size:25px;line-height:2;direction:rtl;text-align:right;
+  color:#2A2008;margin-bottom:12px;
+}
+.ayah .tr{font-family:var(--font-display);font-size:15px;font-style:italic;color:#4A3B14;line-height:1.7}
+.ayah .ref{display:block;margin-top:9px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+
+/* jalur waktu solat */
+.solat{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin-top:4px}
+.solat div{padding:11px 6px;text-align:center;border-right:1px solid var(--line)}
+.solat div:last-child{border-right:0}
+.solat small{display:block;font-size:11px;color:var(--ink-3);font-weight:600;letter-spacing:.04em}
+.solat b{display:block;font-size:14px;font-variant-numeric:tabular-nums;margin-top:3px}
+.solat div.now{background:var(--accent-soft)}
+.solat div.now b{color:var(--accent-strong)}
+.solat div.now small{color:var(--accent)}
+
+/* tarikh hijri */
+.hijri{font-size:12.5px;color:var(--ink-3)}
+.hijri b{font-weight:600;color:var(--ink-2)}
+
+/* hiasan garis geometri bawah tajuk seksyen */
+.ornament{display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--gold)}
+.ornament i{height:1px;flex:1;max-width:70px;background:currentColor;opacity:.45}
+.ornament svg{width:14px;height:14px;flex:none}
+</style>
+
+<!-- ============================================================
+     SKRIN 1 — LAMAN AWAM
+     ============================================================ -->
+<div id="view-home">
+  <div class="notice-bar">
+    <div class="wrap">
+      <strong>Ambilan baharu</strong>
+      <span>· Siri Fiqh Dakwah &amp; Manhaj Haraki bermula 15/09/2026.</span>
+      <a href="#" data-demo="toast">Lihat jadual</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#" data-go="home">
+        <span class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span>
+        <span>
+          <span class="brand-name">Kuliah Haraki</span>
+          <span class="brand-sub">Ilmu · Tarbiyah · Amal</span>
+        </span>
+      </a>
+      <nav class="menu">
+        <a href="#" class="active">Utama</a>
+        <div class="has-sub">
+          <button type="button">Siri kuliah
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="submenu">
+            <a href="#" data-filter="asas"><b>Peringkat Asas</b><span>Aqidah, sirah, tafsir permulaan</span></a>
+            <a href="#" data-filter="peralihan"><b>Peringkat Peralihan</b><span>Fiqh ibadah, hadis, usul tarbiyah</span></a>
+            <a href="#" data-filter="lanjutan"><b>Peringkat Lanjutan</b><span>Fiqh dakwah dan manhaj haraki</span></a>
+            <a href="#" data-filter="umum"><b>Kuliah Umum</b><span>Rakaman kuliah terbuka</span></a>
+          </div>
+        </div>
+        <a href="#" data-demo="toast">Nota &amp; bahan</a>
+        <a href="#pricing">Yuran</a>
+        <a href="#" data-demo="toast">Tentang</a>
+        <a href="#" data-demo="toast">Hubungi</a>
+      </nav>
+      <div class="header-cta">
+        <button class="btn ghost" data-go="auth" data-mode="login">Log masuk</button>
+        <button class="btn primary" data-go="auth" data-mode="daftar">Daftar percuma</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" hidden>
+      <a href="#">Utama</a>
+      <a href="#courses">Siri kuliah</a>
+      <a href="#" data-demo="toast">Nota &amp; bahan</a>
+      <a href="#pricing">Yuran</a>
+      <a href="#" data-demo="toast">Tentang</a>
+      <a href="#" data-demo="toast">Hubungi</a>
+      <a href="#" data-go="auth" data-mode="login"><b>Log masuk</b></a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="streaks" data-streaks="hero" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <div>
+        <div class="rule"></div>
+        <p class="kicker" style="color:#8FB3A2">Kuliah dalam talian · Bahasa Melayu</p>
+        <h1 style="margin-top:14px">Menuntut ilmu tanpa terikat masa dan tempat.</h1>
+        <p class="hero-lede">Setiap kuliah ada video dan nota bertulis dalam satu skrin. Mula dengan kuliah percuma, naik taraf ahli penuh bila mahu ikuti siri yang lebih mendalam.</p>
+        <div class="hero-actions">
+          <button class="btn primary lg" data-go="auth" data-mode="daftar">Daftar percuma
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9m0 0-3.5-3.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="btn outline lg" data-go="lesson">Tonton kuliah percuma</button>
+        </div>
+        <div class="hero-stats">
+          <div><b class="tnum">42</b><span>kuliah video</span></div>
+          <div><b class="tnum">180+</b><span>nota &amp; bahan PDF</span></div>
+          <div><b class="tnum">2,400</b><span>peserta berdaftar</span></div>
+        </div>
+      </div>
+      <div class="preview-card">
+        <div class="preview-head">
+          <i class="dot"></i><i class="dot"></i><i class="dot"></i>
+          <span>Kuliah 03 · Dakwah sirri di Makkah</span>
+        </div>
+        <div class="preview-stage">
+          <div class="art art1"></div>
+          <div class="stage-veil"></div>
+          <div class="dummy-note">Video dummy</div>
+          <span class="play"></span>
+        </div>
+        <div class="preview-notes">
+          <i></i><i></i><i></i>
+        </div>
+        <div class="preview-foot">
+          <small>Nota kuliah · 6 muka surat</small>
+          <span class="badge free">PERCUMA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust">
+    <div class="wrap">
+      <p>Digunakan dalam program tarbiyah</p>
+      <ul>
+        <li>Surau Al-Hidayah</li>
+        <li>Halaqah Kampus UTeM</li>
+        <li>Persatuan Belia Islam Melaka</li>
+        <li>Madrasah Nurul Iman</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SIRI KULIAH -->
+  <section class="section" id="courses">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Siri kuliah</p>
+          <h2 style="margin-top:10px">Pilih peringkat, mula menuntut</h2>
+          <div class="ornament"><i></i><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.4" stroke="currentColor" stroke-width="1.4"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.4" stroke="currentColor" stroke-width="1.4" transform="rotate(45 12 12)"/></svg><i></i></div>
+          <p style="margin-top:14px">Kuliah percuma terbuka untuk sesiapa yang berdaftar. Siri peringkat peralihan dan lanjutan untuk ahli penuh.</p>
+        </div>
+        <button class="btn outline" data-demo="toast">Semua 42 kuliah</button>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Peringkat kuliah">
+        <button class="tab" role="tab" aria-selected="true" data-cat="semua">Semua</button>
+        <button class="tab" role="tab" aria-selected="false" data-cat="asas">Peringkat Asas</button>
+        <button class="tab" role="tab" aria-selected="false" data-cat="peralihan">Peringkat Peralihan</button>
+        <button class="tab" role="tab" aria-selected="false" data-cat="lanjutan">Peringkat Lanjutan</button>
+        <button class="tab" role="tab" aria-selected="false" data-cat="umum">Kuliah Umum</button>
+      </div>
+
+      <div class="course-grid" id="courseGrid">
+        <button class="course" data-cat="asas" data-go="lesson">
+          <div class="thumb"><div class="art art1"></div><span class="acc badge free">PERCUMA</span><span class="play"></span><span class="dur tnum">3j 10m</span></div>
+          <div class="course-body">
+            <p class="course-level">Peringkat Asas</p>
+            <h3>Sirah Nabawiyah: Fasa Makkah</h3>
+            <p class="course-desc">Perjalanan dakwah Rasulullah SAW di Makkah dan pengajarannya untuk kita hari ini.</p>
+            <div class="course-meta"><span>14 kuliah</span><span>10 nota</span></div>
+          </div>
+          <div class="course-foot">
+            <span class="tutor"><span class="avatar">AM</span> Ustaz Ahmad Munir</span>
+            <span class="price-tag" style="color:var(--ok)">Percuma</span>
+          </div>
+        </button>
+
+        <button class="course" data-cat="asas" data-go="lesson">
+          <div class="thumb"><div class="art art2"></div><span class="acc badge free">PERCUMA</span><span class="play"></span><span class="dur tnum">2j 24m</span></div>
+          <div class="course-body">
+            <p class="course-level">Peringkat Asas</p>
+            <h3>Asas Aqidah Ahli Sunnah</h3>
+            <p class="course-desc">Rukun iman, tauhid uluhiyah dan rububiyah dalam bahasa yang mudah difahami.</p>
+            <div class="course-meta"><span>11 kuliah</span><span>8 nota</span></div>
+          </div>
+          <div class="course-foot">
+            <span class="tutor"><span class="avatar">HS</span> Ustazah Hafizah Salleh</span>
+            <span class="price-tag" style="color:var(--ok)">Percuma</span>
+          </div>
+        </button>
+
+        <button class="course" data-cat="asas" data-go="lesson">
+          <div class="thumb"><div class="art art6"></div><span class="acc badge free">PERCUMA</span><span class="play"></span><span class="dur tnum">1j 52m</span></div>
+          <div class="course-body">
+            <p class="course-level">Peringkat Asas</p>
+            <h3>Tafsir Juzuk 30 untuk Pemula</h3>
+            <p class="course-desc">Tafsir ringkas surah-surah pendek yang kerap dibaca dalam solat.</p>
+            <div class="course-meta"><span>9 kuliah</span><span>9 nota</span></div>
+          </div>
+          <div class="course-foot">
+            <span class="tutor"><span class="avatar">AM</span> Ustaz Ahmad Munir</span>
+            <span class="price-tag" style="color:var(--ok)">Percuma</span>
+          </div>
+        </button>
+
+        <button class="course" data-cat="peralihan" data-go="lesson">
+          <div class="thumb"><div class="art art3"></div><span class="acc badge vip">AHLI PENUH</span><span class="play"></span><span class="dur tnum">4j 15m</span></div>
+          <div class="course-body">
+            <p class="course-level">Peringkat Peralihan</p>
+            <h3>Usul Tarbiyah &amp; Pembinaan Usrah</h3>
+            <p class="course-desc">Rukun usrah, adab naqib dan cara menyusun program tarbiyah yang berterusan.</p>
+            <div class="course-meta"><span>18 kuliah</span><span>14 nota</span></div>
+          </div>
+          <div class="course-foot">
+            <span class="tutor"><span class="avatar">AH</span> Ustaz Amir Hakim</span>
+            <span class="price-tag">RM19<small>/bln</small></span>
+          </div>
+        </button>
+
+        <button class="course" data-cat="peralihan" data-go="lesson">
+          <div class="thumb"><div class="art art5"></div><span class="acc badge vip">AHLI PENUH</span><span class="play"></span><span class="dur tnum">5j 30m</span></div>
+          <div class="course-body">
+            <p class="course-level">Peringkat Peralihan</p>
+            <h3>Hadis 40 Imam Nawawi</h3>
+            <p class="course-desc">Syarah hadis demi hadis, dengan pengajaran amali untuk kehidupan harian.</p>
+            <div class="course-meta"><span>24 kuliah</span><span>20 nota</span></div>
+          </div>
+          <div class="course-foot">
+            <span class="tutor"><span class="avatar">HS</span> Ustazah Hafizah Salleh</span>
+            <span class="price-tag">RM19<small>/bln</small></span>
+          </div>
+        </button>
+
+        <button class="course" data-cat="peralihan" data-go="lesson">
+          <div class="thumb"><div class="art art2"></div><span class="acc badge vip">AHLI PENUH</span><span class="play"></span><span class="dur tnum">3j 48m</span></div>
+          <div class="course-body">
+            <p class="course-level">Peringkat Peralihan</p>
+            <h3>Fiqh Ibadah Harian</h3>
+            <p class="course-desc">Taharah, solat, puasa dan zakat — hukum asas yang wajib setiap Muslim tahu.</p>
+            <div class="course-meta"><span>16 kuliah</span><span>12 nota</span></div>
+          </div>
+          <div class="course-foot">
+            <span class="tutor"><span class="avatar">AM</span> Ustaz Ahmad Munir</span>
+            <span class="price-tag">RM19<small>/bln</small></span>
+          </div>
+        </button>
+
+        <button class="course" data-cat="lanjutan" data-go="lesson">
+          <div class="thumb"><div class="art art4"></div><span class="acc badge vip">AHLI PENUH</span><span class="play"></span><span class="dur tnum">6j 05m</span></div>
+          <div class="course-body">
+            <p class="course-level">Peringkat Lanjutan</p>
+            <h3>Fiqh Dakwah &amp; Manhaj Haraki</h3>
+            <p class="course-desc">Marhalah dakwah, uslub dan wasilah, serta cara membaca realiti semasa.</p>
+            <div class="course-meta"><span>22 kuliah</span><span>18 nota</span></div>
+          </div>
+          <div class="course-foot">
+            <span class="tutor"><span class="avatar">AH</span> Ustaz Amir Hakim</span>
+            <span class="price-tag">RM19<small>/bln</small></span>
+          </div>
+        </button>
+
+        <button class="course" data-cat="lanjutan" data-go="lesson">
+          <div class="thumb"><div class="art art1"></div><span class="acc badge vip">AHLI PENUH</span><span class="play"></span><span class="dur tnum">4j 40m</span></div>
+          <div class="course-body">
+            <p class="course-level">Peringkat Lanjutan</p>
+            <h3>Fiqh Awlawiyat dalam Amal Jamaie</h3>
+            <p class="course-desc">Menyusun keutamaan kerja dakwah supaya tenaga tidak habis pada perkara kecil.</p>
+            <div class="course-meta"><span>15 kuliah</span><span>13 nota</span></div>
+          </div>
+          <div class="course-foot">
+            <span class="tutor"><span class="avatar">AH</span> Ustaz Amir Hakim</span>
+            <span class="price-tag">RM19<small>/bln</small></span>
+          </div>
+        </button>
+
+        <button class="course" data-cat="umum" data-go="lesson">
+          <div class="thumb"><div class="art art3"></div><span class="acc badge free">PERCUMA</span><span class="play"></span><span class="dur tnum">1j 18m</span></div>
+          <div class="course-body">
+            <p class="course-level">Kuliah Umum · Rakaman</p>
+            <h3>Tarbiyah Zatiyah di Era Digital</h3>
+            <p class="course-desc">Menjaga rutin ibadah peribadi ketika masa banyak habis pada skrin.</p>
+            <div class="course-meta"><span>1 kuliah</span><span>3 nota</span></div>
+          </div>
+          <div class="course-foot">
+            <span class="tutor"><span class="avatar">AM</span> Ustaz Ahmad Munir</span>
+            <span class="price-tag" style="color:var(--ok)">Percuma</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGKAH -->
+  <section class="section tint">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Cara ia berjalan</p>
+          <h2 style="margin-top:10px">Tiga langkah sahaja</h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-no">LANGKAH 01</span>
+          <h3>Daftar akaun percuma</h3>
+          <p>Emel dan kata laluan sahaja. Terus terbuka semua kuliah peringkat asas berserta notanya.</p>
+        </div>
+        <div class="step">
+          <span class="step-no">LANGKAH 02</span>
+          <h3>Tonton dan baca serentak</h3>
+          <p>Video di sebelah kiri, nota kuliah di bawahnya. Panel nota boleh dikecilkan bila mahu fokus pada video.</p>
+        </div>
+        <div class="step">
+          <span class="step-no">LANGKAH 03</span>
+          <h3>Naik taraf ahli penuh</h3>
+          <p>Yuran bulanan membuka semua siri peralihan dan lanjutan. Boleh berhenti bila-bila masa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIRI VIDEO + NOTA -->
+  <section class="section">
+    <div class="wrap feature">
+      <div>
+        <p class="kicker">Video + nota</p>
+        <h2 style="margin-top:10px">Nota kuliah ditulis, bukan sekadar transkrip mentah.</h2>
+        <p style="margin-top:16px;color:var(--ink-2);font-size:16px;line-height:1.7">Setiap kuliah disertakan nota yang disusun mengikut tajuk, lengkap dengan dalil dan rujukan. Boleh dibaca sambil menonton, boleh dicetak untuk halaqah.</p>
+        <ul>
+          <li><span class="check">&check;</span> Nota kuliah boleh dimuat turun dalam PDF</li>
+          <li><span class="check">&check;</span> Rujukan ayat dan hadis disusun kemas</li>
+          <li><span class="check">&check;</span> Soalan muhasabah untuk perbincangan usrah</li>
+          <li><span class="check">&check;</span> Panel nota boleh minimize dan maximize</li>
+        </ul>
+        <div class="hero-actions" style="margin-top:28px">
+          <button class="btn dark" data-go="lesson">Lihat contoh halaman kuliah</button>
+        </div>
+      </div>
+      <div class="mock">
+        <div class="mock-bar"><i></i><i></i><i></i><span>kuliahharaki.com/siri/sirah-makkah/03</span></div>
+        <div class="mock-body">
+          <div class="mock-video"><div class="art art1"></div><div class="stage-veil"></div><span class="dummy-note">Video dummy</span></div>
+          <div class="mock-notes">
+            <b>Nota kuliah 03</b>
+            <i></i><i></i><i></i><i></i><i></i>
+            <span class="badge new" style="margin-top:6px">PDF · 6 ms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YURAN -->
+  <section class="section tint" id="pricing">
+    <div class="wrap" style="text-align:center">
+      <p class="kicker">Yuran</p>
+      <h2 style="margin:10px 0 16px">Percuma untuk bermula. Ahli penuh bila mahu teruskan.</h2>
+      <p style="color:var(--ink-2);max-width:56ch;margin:0 auto 26px">Tiada kontrak, tiada yuran pendaftaran. Boleh berhenti bila-bila melalui halaman akaun.</p>
+      <div class="plan-toggle" role="group" aria-label="Kitaran bayaran">
+        <button type="button" aria-pressed="true" data-cycle="bulan">Bulanan</button>
+        <button type="button" aria-pressed="false" data-cycle="tahun">Tahunan · jimat 2 bulan</button>
+      </div>
+      <div class="plans">
+        <div class="plan" style="text-align:left">
+          <span class="badge free">PERCUMA</span>
+          <div class="plan-price"><b>RM0</b><span>selamanya</span></div>
+          <p style="font-size:14px;color:var(--ink-2)">Untuk yang baru mahu mengikuti kuliah.</p>
+          <ul>
+            <li><span class="check">&check;</span> Semua kuliah peringkat asas</li>
+            <li><span class="check">&check;</span> Nota PDF untuk kuliah percuma</li>
+            <li><span class="check">&check;</span> Rakaman kuliah umum terpilih</li>
+            <li class="off"><span class="dash">–</span> Siri peralihan &amp; lanjutan</li>
+            <li class="off"><span class="dash">–</span> Syahadah penyertaan</li>
+          </ul>
+          <button class="btn outline block" data-go="auth" data-mode="daftar">Daftar percuma</button>
+        </div>
+        <div class="plan highlight" style="text-align:left">
+          <span class="badge vip">AHLI PENUH</span>
+          <div class="plan-price"><b data-price>RM19</b><span data-period>/bulan</span></div>
+          <p style="font-size:14px;color:var(--ink-2)" data-price-note>Dibil bulanan. Boleh berhenti bila-bila.</p>
+          <ul>
+            <li><span class="check">&check;</span> Semua 42 kuliah video</li>
+            <li><span class="check">&check;</span> Semua nota, rujukan &amp; bahan usrah</li>
+            <li><span class="check">&check;</span> Kuliah baharu setiap bulan</li>
+            <li><span class="check">&check;</span> Syahadah penyertaan setiap siri</li>
+            <li><span class="check">&check;</span> Sesi soal jawab bulanan bersama ustaz</li>
+          </ul>
+          <button class="btn primary block" data-demo="upgrade">Jadi ahli penuh</button>
+        </div>
+      </div>
+      <p class="hint" style="margin-top:20px">Bayaran melalui FPX, kad kredit/debit dan e-wallet tempatan.</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Kata peserta</p>
+          <h2 style="margin-top:10px">Pengalaman mereka yang mengikuti</h2>
+        </div>
+      </div>
+      <div class="quotes">
+        <div class="quote">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>Nota kuliah dia yang buat beza. Saya guna terus untuk bahan usrah minggu, tak payah susun sendiri dari awal.</p>
+          <footer><span class="avatar lg">MR</span><span><b>Mohd Ridzuan</b><small>Naqib usrah, Melaka</small></span></footer>
+        </div>
+        <div class="quote">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>Saya kerja syif, susah nak hadir kuliah masjid. Ini boleh tonton lepas balik kerja, sambung esoknya dari tempat berhenti.</p>
+          <footer><span class="avatar lg blue" style="background:var(--accent)">NS</span><span><b>Nur Syafiqah</b><small>Jururawat, Seremban</small></span></footer>
+        </div>
+        <div class="quote">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>Bahasa mudah, susunan tajuk kemas. Sesuai untuk anak muda yang baru mula kenal tarbiyah.</p>
+          <footer><span class="avatar lg">IZ</span><span><b>Ir. Zulhilmi</b><small>Penyelaras halaqah kampus</small></span></footer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom:76px">
+    <div class="wrap">
+      <div class="cta-band">
+        <div>
+          <h2>Mulakan dengan kuliah percuma hari ini</h2>
+          <p>Pendaftaran mengambil masa kurang seminit. Tidak perlu kad kredit untuk kuliah percuma.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn primary lg" data-go="auth" data-mode="daftar">Daftar percuma</button>
+          <button class="btn outline lg" style="background:transparent;border-color:rgba(255,255,255,.3);color:#fff" data-go="auth" data-mode="login">Log masuk</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-about">
+          <div class="brand">
+            <span class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span>
+            <span><span class="brand-name" style="color:#fff">Kuliah Haraki</span><span class="brand-sub">Ilmu · Tarbiyah · Amal</span></span>
+          </div>
+          <p>Platform kuliah dalam talian untuk peserta usrah, halaqah dan sesiapa yang mahu menuntut ilmu secara berterusan.</p>
+          <div class="socials">
+            <a href="#" data-demo="toast" aria-label="Facebook">FB</a>
+            <a href="#" data-demo="toast" aria-label="Telegram">TG</a>
+            <a href="#" data-demo="toast" aria-label="YouTube">YT</a>
+            <a href="#" data-demo="toast" aria-label="TikTok">TT</a>
+          </div>
+        </div>
+        <div>
+          <h4>Siri kuliah</h4>
+          <ul>
+            <li><a href="#courses">Peringkat asas</a></li>
+            <li><a href="#courses">Peringkat peralihan</a></li>
+            <li><a href="#courses">Peringkat lanjutan</a></li>
+            <li><a href="#courses">Kuliah umum</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Sokongan</h4>
+          <ul>
+            <li><a href="#" data-demo="toast">Soalan lazim</a></li>
+            <li><a href="#" data-demo="toast">Cara bayar yuran</a></li>
+            <li><a href="#" data-demo="toast">Terma penggunaan</a></li>
+            <li><a href="#" data-demo="toast">Dasar privasi (PDPA)</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Hubungi</h4>
+          <ul>
+            <li>Melaka, Malaysia</li>
+            <li><a href="#" data-demo="toast">salam@kuliahharaki.com</a></li>
+            <li>+60 12-345 6789</li>
+            <li style="margin-top:14px"><span class="badge new">Isnin–Jumaat · 9 pagi – 6 petang</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>&copy; 2026 Kuliah Haraki. Hak cipta terpelihara. SSM 000000000-X</span>
+        <span class="pay-methods">Kaedah bayaran: <i>FPX</i><i>VISA</i><i>MASTERCARD</i><i>DUITNOW</i></span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="view-auth" hidden>
+  <div class="auth">
+    <div class="streaks" data-streaks="auth" aria-hidden="true"></div>
+    <div class="auth-top">
+      <a href="#" class="auth-back" data-go="home">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H4m0 0 3.5-3.5M4 8l3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Kembali ke laman utama
+      </a>
+    </div>
+    <div class="auth-inner">
+      <div class="auth-copy">
+        <div class="rule"></div>
+        <h1>Menuntut ilmu,<br>bila-bila masa.</h1>
+        <p>Akaun percuma terus membuka semua kuliah peringkat asas berserta notanya. Naik taraf ahli penuh bila mahu teruskan.</p>
+        <ul class="auth-points">
+          <li><span class="check">&check;</span> 34 kuliah percuma sedia untuk ditonton</li>
+          <li><span class="check">&check;</span> Nota kuliah PDF boleh dimuat turun</li>
+          <li><span class="check">&check;</span> Tiada kad kredit diperlukan</li>
+        </ul>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-brand">
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span>
+          <span><b>Kuliah Haraki</b><span>Ilmu · Tarbiyah · Amal</span></span>
+        </div>
+
+        <!-- borang log masuk -->
+        <div data-authpane="login">
+          <h2>Log masuk</h2>
+          <p class="lede">Guna emel yang anda daftar sebelum ini.</p>
+          <form class="auth-form" id="formLogin">
+            <div class="field">
+              <label for="au-email">Emel</label>
+              <input class="input" id="au-email" type="email" placeholder="nama@emel.com" autocomplete="email">
+            </div>
+            <div class="field">
+              <div class="label-row">
+                <label for="au-pass">Kata laluan</label>
+                <a href="#" data-demo="toast">Lupa kata laluan?</a>
+              </div>
+              <div class="pw-wrap">
+                <input class="input" id="au-pass" type="password" placeholder="••••••••••" autocomplete="current-password">
+                <button class="icon-btn" type="button" data-pw="au-pass" aria-label="Papar kata laluan">
+                  <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.4" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="check-row">
+              <label><input type="checkbox" checked> Kekal log masuk</label>
+              <a href="#" data-demo="toast" style="color:#7FA8FF;font-weight:500">Bantuan</a>
+            </div>
+            <button class="btn primary block" type="submit">Log masuk
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9m0 0-3.5-3.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="btn outline block" type="button" data-demo="toast">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3 2 8l4 5M2 8h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Log masuk dengan Google
+            </button>
+          </form>
+          <p class="auth-switch">Belum ada akaun? <button type="button" data-authswitch="daftar">Daftar percuma</button></p>
+        </div>
+
+        <!-- borang daftar -->
+        <div data-authpane="daftar" hidden>
+          <h2>Daftar akaun</h2>
+          <p class="lede">Percuma. Terus dapat akses kuliah peringkat asas.</p>
+          <form class="auth-form" id="formDaftar">
+            <div class="field">
+              <label for="rg-nama">Nama penuh</label>
+              <input class="input" id="rg-nama" type="text" placeholder="Nama seperti dalam MyKad" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="rg-email">Emel</label>
+              <input class="input" id="rg-email" type="email" placeholder="nama@emel.com" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="rg-tel">Nombor telefon</label>
+              <input class="input" id="rg-tel" type="tel" placeholder="012-345 6789" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="rg-pass">Kata laluan</label>
+              <div class="pw-wrap">
+                <input class="input" id="rg-pass" type="password" placeholder="Sekurang-kurangnya 8 aksara" autocomplete="new-password">
+                <button class="icon-btn" type="button" data-pw="rg-pass" aria-label="Papar kata laluan">
+                  <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.4" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="check-row">
+              <label><input type="checkbox"> Saya setuju dengan terma dan dasar privasi</label>
+            </div>
+            <button class="btn primary block" type="submit">Daftar sekarang
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9m0 0-3.5-3.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+          <p class="auth-switch">Dah ada akaun? <button type="button" data-authswitch="login">Log masuk</button></p>
+        </div>
+
+        <div class="auth-foot">
+          <span><a href="#" class="on">Bahasa Malaysia</a> · <a href="#" data-demo="toast">English</a></span>
+          <span>v1.0 · demo UI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ============================================================
+     SKRIN 3 — DASHBOARD PESERTA
+     ============================================================ -->
+<div id="view-dash" hidden>
+  <div class="app">
+    <div class="app-wrap">
+      <div class="topbar">
+        <a class="brand" href="#" data-go="home"><span class="mark sm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span><span class="brand-name">Kuliah Haraki</span></a>
+        <div class="navpills" role="tablist" aria-label="Menu peserta">
+          <button role="tab" aria-selected="true">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="5" height="5" rx="1.3" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="2" width="5" height="5" rx="1.3" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="5" height="5" rx="1.3" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="5" height="5" rx="1.3" stroke="currentColor" stroke-width="1.5"/></svg>
+            Utama</button>
+          <button role="tab" aria-selected="false" data-go="lesson">Kuliah saya</button>
+          <button role="tab" aria-selected="false" data-demo="toast">Nota saya</button>
+          <button role="tab" aria-selected="false" data-demo="toast">Syahadah</button>
+        </div>
+        <div class="topbar-right">
+          <button class="role-chip" data-demo="toast">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="5.5" r="2.6" stroke="currentColor" stroke-width="1.5"/><path d="M3 13.2c.6-2.2 2.6-3.4 5-3.4s4.4 1.2 5 3.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="rc-text"><small>Keahlian</small><b>Ahli Penuh</b></span>
+            <svg class="chev" width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="icon-btn bell" data-demo="toast" aria-label="Notifikasi">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3a4.5 4.5 0 0 0-4.5 4.5c0 4-1.5 5-1.5 5h12s-1.5-1-1.5-5A4.5 4.5 0 0 0 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <span class="avatar lg" style="background:var(--accent)">MA</span>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="dash-grid">
+          <div class="panel-card">
+            <div class="panel-title"><h3>Ringkasan saya</h3><button class="btn sm ghost" data-demo="toast">Lihat semua</button></div>
+            <div class="ring-wrap">
+              <svg width="140" height="140" viewBox="0 0 140 140" aria-hidden="true">
+                <circle cx="70" cy="70" r="52" fill="none" stroke="#E7EFEB" stroke-width="12"/>
+                <circle cx="70" cy="70" r="52" fill="none" stroke="#B3261E" stroke-width="12" stroke-linecap="round"
+                        stroke-dasharray="326.7" stroke-dashoffset="245" transform="rotate(-90 70 70)"/>
+              </svg>
+              <span class="ring-label"><b class="tnum">03</b></span>
+              <span class="ring-tag" style="background:var(--bad)">Kuliah belum khatam</span>
+            </div>
+            <p class="greet">Selamat pagi, Muhammad Amir</p>
+            <p class="hijri" style="text-align:center;margin-top:4px">Sabtu, <b>22 Rabiulawal 1448H</b> · 05/09/2026</p>
+            <div class="big-pct tnum">62%<span>kemajuan keseluruhan</span></div>
+            <div class="seg-bars">
+              <div><i style="background:var(--ok)"></i><b class="tnum">18</b><small>Kuliah khatam</small></div>
+              <div><i style="background:var(--accent)"></i><b class="tnum">04</b><small>Sedang diikuti</small></div>
+              <div><i style="background:var(--bad)"></i><b class="tnum">03</b><small>Belum mula</small></div>
+            </div>
+            <div class="mini-stats">
+              <div><b class="tnum">12</b><small>Nota dimuat turun</small></div>
+              <div><b class="tnum">02</b><small>Syahadah</small></div>
+              <div><b class="tnum">5</b><small>Hari berturut</small></div>
+            </div>
+            <p class="kicker" style="margin-top:20px">Waktu solat · Melaka</p>
+            <div class="solat">
+              <div><small>Subuh</small><b>5:58</b></div>
+              <div class="now"><small>Zohor</small><b>13:15</b></div>
+              <div><small>Asar</small><b>16:30</b></div>
+              <div><small>Maghrib</small><b>19:22</b></div>
+              <div><small>Isyak</small><b>20:32</b></div>
+            </div>
+          </div>
+
+          <div class="dash-right">
+            <div class="focus-card">
+              <div class="focus-head">
+                <div>
+                  <h3>Sambung kuliah</h3>
+                  <p>Anda berhenti pada minit 6:20 semalam</p>
+                </div>
+                <button class="btn outline sm" data-demo="toast">Jadual saya</button>
+              </div>
+              <div class="focus-now">
+                <div class="focus-thumb"><div class="art art1"></div><div class="stage-veil"></div></div>
+                <div class="meta">
+                  <small>Modul 2 · Kuliah 03</small>
+                  <b>Dakwah sirri dan pembinaan generasi awal</b>
+                  <div class="linebar"><i style="width:42%"></i></div>
+                </div>
+                <button class="btn primary" data-go="lesson">Sambung tonton</button>
+              </div>
+              <div class="focus-next">
+                <button class="next-item" data-go="lesson"><small>Seterusnya · 9m</small><b>Rumah Al-Arqam sebagai pusat tarbiyah</b></button>
+                <button class="next-item" data-go="lesson"><small>Seterusnya · 12m</small><b>Ujian terhadap generasi awal</b></button>
+                <button class="next-item" data-go="lesson"><small>Muhasabah · 15m</small><b>Soalan perbincangan Modul 2</b></button>
+              </div>
+            </div>
+
+            <div class="dash-cols">
+              <div class="panel-card">
+                <div class="panel-title"><h3>Siri saya</h3><button class="btn sm ghost" data-demo="toast">Semua siri</button></div>
+                <div>
+                  <div class="mycourse">
+                    <div class="thumb-sm"><div class="art art1"></div></div>
+                    <div class="mc">
+                      <b>Sirah Nabawiyah: Fasa Makkah</b>
+                      <small>9 daripada 14 kuliah</small>
+                      <div class="bar"><i style="width:64%"></i></div>
+                    </div>
+                    <span class="pct tnum">64%</span>
+                  </div>
+                  <div class="mycourse">
+                    <div class="thumb-sm"><div class="art art5"></div></div>
+                    <div class="mc">
+                      <b>Hadis 40 Imam Nawawi</b>
+                      <small>6 daripada 24 kuliah</small>
+                      <div class="bar warn"><i style="width:25%"></i></div>
+                    </div>
+                    <span class="pct tnum">25%</span>
+                  </div>
+                  <div class="mycourse">
+                    <div class="thumb-sm"><div class="art art2"></div></div>
+                    <div class="mc">
+                      <b>Asas Aqidah Ahli Sunnah</b>
+                      <small>11 daripada 11 kuliah</small>
+                      <div class="bar ok"><i style="width:100%"></i></div>
+                    </div>
+                    <span class="pct tnum">100%</span>
+                  </div>
+                  <div class="mycourse">
+                    <div class="thumb-sm"><div class="art art3"></div></div>
+                    <div class="mc">
+                      <b>Usul Tarbiyah &amp; Pembinaan Usrah</b>
+                      <small>Belum mula · 18 kuliah</small>
+                      <div class="bar"><i style="width:0%"></i></div>
+                    </div>
+                    <span class="pct tnum">0%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <div class="panel-title"><h3>Perlu tindakan</h3><button class="btn sm ghost" data-demo="toast">Lihat semua</button></div>
+                <div class="row-list">
+                  <div class="row-item crit">
+                    <div class="rt">
+                      <b>Soalan muhasabah Modul 2 belum dijawab</b>
+                      <small><em class="crit">Lewat</em> · sepatutnya 03/09/2026</small>
+                    </div>
+                    <button class="btn sm outline" data-demo="toast">Buka</button>
+                  </div>
+                  <div class="row-item warn">
+                    <div class="rt">
+                      <b>Nota Modul 2 belum dibaca</b>
+                      <small><em class="warn">Perhatian</em> · 6 muka surat</small>
+                    </div>
+                    <button class="btn sm outline" data-go="lesson">Baca</button>
+                  </div>
+                  <div class="row-item info">
+                    <div class="rt">
+                      <b>Siri baharu ditambah</b>
+                      <small><em class="info">Baharu</em> · Fiqh Awlawiyat dalam Amal Jamaie</small>
+                    </div>
+                    <button class="btn sm outline" data-demo="toast">Lihat</button>
+                  </div>
+                  <div class="row-item done">
+                    <div class="rt">
+                      <b>Syahadah Asas Aqidah sedia dimuat turun</b>
+                      <small><em class="done">Selesai</em> · dikeluarkan 01/09/2026</small>
+                    </div>
+                    <button class="btn sm outline" data-demo="toast">Muat turun</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SKRIN 4 — HALAMAN KULIAH (video + nota)
+     ============================================================ -->
+<div id="view-lesson" hidden>
+  <div class="app">
+    <div class="app-wrap">
+      <div class="topbar">
+        <a class="brand" href="#" data-go="home"><span class="mark sm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span><span class="brand-name">Kuliah Haraki</span></a>
+        <div class="navpills" role="tablist" aria-label="Menu peserta">
+          <button role="tab" aria-selected="false" data-go="dash">Utama</button>
+          <button role="tab" aria-selected="true">Kuliah saya</button>
+          <button role="tab" aria-selected="false" data-demo="toast">Nota saya</button>
+          <button role="tab" aria-selected="false" data-demo="toast">Syahadah</button>
+        </div>
+        <div class="topbar-right">
+          <button class="role-chip" data-demo="toast">
+            <span class="rc-text"><small>Keahlian</small><b>Ahli Penuh</b></span>
+            <svg class="chev" width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="icon-btn bell" data-demo="toast" aria-label="Notifikasi">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3a4.5 4.5 0 0 0-4.5 4.5c0 4-1.5 5-1.5 5h12s-1.5-1-1.5-5A4.5 4.5 0 0 0 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <span class="avatar lg" style="background:var(--accent)">MA</span>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="page-head">
+          <nav class="crumb" style="margin-bottom:14px">
+            <a href="#" data-go="dash">Utama</a><span>/</span>
+            <a href="#" data-go="dash">Kuliah saya</a><span>/</span>
+            <span style="color:var(--ink-2)">Sirah Nabawiyah: Fasa Makkah</span>
+          </nav>
+          <div class="page-head-top">
+            <div>
+              <h1>Kuliah 03 · Dakwah sirri dan pembinaan generasi awal</h1>
+              <p class="sub">Modul 2: Fasa dakwah sirri · Ustaz Ahmad Munir · dikemas kini 28/08/2026</p>
+            </div>
+            <div class="head-stat">
+              <b class="tnum">64%</b>
+              <span>siri selesai</span>
+            </div>
+          </div>
+          <div class="pilltabs">
+            <span class="badge free" style="height:36px;padding:0 14px;border-radius:999px">KULIAH PERCUMA</span>
+            <button data-demo="toast">Tanda khatam</button>
+            <button data-demo="toast">Simpan</button>
+            <button id="theatreBtn">Mod teater</button>
+          </div>
+        </div>
+
+        <div class="lesson-grid" id="lessonGrid">
+          <div class="lesson-main">
+            <div class="player" id="player">
+              <div class="stage">
+                <div class="art art1 stage-art"></div>
+                <div class="stage-veil"></div>
+                <span class="dummy-note">Video dummy · belum disambung</span>
+                <div class="stage-caption">
+                  <small>Modul 2 · Kuliah 03</small>
+                  <b>Dakwah sirri dan pembinaan generasi awal</b>
+                </div>
+                <button class="play-big" id="playBig" aria-label="Main video"></button>
+              </div>
+              <div class="controls">
+                <button class="icon-btn" id="playSmall" aria-label="Main atau henti">
+                  <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M5 3.5v11l9-5.5-9-5.5Z" fill="currentColor"/></svg>
+                </button>
+                <button class="icon-btn" data-demo="toast" aria-label="Undur 10 saat">
+                  <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M9 4 5 7l4 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 7h5.5A4.5 4.5 0 1 1 6 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </button>
+                <div class="seek" id="seek" role="slider" aria-label="Kedudukan video" aria-valuemin="0" aria-valuemax="100" aria-valuenow="18" tabindex="0">
+                  <i id="seekFill" style="width:18%"></i><b id="seekKnob" style="left:18%"></b>
+                </div>
+                <span class="time tnum" id="timeLabel">02:18 / 12:40</span>
+                <button class="speed" data-demo="toast">1.0&times;</button>
+                <button class="icon-btn" data-demo="toast" aria-label="Sari kata">
+                  <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 11h3M11 11h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </button>
+                <button class="icon-btn" id="fullBtn" aria-label="Skrin penuh">
+                  <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 3H3v4M13 3h4v4M13 17h4v-4M7 17H3v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="panel" id="notesPanel">
+              <div class="panel-head">
+                <div class="panel-tabs" role="tablist" aria-label="Bahan kuliah">
+                  <button role="tab" aria-selected="true" data-pane="nota">Nota kuliah</button>
+                  <button role="tab" aria-selected="false" data-pane="transkrip">Transkrip</button>
+                  <button role="tab" aria-selected="false" data-pane="lampiran">Lampiran</button>
+                  <button role="tab" aria-selected="false" data-pane="qa">Soal jawab</button>
+                </div>
+                <div class="win-btns">
+                  <button class="icon-btn" id="panelMin" aria-label="Kecilkan panel nota" title="Minimize">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  </button>
+                  <button class="icon-btn" id="panelMax" aria-label="Besarkan panel nota" title="Maximize">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="panel-body">
+                <div data-pane="nota" class="notes">
+                  <h3>Nota Kuliah 03 — Dakwah sirri dan pembinaan generasi awal</h3>
+                  <div class="note-meta">
+                    <span>6 muka surat</span><span>Kemas kini 28/08/2026</span><span>Ustaz Ahmad Munir</span>
+                  </div>
+                  <p>Tiga tahun pertama dakwah di Makkah berjalan secara senyap. Rasulullah SAW tidak membuat pengumuman terbuka, sebaliknya menyampaikan seruan kepada orang yang rapat dan dipercayai terlebih dahulu. Fasa ini penting difahami kerana ia menunjukkan bahawa pembinaan manusia mendahului pengembangan gerakan.</p>
+
+                  <h4>Kenapa dakwah bermula secara senyap</h4>
+                  <ol>
+                    <li><b>Menjaga kelangsungan</b> — jumlah yang sedikit belum mampu menanggung tekanan terbuka masyarakat Makkah.</li>
+                    <li><b>Menapis kualiti</b> — yang menyahut pada fasa ini adalah mereka yang benar-benar yakin, bukan kerana ikut ramai.</li>
+                    <li><b>Membina asas</b> — masa itu digunakan untuk mengajar aqidah dan membersihkan jiwa, bukan menambah bilangan.</li>
+                  </ol>
+
+                  <div class="ayah">
+                    <p class="ar">ادْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِالْحِكْمَةِ وَالْمَوْعِظَةِ الْحَسَنَةِ</p>
+                    <p class="tr">"Serulah ke jalan Tuhanmu dengan hikmah dan pengajaran yang baik."</p>
+                    <span class="ref">Surah An-Nahl · Ayat 125</span>
+                  </div>
+
+                  <h4>Rumah Al-Arqam sebagai pusat tarbiyah</h4>
+                  <p>Rumah Al-Arqam bin Abi Al-Arqam menjadi tempat pertemuan awal. Di situ berlaku pengajaran Al-Quran, penyucian jiwa dan pembentukan ukhuwah. Dari sudut gerakan, ini contoh awal sebuah halaqah tetap: tempat khusus, kumpulan kecil, dan pengisian berterusan.</p>
+
+                  <div class="callout">
+                    <b>Pengajaran untuk hari ini</b>
+                    <p>Halaqah atau usrah yang kecil tetapi konsisten lebih memberi kesan daripada program besar sekali-sekala. Kualiti peserta dibina melalui pertemuan berulang, bukan melalui satu majlis yang meriah.</p>
+                  </div>
+
+                  <h4>Ciri generasi awal</h4>
+                  <p>Generasi sahabat pada fasa ini mempunyai tiga ciri yang berulang dalam riwayat: yakin kepada apa yang disampaikan, sedia berkorban harta dan masa, serta taat kepada arahan pimpinan dakwah walaupun dalam keadaan sukar.</p>
+
+                  <h4>Soalan muhasabah untuk usrah</h4>
+                  <ol>
+                    <li>Apakah bentuk "pembinaan sebelum pengembangan" yang boleh kita laksanakan dalam halaqah sendiri?</li>
+                    <li>Adakah kita lebih fokus menambah bilangan atau memperbaiki kualiti ahli sedia ada?</li>
+                    <li>Apakah pengorbanan paling sukar yang kita rasa berat untuk lakukan hari ini?</li>
+                  </ol>
+
+                  <div class="note-actions">
+                    <button class="btn outline sm" data-demo="toast">
+                      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 12.5h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      Muat turun PDF
+                    </button>
+                    <button class="btn outline sm" data-demo="toast">Cetak untuk usrah</button>
+                    <button class="btn outline sm" data-demo="toast">Tandai untuk ulang kaji</button>
+                  </div>
+                </div>
+
+                <div data-pane="transkrip" class="transcript" hidden>
+                  <div class="tr-line"><time>00:00</time><p>Alhamdulillah, kita sambung kuliah ketiga. Kali ini kita masuk fasa dakwah sirri, iaitu tiga tahun pertama di Makkah.</p></div>
+                  <div class="tr-line"><time>00:48</time><p>Persoalan pertama yang selalu ditanya: kenapa Rasulullah SAW tidak terus mengumumkan dakwah secara terbuka?</p></div>
+                  <div class="tr-line"><time>01:40</time><p>Jawapannya bukan kerana takut. Ia soal susunan langkah — bila hendak bina, kita bina asas dahulu.</p></div>
+                  <div class="tr-line"><time>02:18</time><p>Kita lihat siapa yang menyahut pada fasa awal ini. Bilangannya kecil, tetapi kualitinya menentukan segalanya.</p></div>
+                  <div class="tr-line"><time>03:55</time><p>Kemudian kita masuk kepada rumah Al-Arqam. Ini bukan sekadar tempat berkumpul, ini pusat tarbiyah pertama.</p></div>
+                  <div class="tr-line"><time>05:20</time><p>Dan di sini ada pengajaran besar untuk gerakan hari ini tentang saiz kumpulan dan kekerapan pertemuan.</p></div>
+                  <div class="tr-line"><time>06:20</time><p>Sekarang mari kita senaraikan ciri-ciri generasi awal yang disebut dalam riwayat.</p></div>
+                </div>
+
+                <div data-pane="lampiran" class="attach" hidden>
+                  <a href="#" data-demo="toast">
+                    <span class="file-ico">PDF</span>
+                    <span style="flex:1"><b>Nota Kuliah 03 — Dakwah sirri</b><small>6 muka surat · 820 KB</small></span>
+                    <span class="badge free">PERCUMA</span>
+                  </a>
+                  <a href="#" data-demo="toast">
+                    <span class="file-ico">PDF</span>
+                    <span style="flex:1"><b>Peta perjalanan sirah fasa Makkah</b><small>2 muka surat · 310 KB</small></span>
+                    <span class="badge free">PERCUMA</span>
+                  </a>
+                  <a href="#" data-demo="toast">
+                    <span class="file-ico" style="background:var(--vip-soft);color:var(--vip)">DOCX</span>
+                    <span style="flex:1"><b>Modul perbincangan usrah (12 sesi)</b><small>24 muka surat · 260 KB</small></span>
+                    <span class="badge vip">AHLI PENUH</span>
+                  </a>
+                  <a href="#" data-demo="toast">
+                    <span class="file-ico">PPTX</span>
+                    <span style="flex:1"><b>Slaid kuliah untuk naqib</b><small>18 slaid · 1.4 MB</small></span>
+                    <span class="badge free">PERCUMA</span>
+                  </a>
+                </div>
+
+                <div data-pane="qa" class="qa" hidden>
+                  <div class="field" style="margin-bottom:6px">
+                    <label for="qa-input">Ada soalan tentang kuliah ini?</label>
+                    <textarea class="textarea" id="qa-input" rows="3" placeholder="Tulis soalan anda di sini. Ustaz biasanya menjawab dalam 1–2 hari bekerja."></textarea>
+                  </div>
+                  <div style="display:flex;justify-content:flex-end;margin-bottom:8px">
+                    <button class="btn primary sm" data-demo="toast">Hantar soalan</button>
+                  </div>
+                  <div class="qa-item">
+                    <div class="qh"><span class="avatar">MR</span><b>Mohd Ridzuan</b><small>02/09/2026</small></div>
+                    <p>Ustaz, kalau halaqah kami ahlinya cuma tiga orang, adakah patut kami tambah dahulu atau teruskan dengan yang ada?</p>
+                    <div class="qa-reply">
+                      <span class="avatar" style="background:var(--accent)">AM</span>
+                      <div><b style="font-size:13.5px">Ustaz Ahmad Munir</b> <small style="color:var(--ink-3)">· tenaga pengajar</small>
+                        <p>Teruskan dengan yang ada dahulu sehingga kekal istiqamah beberapa bulan. Bila rutin dah mantap, barulah tambah ahli baharu supaya mereka masuk ke dalam suasana yang sudah terbentuk.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="qa-item">
+                    <div class="qh"><span class="avatar">NS</span><b>Nur Syafiqah</b><small>29/08/2026</small></div>
+                    <p>Nota dan slaid ini boleh saya guna untuk kelas remaja di surau tak?</p>
+                    <div class="qa-reply">
+                      <span class="avatar" style="background:var(--accent)">AM</span>
+                      <div><b style="font-size:13.5px">Ustaz Ahmad Munir</b> <small style="color:var(--ink-3)">· tenaga pengajar</small>
+                        <p>Boleh, silakan untuk pengajaran tidak berbayar. Kalau untuk program berbayar, hubungi pihak kami dahulu.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="lesson-side">
+            <div class="side-card">
+              <div class="side-head">
+                <h3>Sirah Nabawiyah: Fasa Makkah</h3>
+                <div class="bar"><i style="width:64%"></i></div>
+                <small>9 daripada 14 kuliah khatam · 3j 10m keseluruhan</small>
+              </div>
+
+              <div class="module open">
+                <button class="module-head" type="button">
+                  <b>Modul 1 · Pengenalan sirah</b>
+                  <small class="tnum">4/4</small>
+                  <svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="module-body">
+                  <button class="lesson-row" type="button">
+                    <span class="lr-state done">&check;</span>
+                    <span class="lr-body"><span class="lr-title">01 · Kepentingan mempelajari sirah</span><span class="lr-meta"><span>8:12</span><span>Nota</span></span></span>
+                  </button>
+                  <button class="lesson-row" type="button">
+                    <span class="lr-state done">&check;</span>
+                    <span class="lr-body"><span class="lr-title">02 · Keadaan masyarakat Makkah sebelum Islam</span><span class="lr-meta"><span>11:40</span><span>Nota</span></span></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="module open">
+                <button class="module-head" type="button">
+                  <b>Modul 2 · Fasa dakwah sirri</b>
+                  <small class="tnum">2/4</small>
+                  <svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="module-body">
+                  <button class="lesson-row active" type="button">
+                    <span class="lr-state now"></span>
+                    <span class="lr-body"><span class="lr-title">03 · Dakwah sirri dan generasi awal</span><span class="lr-meta"><span>12:40</span><span>Nota</span><span>Sedang tonton</span></span></span>
+                  </button>
+                  <button class="lesson-row" type="button">
+                    <span class="lr-state"></span>
+                    <span class="lr-body"><span class="lr-title">04 · Rumah Al-Arqam sebagai pusat tarbiyah</span><span class="lr-meta"><span>9:05</span><span>Nota</span></span></span>
+                  </button>
+                  <button class="lesson-row" type="button">
+                    <span class="lr-state"></span>
+                    <span class="lr-body"><span class="lr-title">05 · Ujian terhadap generasi awal</span><span class="lr-meta"><span>12:20</span><span>Muhasabah</span></span></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="module">
+                <button class="module-head" type="button">
+                  <b>Modul 3 · Fasa dakwah jahri</b>
+                  <small class="badge vip">AHLI PENUH</small>
+                  <svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="module-body">
+                  <button class="lesson-row locked" type="button" data-demo="upgrade">
+                    <span class="lr-state lock">
+                      <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="3" y="6" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 6V4.6a2 2 0 0 1 4 0V6" stroke="currentColor" stroke-width="1.4"/></svg>
+                    </span>
+                    <span class="lr-body"><span class="lr-title">06 · Seruan terbuka di Bukit Safa</span><span class="lr-meta"><span>14:30</span><span>Ahli penuh</span></span></span>
+                  </button>
+                  <button class="lesson-row locked" type="button" data-demo="upgrade">
+                    <span class="lr-state lock">
+                      <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="3" y="6" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 6V4.6a2 2 0 0 1 4 0V6" stroke="currentColor" stroke-width="1.4"/></svg>
+                    </span>
+                    <span class="lr-body"><span class="lr-title">07 · Tekanan Quraisy dan kesabaran sahabat</span><span class="lr-meta"><span>16:15</span><span>Ahli penuh</span></span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="upsell">
+              <h4>Buka 33 kuliah lagi</h4>
+              <p>Keahlian penuh membuka semua siri peringkat peralihan dan lanjutan, berserta nota dan modul usrahnya.</p>
+              <button class="btn" data-demo="upgrade">Jadi ahli penuh · RM19/bln</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SKRIN 5 — PANEL ADMIN
+     ============================================================ -->
+<div id="view-admin" hidden>
+  <div class="app">
+    <div class="app-wrap">
+      <div class="topbar">
+        <a class="brand" href="#" data-go="home"><span class="mark sm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="1.6" stroke="currentColor" stroke-width="1.6" transform="rotate(45 12 12)"/></svg></span><span class="brand-name">Kuliah Haraki</span></a>
+        <div class="navpills" role="tablist" aria-label="Menu admin">
+          <button role="tab" aria-selected="true" data-atab="ringkasan">Ringkasan</button>
+          <button role="tab" aria-selected="false" data-atab="kursus">Siri kuliah</button>
+          <button role="tab" aria-selected="false" data-atab="muatnaik">Muat naik</button>
+          <button role="tab" aria-selected="false" data-atab="ahli">Ahli</button>
+          <button role="tab" aria-selected="false" data-atab="langganan">Yuran</button>
+        </div>
+        <div class="topbar-right">
+          <button class="role-chip" data-demo="toast">
+            <span class="rc-text"><small>Peranan</small><b>Pentadbir</b></span>
+            <svg class="chev" width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="icon-btn bell" data-demo="toast" aria-label="Notifikasi">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3a4.5 4.5 0 0 0-4.5 4.5c0 4-1.5 5-1.5 5h12s-1.5-1-1.5-5A4.5 4.5 0 0 0 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <span class="avatar lg">AM</span>
+        </div>
+      </div>
+
+      <div class="page">
+        <!-- ===== RINGKASAN ===== -->
+        <div data-apane="ringkasan">
+          <div class="page-head" style="margin-bottom:16px">
+            <div class="page-head-top">
+              <div>
+                <h1>Ringkasan platform</h1>
+                <p class="sub">Data sehingga 05/09/2026, 9:15 pagi · semua angka ini dummy</p>
+              </div>
+              <div class="head-stat">
+                <b class="tnum">RM3,990</b>
+                <span>yuran terkumpul bulan ini</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-strip" style="margin-bottom:16px">
+            <div>
+              <small>Ahli berdaftar</small>
+              <b class="tnum">2,412</b>
+              <span class="delta up">+184 bulan ini</span>
+            </div>
+            <div>
+              <small>Ahli penuh aktif</small>
+              <b class="tnum">210</b>
+              <span class="delta up">+22 bulan ini</span>
+            </div>
+            <div>
+              <small>Kuliah diterbitkan</small>
+              <b class="tnum">42</b>
+              <span class="delta flat">3 dalam draf</span>
+            </div>
+            <div>
+              <small>Kadar berhenti</small>
+              <b class="tnum">4.2%</b>
+              <span class="delta down">naik 0.6 mata</span>
+            </div>
+          </div>
+
+          <div class="dash-cols">
+            <div class="panel-card">
+              <div class="panel-title"><h3>Aktiviti terkini</h3><button class="btn sm ghost" data-demo="toast">Semua log</button></div>
+              <div class="row-list">
+                <div class="row-item info">
+                  <div class="rt"><b>Video "Seruan terbuka di Bukit Safa" selesai diproses</b><small>05/09/2026 · 8:42 pagi</small></div>
+                  <span class="badge live">SEDIA</span>
+                </div>
+                <div class="row-item done">
+                  <div class="rt"><b>7 ahli baharu mendaftar</b><small>05/09/2026 · sepanjang malam</small></div>
+                  <button class="btn sm outline" data-demo="toast">Lihat</button>
+                </div>
+                <div class="row-item warn">
+                  <div class="rt"><b>2 bayaran yuran gagal</b><small><em class="warn">Perlu semak</em> · kad tamat tempoh</small></div>
+                  <button class="btn sm outline" data-demo="toast">Semak</button>
+                </div>
+                <div class="row-item crit">
+                  <div class="rt"><b>Kuliah 07 tiada nota</b><small><em class="crit">Belum lengkap</em> · video sudah dimuat naik</small></div>
+                  <button class="btn sm outline" data-atab="muatnaik">Tambah nota</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-title"><h3>Kandungan perlu perhatian</h3></div>
+              <div class="row-list">
+                <div class="row-item warn">
+                  <div class="rt"><b>Fiqh Awlawiyat dalam Amal Jamaie</b><small>Draf · 4 daripada 15 kuliah dimuat naik</small></div>
+                  <span class="badge draft">DRAF</span>
+                </div>
+                <div class="row-item warn">
+                  <div class="rt"><b>Kuliah umum Ogos 2026</b><small>Rakaman belum ditetapkan akses</small></div>
+                  <span class="badge hold">TERTANGGUH</span>
+                </div>
+                <div class="row-item info">
+                  <div class="rt"><b>Hadis 40 Imam Nawawi</b><small>3 soalan peserta belum dijawab</small></div>
+                  <button class="btn sm outline" data-demo="toast">Jawab</button>
+                </div>
+              </div>
+              <div class="switch-row" style="margin-top:16px">
+                <div class="sr"><b>Mod penyelenggaraan</b><small>Sekat akses peserta sementara kemas kini dibuat</small></div>
+                <button class="switch" role="switch" aria-checked="false" aria-label="Mod penyelenggaraan"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SIRI KULIAH ===== -->
+        <div data-apane="kursus" hidden>
+          <div class="page-head" style="margin-bottom:16px">
+            <div class="page-head-top">
+              <div>
+                <h1>Siri kuliah</h1>
+                <p class="sub">42 kuliah diterbitkan · 3 dalam draf</p>
+              </div>
+              <button class="btn primary" data-demo="toast">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Siri baharu
+              </button>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <div class="search">
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5" stroke="currentColor" stroke-width="1.6"/><path d="m12 12 3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <input class="input" type="search" placeholder="Cari tajuk siri...">
+            </div>
+            <button class="chip" aria-pressed="true">Semua</button>
+            <button class="chip" aria-pressed="false">Percuma</button>
+            <button class="chip" aria-pressed="false">Ahli penuh</button>
+            <button class="chip" aria-pressed="false">Draf</button>
+            <button class="btn outline sm" style="margin-left:auto" data-demo="toast">Eksport CSV</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Siri kuliah</th>
+                  <th>Peringkat</th>
+                  <th class="num">Video</th>
+                  <th class="num">Nota</th>
+                  <th>Akses</th>
+                  <th>Status</th>
+                  <th>Kemas kini</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="cell-title">
+                      <span class="thumb-xs"><span class="art art1"></span></span>
+                      <span><b>Sirah Nabawiyah: Fasa Makkah</b><small>14 kuliah · 3j 10m</small></span>
+                    </div>
+                  </td>
+                  <td>Asas</td>
+                  <td class="num tnum">14</td>
+                  <td class="num tnum">10</td>
+                  <td><span class="seg"><button aria-pressed="true">Percuma</button><button aria-pressed="false" class="v">Ahli penuh</button></span></td>
+                  <td><span class="badge live">TERBIT</span></td>
+                  <td class="tnum">28/08/2026</td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cell-title">
+                      <span class="thumb-xs"><span class="art art2"></span></span>
+                      <span><b>Asas Aqidah Ahli Sunnah</b><small>11 kuliah · 2j 24m</small></span>
+                    </div>
+                  </td>
+                  <td>Asas</td>
+                  <td class="num tnum">11</td>
+                  <td class="num tnum">8</td>
+                  <td><span class="seg"><button aria-pressed="true">Percuma</button><button aria-pressed="false" class="v">Ahli penuh</button></span></td>
+                  <td><span class="badge live">TERBIT</span></td>
+                  <td class="tnum">21/08/2026</td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cell-title">
+                      <span class="thumb-xs"><span class="art art3"></span></span>
+                      <span><b>Usul Tarbiyah &amp; Pembinaan Usrah</b><small>18 kuliah · 4j 15m</small></span>
+                    </div>
+                  </td>
+                  <td>Peralihan</td>
+                  <td class="num tnum">18</td>
+                  <td class="num tnum">14</td>
+                  <td><span class="seg"><button aria-pressed="false">Percuma</button><button aria-pressed="true" class="v">Ahli penuh</button></span></td>
+                  <td><span class="badge live">TERBIT</span></td>
+                  <td class="tnum">14/08/2026</td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cell-title">
+                      <span class="thumb-xs"><span class="art art5"></span></span>
+                      <span><b>Hadis 40 Imam Nawawi</b><small>24 kuliah · 5j 30m</small></span>
+                    </div>
+                  </td>
+                  <td>Peralihan</td>
+                  <td class="num tnum">24</td>
+                  <td class="num tnum">20</td>
+                  <td><span class="seg"><button aria-pressed="false">Percuma</button><button aria-pressed="true" class="v">Ahli penuh</button></span></td>
+                  <td><span class="badge live">TERBIT</span></td>
+                  <td class="tnum">02/08/2026</td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cell-title">
+                      <span class="thumb-xs"><span class="art art4"></span></span>
+                      <span><b>Fiqh Dakwah &amp; Manhaj Haraki</b><small>22 kuliah · 6j 05m</small></span>
+                    </div>
+                  </td>
+                  <td>Lanjutan</td>
+                  <td class="num tnum">22</td>
+                  <td class="num tnum">18</td>
+                  <td><span class="seg"><button aria-pressed="false">Percuma</button><button aria-pressed="true" class="v">Ahli penuh</button></span></td>
+                  <td><span class="badge live">TERBIT</span></td>
+                  <td class="tnum">30/07/2026</td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cell-title">
+                      <span class="thumb-xs"><span class="art art6"></span></span>
+                      <span><b>Fiqh Awlawiyat dalam Amal Jamaie</b><small>15 kuliah · 4j 40m</small></span>
+                    </div>
+                  </td>
+                  <td>Lanjutan</td>
+                  <td class="num tnum">4</td>
+                  <td class="num tnum">2</td>
+                  <td><span class="seg"><button aria-pressed="false">Percuma</button><button aria-pressed="true" class="v">Ahli penuh</button></span></td>
+                  <td><span class="badge draft">DRAF</span></td>
+                  <td class="tnum">04/09/2026</td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ===== MUAT NAIK ===== -->
+        <div data-apane="muatnaik" hidden>
+          <div class="page-head" style="margin-bottom:16px">
+            <div class="page-head-top">
+              <div>
+                <h1>Muat naik kuliah baharu</h1>
+                <p class="sub">Video, nota dan tetapan akses dalam satu borang</p>
+              </div>
+              <div style="display:flex;gap:10px">
+                <button class="btn outline" data-demo="toast">Simpan draf</button>
+                <button class="btn primary" data-demo="toast">Terbitkan kuliah</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-cols" style="grid-template-columns:1.35fr 1fr">
+            <div style="display:grid;gap:16px">
+              <div class="panel-card">
+                <div class="panel-title"><h3>Maklumat kuliah</h3></div>
+                <div class="form-grid">
+                  <div class="field full">
+                    <label for="ad-tajuk">Tajuk kuliah</label>
+                    <input class="input" id="ad-tajuk" type="text" value="Seruan terbuka di Bukit Safa">
+                  </div>
+                  <div class="field">
+                    <label for="ad-kursus">Siri kuliah</label>
+                    <select class="select" id="ad-kursus">
+                      <option>Sirah Nabawiyah: Fasa Makkah</option>
+                      <option>Asas Aqidah Ahli Sunnah</option>
+                      <option>Hadis 40 Imam Nawawi</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="ad-modul">Modul</label>
+                    <select class="select" id="ad-modul">
+                      <option>Modul 3 · Fasa dakwah jahri</option>
+                      <option>Modul 2 · Fasa dakwah sirri</option>
+                      <option>Modul 1 · Pengenalan sirah</option>
+                    </select>
+                  </div>
+                  <div class="field full">
+                    <label for="ad-ringkas">Ringkasan pendek</label>
+                    <textarea class="textarea" id="ad-ringkas" rows="2">Peralihan daripada dakwah senyap kepada seruan terbuka, dan bagaimana Rasulullah SAW menyusun langkah pada fasa itu.</textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <div class="panel-title"><h3>Video kuliah</h3><span class="hint">MP4 atau MOV · maksimum 2 GB</span></div>
+                <div class="dropzone" data-demo="toast">
+                  <span class="dz-ico">
+                    <svg width="21" height="21" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 15V5m0 0L7 9m4-4 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15v2a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 18 17v-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                  </span>
+                  <b>Seret fail video ke sini, atau klik untuk pilih</b>
+                  <small>Video akan diproses dan ditukar kepada beberapa kualiti secara automatik</small>
+                </div>
+                <div class="uploaded">
+                  <span class="file-ico">MP4</span>
+                  <span style="flex:1">
+                    <b>kuliah-06-bukit-safa.mp4</b>
+                    <small>428 MB · 14:30 · dummy</small>
+                    <span class="bar ok" style="display:block"><i style="width:100%"></i></span>
+                  </span>
+                  <span class="badge live">SIAP DIPROSES</span>
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <div class="panel-title"><h3>Nota kuliah</h3><span class="hint">Nota akan dipapar bersebelahan video</span></div>
+                <div class="editor">
+                  <div class="editor-bar">
+                    <button type="button" data-cmd="bold" title="Tebal"><b>B</b></button>
+                    <button type="button" data-cmd="italic" title="Condong"><i>I</i></button>
+                    <button type="button" data-cmd="underline" title="Garis bawah"><u>U</u></button>
+                    <span class="divider"></span>
+                    <button type="button" data-cmd="formatBlock" data-val="h4" title="Tajuk kecil">H</button>
+                    <button type="button" data-cmd="insertUnorderedList" title="Senarai">&bull; Senarai</button>
+                    <button type="button" data-cmd="insertOrderedList" title="Senarai bernombor">1. Nombor</button>
+                    <span class="divider"></span>
+                    <button type="button" data-demo="toast" title="Sisip ayat">Sisip ayat</button>
+                    <button type="button" data-demo="toast" title="Lampiran">Lampiran</button>
+                  </div>
+                  <div class="editor-area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Kandungan nota">
+                    <h4>Peralihan kepada dakwah terbuka</h4>
+                    <p>Selepas tiga tahun fasa sirri, turun perintah untuk menyeru secara terbuka. Perubahan ini bukan mendadak — ia berlaku setelah asas manusia dibina terlebih dahulu.</p>
+                    <ul>
+                      <li>Susunan langkah: bina dahulu, kemudian umum</li>
+                      <li>Kesan seruan di Bukit Safa terhadap Quraisy</li>
+                      <li>Pengajaran untuk gerakan hari ini</li>
+                    </ul>
+                    <p>Klik di sini untuk mula menaip nota anda sendiri.</p>
+                  </div>
+                  <div class="editor-foot">
+                    <span>Disimpan secara automatik · 09:12 pagi (dummy)</span>
+                    <span>132 patah perkataan</span>
+                  </div>
+                </div>
+                <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+                  <button class="btn outline sm" data-demo="toast">Muat naik nota PDF</button>
+                  <button class="btn outline sm" data-demo="toast">Lampirkan modul usrah</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:grid;gap:16px;align-content:start">
+              <div class="panel-card">
+                <div class="panel-title"><h3>Tetapan akses</h3></div>
+                <div class="access-cards">
+                  <button class="access-card" type="button" aria-pressed="false" data-access="percuma">
+                    <span class="ac-top"><b>Percuma</b><span class="radio-dot"></span></span>
+                    <p>Sesiapa yang sudah daftar akaun boleh tonton.</p>
+                  </button>
+                  <button class="access-card" type="button" aria-pressed="true" data-access="vip">
+                    <span class="ac-top"><b>Ahli penuh</b><span class="radio-dot"></span></span>
+                    <p>Hanya ahli dengan yuran aktif.</p>
+                  </button>
+                </div>
+                <div style="display:grid;gap:10px;margin-top:14px">
+                  <div class="switch-row">
+                    <div class="sr"><b>Benarkan pratonton 2 minit</b><small>Bukan ahli penuh boleh tonton permulaan sahaja</small></div>
+                    <button class="switch" role="switch" aria-checked="true" aria-label="Pratonton 2 minit"></button>
+                  </div>
+                  <div class="switch-row">
+                    <div class="sr"><b>Benarkan muat turun nota</b><small>Butang muat turun PDF dipapar pada halaman kuliah</small></div>
+                    <button class="switch" role="switch" aria-checked="true" aria-label="Muat turun nota"></button>
+                  </div>
+                  <div class="switch-row">
+                    <div class="sr"><b>Buka ruang soal jawab</b><small>Peserta boleh hantar soalan pada kuliah ini</small></div>
+                    <button class="switch" role="switch" aria-checked="false" aria-label="Ruang soal jawab"></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <div class="panel-title"><h3>Penerbitan</h3></div>
+                <div class="form-grid" style="grid-template-columns:1fr">
+                  <div class="field">
+                    <label for="ad-status">Status</label>
+                    <select class="select" id="ad-status">
+                      <option>Draf</option>
+                      <option>Terbit sekarang</option>
+                      <option>Jadualkan</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="ad-tarikh">Tarikh terbit</label>
+                    <input class="input" id="ad-tarikh" type="text" value="15/09/2026">
+                  </div>
+                  <div class="field">
+                    <label for="ad-tutor">Tenaga pengajar</label>
+                    <select class="select" id="ad-tutor">
+                      <option>Ustaz Ahmad Munir</option>
+                      <option>Ustazah Hafizah Salleh</option>
+                      <option>Ustaz Amir Hakim</option>
+                    </select>
+                  </div>
+                </div>
+                <p class="hint" style="margin-top:14px">Kuliah draf tidak kelihatan kepada peserta sehingga diterbitkan.</p>
+              </div>
+
+              <div class="panel-card">
+                <div class="panel-title"><h3>Pratonton peserta</h3></div>
+                <div style="border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden">
+                  <div style="position:relative;aspect-ratio:16/9">
+                    <span class="art art4" style="position:absolute;inset:0"></span>
+                    <span class="stage-veil"></span>
+                    <span class="dummy-note">Video dummy</span>
+                  </div>
+                  <div style="padding:13px 15px">
+                    <b style="font-size:14.5px;display:block">Seruan terbuka di Bukit Safa</b>
+                    <small style="color:var(--ink-3)">Modul 3 · 14:30 · <span class="badge vip">AHLI PENUH</span></small>
+                  </div>
+                </div>
+                <button class="btn outline block sm" style="margin-top:12px" data-go="lesson">Buka halaman kuliah</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== AHLI ===== -->
+        <div data-apane="ahli" hidden>
+          <div class="page-head" style="margin-bottom:16px">
+            <div class="page-head-top">
+              <div>
+                <h1>Ahli</h1>
+                <p class="sub">2,412 ahli berdaftar · 210 ahli penuh aktif</p>
+              </div>
+              <div class="head-stat"><b class="tnum">8.7%</b><span>kadar tukar ke ahli penuh</span></div>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <div class="search">
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5" stroke="currentColor" stroke-width="1.6"/><path d="m12 12 3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <input class="input" type="search" placeholder="Cari nama atau emel...">
+            </div>
+            <button class="chip" aria-pressed="true">Semua</button>
+            <button class="chip" aria-pressed="false">Ahli penuh</button>
+            <button class="chip" aria-pressed="false">Percuma</button>
+            <button class="chip" aria-pressed="false">Tamat tempoh</button>
+            <button class="btn outline sm" style="margin-left:auto" data-demo="toast">Eksport senarai</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ahli</th><th>Emel</th><th>Keahlian</th><th>Tarikh sertai</th><th>Kuliah khatam</th><th>Status</th><th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="cell-title"><span class="avatar" style="background:var(--accent)">MA</span><span><b>Muhammad Amir</b><small>+60 12-345 6789</small></span></div></td>
+                  <td>m.amir@emel.com</td>
+                  <td><span class="badge vip">PENUH · Tahunan</span></td>
+                  <td class="tnum">12/02/2026</td>
+                  <td class="tnum">18</td>
+                  <td><span class="badge live">AKTIF</span></td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td><div class="cell-title"><span class="avatar">MR</span><span><b>Mohd Ridzuan</b><small>+60 13-222 8899</small></span></div></td>
+                  <td>ridzuan.m@emel.com</td>
+                  <td><span class="badge vip">PENUH · Bulanan</span></td>
+                  <td class="tnum">03/06/2026</td>
+                  <td class="tnum">9</td>
+                  <td><span class="badge live">AKTIF</span></td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td><div class="cell-title"><span class="avatar">NS</span><span><b>Nur Syafiqah</b><small>+60 19-888 1234</small></span></div></td>
+                  <td>nursyafiqah@emel.com</td>
+                  <td><span class="badge vip">PENUH · Bulanan</span></td>
+                  <td class="tnum">28/07/2026</td>
+                  <td class="tnum">6</td>
+                  <td><span class="badge hold">BAYARAN GAGAL</span></td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td><div class="cell-title"><span class="avatar">ZH</span><span><b>Zulhilmi Hashim</b><small>+60 11-4455 6677</small></span></div></td>
+                  <td>zulhilmi.h@emel.com</td>
+                  <td><span class="badge free">PERCUMA</span></td>
+                  <td class="tnum">19/08/2026</td>
+                  <td class="tnum">3</td>
+                  <td><span class="badge live">AKTIF</span></td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td><div class="cell-title"><span class="avatar">MK</span><span><b>Muhammad Khairul</b><small>+60 17-333 2211</small></span></div></td>
+                  <td>khairul.m@emel.com</td>
+                  <td><span class="badge free">PERCUMA</span></td>
+                  <td class="tnum">01/09/2026</td>
+                  <td class="tnum">1</td>
+                  <td><span class="badge live">AKTIF</span></td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+                <tr>
+                  <td><div class="cell-title"><span class="avatar">SY</span><span><b>Siti Yusra</b><small>+60 14-777 9900</small></span></div></td>
+                  <td>siti.yusra@emel.com</td>
+                  <td><span class="badge draft">TAMAT TEMPOH</span></td>
+                  <td class="tnum">14/01/2026</td>
+                  <td class="tnum">24</td>
+                  <td><span class="badge draft">TIDAK AKTIF</span></td>
+                  <td><button class="icon-btn" data-demo="toast" aria-label="Tindakan">&#8942;</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ===== YURAN ===== -->
+        <div data-apane="langganan" hidden>
+          <div class="page-head" style="margin-bottom:16px">
+            <div class="page-head-top">
+              <div>
+                <h1>Yuran keahlian</h1>
+                <p class="sub">Semua angka di bawah adalah dummy untuk tujuan paparan UI</p>
+              </div>
+              <div class="head-stat"><b class="tnum">RM3,990</b><span>terkumpul Sept 2026</span></div>
+            </div>
+          </div>
+
+          <div class="stat-strip" style="margin-bottom:16px">
+            <div><small>Bulanan</small><b class="tnum">148</b><span class="delta up">+14 bulan ini</span></div>
+            <div><small>Tahunan</small><b class="tnum">62</b><span class="delta up">+8 bulan ini</span></div>
+            <div><small>Yuran sebulan</small><b class="tnum">RM19</b><span class="delta flat">setiap ahli penuh</span></div>
+            <div><small>Bayaran tertunggak</small><b class="tnum">2</b><span class="delta down">perlu tindakan</span></div>
+          </div>
+
+          <div class="dash-cols">
+            <div class="panel-card">
+              <div class="panel-title"><h3>Ahli penuh aktif</h3><span class="hint">6 bulan terakhir</span></div>
+              <div class="bars">
+                <div class="brow"><span>April</span><span class="btrack"><i style="width:52%"></i></span><b class="tnum">156</b></div>
+                <div class="brow"><span>Mei</span><span class="btrack"><i style="width:58%"></i></span><b class="tnum">172</b></div>
+                <div class="brow"><span>Jun</span><span class="btrack"><i style="width:61%"></i></span><b class="tnum">181</b></div>
+                <div class="brow"><span>Julai</span><span class="btrack"><i style="width:64%"></i></span><b class="tnum">190</b></div>
+                <div class="brow"><span>Ogos</span><span class="btrack"><i style="width:67%"></i></span><b class="tnum">198</b></div>
+                <div class="brow"><span>September</span><span class="btrack"><i style="width:71%"></i></span><b class="tnum">210</b></div>
+              </div>
+              <p class="hint" style="margin-top:16px">Bilangan ahli penuh aktif pada hujung setiap bulan.</p>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-title"><h3>Transaksi terkini</h3><button class="btn sm ghost" data-demo="toast">Semua</button></div>
+              <div class="row-list">
+                <div class="row-item done">
+                  <div class="rt"><b>Muhammad Amir · Tahunan</b><small>05/09/2026 · FPX Maybank</small></div>
+                  <b class="tnum">RM190</b>
+                </div>
+                <div class="row-item done">
+                  <div class="rt"><b>Mohd Ridzuan · Bulanan</b><small>04/09/2026 · Kad kredit</small></div>
+                  <b class="tnum">RM19</b>
+                </div>
+                <div class="row-item crit">
+                  <div class="rt"><b>Nur Syafiqah · Bulanan</b><small><em class="crit">Gagal</em> · kad tamat tempoh</small></div>
+                  <b class="tnum">RM19</b>
+                </div>
+                <div class="row-item done">
+                  <div class="rt"><b>Zulfadli Ahmad · Bulanan</b><small>03/09/2026 · DuitNow</small></div>
+                  <b class="tnum">RM19</b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL NAIK TARAF + TOAST + PENUKAR SKRIN
+     ============================================================ -->
+<div class="overlay" id="upgradeModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="upTitle">
+    <div class="modal-head">
+      <h3 id="upTitle">Kuliah ini untuk ahli penuh</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">
+        <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="m5 5 8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Naik taraf untuk membuka semua 42 kuliah video berserta nota, rujukan dan modul usrah.</p>
+      <div class="modal-plan">
+        <div class="mp-top">
+          <b>Ahli Penuh · Bulanan</b>
+          <span class="amt">RM19<small>/bln</small></span>
+        </div>
+        <ul>
+          <li><span class="check">&check;</span> Semua siri peralihan dan lanjutan</li>
+          <li><span class="check">&check;</span> Nota PDF dan modul usrah</li>
+          <li><span class="check">&check;</span> Syahadah penyertaan</li>
+          <li><span class="check">&check;</span> Boleh berhenti bila-bila masa</li>
+        </ul>
+      </div>
+      <p class="hint" style="margin-top:12px">Pilihan tahunan RM190 — jimat dua bulan.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn outline" data-close>Nanti dulu</button>
+      <button class="btn primary" data-demo="toast">Teruskan bayaran</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="tdot"></span><span id="toastText">Demo UI sahaja — belum disambung ke sistem.</span>
+</div>
+
+<div class="demoswitch collapsed" id="demoSwitch">
+  <div class="demoswitch-head">
+    <b>Pratonton skrin</b>
+    <button type="button" id="dsToggle" aria-label="Papar senarai skrin">&plus;</button>
+  </div>
+  <ul>
+    <li><button class="ds" data-go="home" aria-current="true"><span class="num">1</span>Laman utama</button></li>
+    <li><button class="ds" data-go="auth"><span class="num">2</span>Log masuk / daftar</button></li>
+    <li><button class="ds" data-go="dash"><span class="num">3</span>Dashboard peserta</button></li>
+    <li><button class="ds" data-go="lesson"><span class="num">4</span>Halaman kuliah</button></li>
+    <li><button class="ds" data-go="admin"><span class="num">5</span>Panel admin</button></li>
+  </ul>
+</div>
+
+<style>
+@keyframes drift{0%{transform:scale(1.02) translateX(0)}50%{transform:scale(1.08) translateX(-1.5%)}100%{transform:scale(1.02) translateX(0)}}
+.player.playing .stage-art{animation:drift 14s ease-in-out infinite}
+.player.playing .dummy-note{background:rgba(11,107,79,.9);border-color:rgba(255,255,255,.28);color:#fff}
+</style>
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- garis cahaya untuk hero & skrin log masuk ---------- */
+  function buildStreaks(el){
+    var palette = ["255,255,255", "122,214,175", "212,169,74", "63,160,122", "196,224,210"];
+    var frag = document.createDocumentFragment();
+    var n = el.dataset.streaks === "auth" ? 90 : 74;
+    for (var i = 0; i < n; i++){
+      var s = document.createElement("span");
+      s.className = "streak";
+      var angle = 180 + ((Math.random() * 124) - 62);     // memancar ke kiri dari titik lenyap
+      var len = 140 + Math.random() * 900;                // panjang garis
+      var start = 40 + Math.random() * 320;               // jarak dari titik lenyap
+      var col = palette[Math.floor(Math.random() * palette.length)];
+      var op = 0.10 + Math.random() * 0.72;
+      s.style.width = len + "px";
+      s.style.height = (Math.random() < 0.22 ? 3 : (Math.random() < 0.5 ? 2 : 1)) + "px";
+      s.style.transform = "rotate(" + angle + "deg) translateX(" + start + "px)";
+      s.style.background = "linear-gradient(90deg, rgba(" + col + ",0) 0%, rgba(" + col + "," + op + ") 55%, rgba(" + col + ",0) 100%)";
+      frag.appendChild(s);
+    }
+    el.appendChild(frag);
+  }
+  document.querySelectorAll("[data-streaks]").forEach(buildStreaks);
+
+  /* ---------- toast ---------- */
+  var toast = document.getElementById("toast");
+  var toastText = document.getElementById("toastText");
+  var toastTimer;
+  function say(msg){
+    toastText.textContent = msg || "Demo UI sahaja — belum disambung ke sistem.";
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove("show"); }, 2600);
+  }
+
+  /* ---------- tukar skrin ---------- */
+  var views = {
+    home:   document.getElementById("view-home"),
+    auth:   document.getElementById("view-auth"),
+    dash:   document.getElementById("view-dash"),
+    lesson: document.getElementById("view-lesson"),
+    admin:  document.getElementById("view-admin")
+  };
+  function go(name, mode){
+    Object.keys(views).forEach(function(k){ views[k].hidden = (k !== name); });
+    document.querySelectorAll(".demoswitch .ds").forEach(function(b){
+      b.setAttribute("aria-current", b.dataset.go === name ? "true" : "false");
+    });
+    if (name === "auth") setAuthPane(mode || "login");
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
+  /* ---------- log masuk / daftar ---------- */
+  function setAuthPane(which){
+    document.querySelectorAll("[data-authpane]").forEach(function(p){
+      p.hidden = (p.dataset.authpane !== which);
+    });
+  }
+
+  /* ---------- klik global ---------- */
+  document.addEventListener("click", function(e){
+    var t;
+
+    /* navigasi skrin */
+    t = e.target.closest("[data-go]");
+    if (t){
+      e.preventDefault();
+      go(t.dataset.go, t.dataset.mode);
+      return;
+    }
+
+    /* tukar borang log masuk/daftar */
+    t = e.target.closest("[data-authswitch]");
+    if (t){ setAuthPane(t.dataset.authswitch); return; }
+
+    /* papar kata laluan */
+    t = e.target.closest("[data-pw]");
+    if (t){
+      var inp = document.getElementById(t.dataset.pw);
+      inp.type = inp.type === "password" ? "text" : "password";
+      return;
+    }
+
+    /* modal naik taraf */
+    t = e.target.closest('[data-demo="upgrade"]');
+    if (t){ e.preventDefault(); document.getElementById("upgradeModal").hidden = false; return; }
+    if (e.target.closest("[data-close]") || e.target.id === "upgradeModal"){
+      document.getElementById("upgradeModal").hidden = true; return;
+    }
+
+    /* tab kategori kursus */
+    t = e.target.closest("[data-cat]");
+    if (t && t.classList.contains("tab")){
+      document.querySelectorAll(".tabs .tab").forEach(function(b){ b.setAttribute("aria-selected", b === t ? "true" : "false"); });
+      var cat = t.dataset.cat;
+      document.querySelectorAll("#courseGrid .course").forEach(function(c){
+        c.hidden = !(cat === "semua" || c.dataset.cat === cat);
+      });
+      return;
+    }
+
+    /* pautan submenu -> tapis kursus */
+    t = e.target.closest("[data-filter]");
+    if (t){
+      e.preventDefault();
+      var btn = document.querySelector('.tabs .tab[data-cat="' + t.dataset.filter + '"]');
+      if (btn){ btn.click(); document.getElementById("courses").scrollIntoView({ behavior: "smooth" }); }
+      return;
+    }
+
+    /* kitaran harga */
+    t = e.target.closest("[data-cycle]");
+    if (t){
+      document.querySelectorAll("[data-cycle]").forEach(function(b){ b.setAttribute("aria-pressed", b === t ? "true" : "false"); });
+      var tahunan = t.dataset.cycle === "tahun";
+      document.querySelector("[data-price]").textContent = tahunan ? "RM390" : "RM39";
+      document.querySelector("[data-period]").textContent = tahunan ? "/tahun" : "/bulan";
+      document.querySelector("[data-price-note]").textContent = tahunan
+        ? "Dibil sekali setahun. Jimat RM78 berbanding bulanan."
+        : "Dibil bulanan. Batal bila-bila.";
+      return;
+    }
+
+    /* tab panel nota */
+    t = e.target.closest(".panel-tabs button");
+    if (t){
+      document.querySelectorAll(".panel-tabs button").forEach(function(b){ b.setAttribute("aria-selected", b === t ? "true" : "false"); });
+      document.querySelectorAll(".panel-body > [data-pane]").forEach(function(p){ p.hidden = (p.dataset.pane !== t.dataset.pane); });
+      return;
+    }
+
+    /* akordion modul */
+    t = e.target.closest(".module-head");
+    if (t){ t.parentElement.classList.toggle("open"); return; }
+
+    /* pilih kelas dalam senarai sisi */
+    t = e.target.closest(".lesson-row");
+    if (t && !t.classList.contains("locked")){
+      document.querySelectorAll(".lesson-row").forEach(function(r){ r.classList.remove("active"); });
+      t.classList.add("active");
+      say("Kuliah dipilih — dalam sistem sebenar, video dan nota akan bertukar.");
+      return;
+    }
+
+    /* tab panel admin */
+    t = e.target.closest("[data-atab]");
+    if (t){
+      if (views.admin.hidden) go("admin");
+      document.querySelectorAll("[data-atab]").forEach(function(b){
+        if (b.getAttribute("role") === "tab") b.setAttribute("aria-selected", b.dataset.atab === t.dataset.atab ? "true" : "false");
+      });
+      document.querySelectorAll("[data-apane]").forEach(function(p){ p.hidden = (p.dataset.apane !== t.dataset.atab); });
+      window.scrollTo({ top: 0, behavior: "auto" });
+      return;
+    }
+
+    /* cip penapis */
+    t = e.target.closest(".chip");
+    if (t){
+      var group = t.parentElement.querySelectorAll(".chip");
+      group.forEach(function(c){ c.setAttribute("aria-pressed", c === t ? "true" : "false"); });
+      say("Penapis “" + t.textContent.trim() + "” — paparan sahaja, tiada data sebenar.");
+      return;
+    }
+
+    /* segmen akses percuma/VIP dalam jadual */
+    t = e.target.closest(".seg button");
+    if (t){
+      t.parentElement.querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", b === t ? "true" : "false"); });
+      say("Akses ditukar kepada " + t.textContent.trim() + " (demo sahaja).");
+      return;
+    }
+
+    /* suis on/off */
+    t = e.target.closest(".switch");
+    if (t){
+      var on = t.getAttribute("aria-checked") === "true";
+      t.setAttribute("aria-checked", on ? "false" : "true");
+      return;
+    }
+
+    /* kad pilihan akses */
+    t = e.target.closest(".access-card");
+    if (t){
+      t.parentElement.querySelectorAll(".access-card").forEach(function(c){ c.setAttribute("aria-pressed", c === t ? "true" : "false"); });
+      return;
+    }
+
+    /* bar alat editor nota */
+    t = e.target.closest("[data-cmd]");
+    if (t){
+      e.preventDefault();
+      try { document.execCommand(t.dataset.cmd, false, t.dataset.val || null); } catch (err) {}
+      return;
+    }
+
+    /* apa-apa butang demo lain */
+    t = e.target.closest('[data-demo="toast"]');
+    if (t){ e.preventDefault(); say(); return; }
+  });
+
+  /* ---------- borang: jangan hantar, terus ke dashboard ---------- */
+  document.querySelectorAll('form[data-demo="masuk"]').forEach(function(f){
+    f.addEventListener("submit", function(e){
+      e.preventDefault();
+      go("dash");
+      say("Ini demo UI — log masuk tidak disahkan, terus masuk ke dashboard.");
+    });
+  });
+
+  /* ---------- menu mudah alih ---------- */
+  var mt = document.getElementById("menuToggle"), mm = document.getElementById("mobileMenu");
+  if (mt) mt.addEventListener("click", function(){
+    var open = !mm.hidden;
+    mm.hidden = open;
+    mt.setAttribute("aria-expanded", String(!open));
+  });
+
+  /* ---------- panel nota: minimize / maximize ---------- */
+  var panel = document.getElementById("notesPanel");
+  var btnMin = document.getElementById("panelMin");
+  var btnMax = document.getElementById("panelMax");
+  if (panel){
+    btnMin.addEventListener("click", function(){
+      panel.classList.remove("is-max");
+      var min = panel.classList.toggle("is-min");
+      btnMin.setAttribute("aria-label", min ? "Buka semula panel nota" : "Kecilkan panel nota");
+      say(min ? "Panel nota dikecilkan." : "Panel nota dibuka semula.");
+    });
+    btnMax.addEventListener("click", function(){
+      panel.classList.remove("is-min");
+      var max = panel.classList.toggle("is-max");
+      btnMax.setAttribute("aria-label", max ? "Kembali ke saiz asal" : "Besarkan panel nota");
+      say(max ? "Panel nota dibesarkan — tekan Esc untuk keluar." : "Panel nota kembali ke saiz asal.");
+    });
+  }
+
+  /* ---------- mod teater ---------- */
+  var theatre = document.getElementById("theatreBtn");
+  var grid = document.getElementById("lessonGrid");
+  if (theatre) theatre.addEventListener("click", function(){
+    var on = grid.classList.toggle("theatre");
+    theatre.setAttribute("aria-selected", String(on));
+    theatre.textContent = on ? "Keluar mod teater" : "Mod teater";
+  });
+  var fullBtn = document.getElementById("fullBtn");
+  if (fullBtn) fullBtn.addEventListener("click", function(){ if (theatre) theatre.click(); });
+
+  /* ---------- pemain video dummy ---------- */
+  var player = document.getElementById("player");
+  if (player){
+    var DUR = 760;                 // 12:40 dalam saat
+    var pos = 138;                 // mula pada 02:18
+    var playing = false, tick = null;
+    var fill = document.getElementById("seekFill");
+    var knob = document.getElementById("seekKnob");
+    var label = document.getElementById("timeLabel");
+    var seek = document.getElementById("seek");
+    var small = document.getElementById("playSmall");
+
+    function fmt(s){
+      var m = Math.floor(s / 60), r = Math.floor(s % 60);
+      return (m < 10 ? "0" : "") + m + ":" + (r < 10 ? "0" : "") + r;
+    }
+    function render(){
+      var pct = Math.max(0, Math.min(100, (pos / DUR) * 100));
+      fill.style.width = pct + "%";
+      knob.style.left = pct + "%";
+      label.textContent = fmt(pos) + " / " + fmt(DUR);
+      seek.setAttribute("aria-valuenow", Math.round(pct));
+    }
+    function setPlaying(on){
+      playing = on;
+      player.classList.toggle("playing", on);
+      small.innerHTML = on
+        ? '<svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="4.5" y="3.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="10.5" y="3.5" width="3" height="11" rx="1" fill="currentColor"/></svg>'
+        : '<svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M5 3.5v11l9-5.5-9-5.5Z" fill="currentColor"/></svg>';
+      small.setAttribute("aria-label", on ? "Henti sebentar" : "Main video");
+      clearInterval(tick);
+      if (on){
+        tick = setInterval(function(){
+          pos += 1;
+          if (pos >= DUR){ pos = DUR; setPlaying(false); }
+          render();
+        }, 1000);
+      }
+    }
+    document.getElementById("playBig").addEventListener("click", function(){ setPlaying(true); });
+    small.addEventListener("click", function(){ setPlaying(!playing); });
+    seek.addEventListener("click", function(e){
+      var r = seek.getBoundingClientRect();
+      pos = Math.round(((e.clientX - r.left) / r.width) * DUR);
+      render();
+    });
+    seek.addEventListener("keydown", function(e){
+      if (e.key === "ArrowRight"){ pos = Math.min(DUR, pos + 10); render(); e.preventDefault(); }
+      if (e.key === "ArrowLeft"){ pos = Math.max(0, pos - 10); render(); e.preventDefault(); }
+    });
+    render();
+  }
+
+  /* ---------- penukar skrin demo ---------- */
+  var ds = document.getElementById("demoSwitch");
+  var dsToggle = document.getElementById("dsToggle");
+  dsToggle.addEventListener("click", function(){
+    var col = ds.classList.toggle("collapsed");
+    dsToggle.innerHTML = col ? "&plus;" : "&minus;";
+    dsToggle.setAttribute("aria-label", col ? "Papar senarai skrin" : "Kecilkan senarai skrin");
+  });
+
+  /* ---------- papan kekunci ---------- */
+  document.addEventListener("keydown", function(e){
+    if (e.key !== "Escape") return;
+    document.getElementById("upgradeModal").hidden = true;
+    if (panel) panel.classList.remove("is-max");
+    if (mm && !mm.hidden){ mm.hidden = true; mt.setAttribute("aria-expanded", "false"); }
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* =====================================================================
+   FASA 3 — SAMBUNGAN SUPABASE SEBENAR
+   Log masuk, daftar, log keluar, sesi kekal, dan ujian akses langsung.
+
+   >>> SATU BENDA SAHAJA PERLU DIISI: kunci anon di bawah. <<<
+   Cara dapat: Supabase > Project Settings > API keys > salin kunci
+   "anon" atau "publishable". Kunci ini SELAMAT diletak dalam fail ini.
+   JANGAN sekali-kali letak kunci "service_role" di sini.
+   ===================================================================== */
+const SB_URL  = 'https://lkntcbcpfxjuxexillow.supabase.co';
+const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
+
+(function () {
+  "use strict";
+
+  var adaKunci = SB_ANON.indexOf('LETAK_KUNCI') === -1;
+  var adaLib   = !!(window.supabase && window.supabase.createClient);
+  var sedia    = adaKunci && adaLib;
+  var sb = sedia ? window.supabase.createClient(SB_URL, SB_ANON) : null;
+  var state = { user: null, profil: null, langganan: null };
+
+  var $  = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  var skrin = { home: '#view-home', auth: '#view-auth', dash: '#view-dash',
+                lesson: '#view-lesson', admin: '#view-admin' };
+
+  function go(nama) {
+    Object.keys(skrin).forEach(function (k) { $(skrin[k]).hidden = (k !== nama); });
+    window.scrollTo(0, 0);
+  }
+
+  var toastTimer;
+  function say(msg, ms) {
+    var t = $('#toast');
+    $('#toastText').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, ms || 3200);
+  }
+
+  /* ---------- terjemah mesej ralat Supabase ---------- */
+  var ralat = {
+    'Invalid login credentials': 'Emel atau kata laluan salah.',
+    'Email not confirmed': 'Emel belum disahkan. Sila semak peti masuk anda.',
+    'User already registered': 'Emel ini sudah berdaftar. Sila log masuk.',
+    'Password should be at least 6 characters.': 'Kata laluan mesti sekurang-kurangnya 6 aksara.',
+    'Unable to validate email address: invalid format': 'Format emel tidak sah.',
+    'Signup requires a valid password': 'Sila isi kata laluan.'
+  };
+  function terjemah(m) { return ralat[m] || m; }
+
+  function mesejTakSedia() {
+    return !adaKunci
+      ? 'Kunci anon Supabase belum diisi dalam fail ini.'
+      : 'Pustaka supabase-js gagal dimuat. Semak sambungan internet atau adblock.';
+  }
+
+  /* ---------- butang dalam borang semasa menunggu ---------- */
+  function sibuk(btn, on, teksAsal) {
+    btn.disabled = on;
+    btn.style.opacity = on ? '.6' : '';
+    if (on) { btn.dataset.asal = btn.innerHTML; btn.textContent = 'Sila tunggu...'; }
+    else if (btn.dataset.asal) { btn.innerHTML = btn.dataset.asal; }
+  }
+
+  /* ================= AUTENTIKASI ================= */
+
+  async function masuk(e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('button[type="submit"]');
+    if (!sedia) { say(mesejTakSedia(), 5000); return; }
+    sibuk(btn, true);
+    var r = await sb.auth.signInWithPassword({
+      email: $('#au-email').value.trim(),
+      password: $('#au-pass').value
+    });
+    sibuk(btn, false);
+    if (r.error) { say('Gagal log masuk — ' + terjemah(r.error.message), 4500); return; }
+    await muatSesi();
+    go('dash');
+    say('Berjaya log masuk.');
+  }
+
+  async function daftar(e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('button[type="submit"]');
+    if (!sedia) { say(mesejTakSedia(), 5000); return; }
+    sibuk(btn, true);
+    var r = await sb.auth.signUp({
+      email: $('#rg-email').value.trim(),
+      password: $('#rg-pass').value,
+      options: { data: { nama: $('#rg-nama').value.trim(), telefon: $('#rg-tel').value.trim() } }
+    });
+    sibuk(btn, false);
+    if (r.error) { say('Gagal daftar — ' + terjemah(r.error.message), 4500); return; }
+    if (r.data.session) {
+      await muatSesi();
+      go('dash');
+      say('Akaun berjaya dicipta.');
+    } else {
+      say('Akaun dicipta. Sila sahkan emel anda sebelum log masuk.', 6000);
+    }
+  }
+
+  async function logKeluar() {
+    if (sb) { await sb.auth.signOut(); }
+    state = { user: null, profil: null, langganan: null };
+    renderKeluar();
+    go('home');
+    say('Anda telah log keluar.');
+  }
+
+  /* ================= MUAT DATA SESI ================= */
+
+  async function muatSesi() {
+    if (!sedia) { renderKeluar(); return; }
+    var s = await sb.auth.getSession();
+    var sesi = s.data.session;
+    if (!sesi) { renderKeluar(); return; }
+
+    state.user = sesi.user;
+    var kini = new Date().toISOString();
+
+    var hasil = await Promise.all([
+      sb.from('profil').select('nama, peranan').eq('id', sesi.user.id).maybeSingle(),
+      sb.from('langganan').select('pelan, status, tamat_pada')
+        .eq('status', 'aktif').gt('tamat_pada', kini)
+        .order('tamat_pada', { ascending: false }).limit(1),
+      sb.from('kuliah').select('tajuk, akses, video_uid, tempoh_saat').order('urutan')
+    ]);
+
+    state.profil    = hasil[0].data;
+    state.langganan = (hasil[1].data && hasil[1].data[0]) || null;
+    renderMasuk(hasil[2].data || [], hasil[2].error);
+  }
+
+  /* ================= RENDER ================= */
+
+  function namaPapar() {
+    if (state.profil && state.profil.nama) return state.profil.nama;
+    if (state.user) return state.user.email.split('@')[0];
+    return 'Pengguna';
+  }
+  function inisial(n) {
+    return n.trim().split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase();
+  }
+  function taraf() {
+    if (state.profil && state.profil.peranan === 'pentadbir') return 'Pentadbir';
+    return state.langganan ? 'Ahli Penuh' : 'Percuma';
+  }
+
+  function pasangButangKeluar() {
+    $$('.topbar .topbar-right').forEach(function (bar) {
+      if (bar.querySelector('[data-keluar]')) return;
+      var b = document.createElement('button');
+      b.className = 'icon-btn';
+      b.setAttribute('data-keluar', '1');
+      b.setAttribute('aria-label', 'Log keluar');
+      b.title = 'Log keluar';
+      b.innerHTML = '<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
+        '<path d="M8 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+        '<path d="M13 13.5 16.5 10 13 6.5M16.5 10H8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      b.addEventListener('click', logKeluar);
+      bar.appendChild(b);
+    });
+  }
+
+  function renderMasuk(kuliah, ralatKuliah) {
+    var nama = namaPapar(), tr = taraf();
+
+    // topbar: keahlian + avatar + butang log keluar
+    $$('#view-dash .role-chip b, #view-lesson .role-chip b').forEach(function (el) { el.textContent = tr; });
+    $$('#view-dash .topbar-right .avatar, #view-lesson .topbar-right .avatar').forEach(function (el) {
+      el.textContent = inisial(nama);
+    });
+    pasangButangKeluar();
+
+    // ucapan pada dashboard
+    var greet = $('#view-dash .greet');
+    if (greet) greet.textContent = 'Selamat datang, ' + nama;
+
+    // butang header laman utama
+    var ghost = $('#view-home .header-cta .btn.ghost');
+    var prim  = $('#view-home .header-cta .btn.primary');
+    if (ghost) {
+      ghost.textContent = 'Log keluar';
+      ghost.removeAttribute('data-go'); ghost.removeAttribute('data-mode');
+      ghost.onclick = logKeluar;
+    }
+    if (prim) {
+      prim.textContent = 'Buka dashboard';
+      prim.removeAttribute('data-go'); prim.removeAttribute('data-mode');
+      prim.onclick = function () { go('dash'); };
+    }
+
+    panelUjian(kuliah, ralatKuliah);
+  }
+
+  function renderKeluar() {
+    $$('[data-keluar]').forEach(function (b) { b.remove(); });
+
+    var ghost = $('#view-home .header-cta .btn.ghost');
+    var prim  = $('#view-home .header-cta .btn.primary');
+    if (ghost) {
+      ghost.textContent = 'Log masuk';
+      ghost.setAttribute('data-go', 'auth'); ghost.setAttribute('data-mode', 'login');
+      ghost.onclick = null;
+    }
+    if (prim) {
+      prim.textContent = 'Daftar percuma';
+      prim.setAttribute('data-go', 'auth'); prim.setAttribute('data-mode', 'daftar');
+      prim.onclick = null;
+    }
+    panelUjian(null, null);
+  }
+
+  /* ---------- panel ujian akses langsung pada dashboard ---------- */
+  function panelUjian(kuliah, ralatKuliah) {
+    var induk = $('#view-dash .dash-right');
+    if (!induk) return;
+
+    var kad = $('#panelSupabase');
+    if (!kad) {
+      kad = document.createElement('div');
+      kad.className = 'panel-card';
+      kad.id = 'panelSupabase';
+      induk.appendChild(kad);
+    }
+
+    if (!sedia) {
+      kad.innerHTML = !adaKunci
+        ? '<div class="panel-title"><h3>Sambungan Supabase</h3>' +
+          '<span class="badge hold">BELUM DISETKAN</span></div>' +
+          '<p class="hint">Buka fail ini dalam editor teks, cari <b>SB_ANON</b> di bahagian bawah, ' +
+          'dan ganti dengan kunci anon daripada Supabase &gt; Project Settings &gt; API keys.</p>'
+        : '<div class="panel-title"><h3>Sambungan Supabase</h3>' +
+          '<span class="badge hold">PUSTAKA GAGAL DIMUAT</span></div>' +
+          '<p class="hint">Fail supabase-js tidak dapat dimuat turun daripada CDN. ' +
+          'Semak sambungan internet, atau matikan adblock untuk laman ini.</p>';
+      return;
+    }
+
+    if (!state.user) {
+      kad.innerHTML =
+        '<div class="panel-title"><h3>Sambungan Supabase</h3>' +
+        '<span class="badge draft">BELUM LOG MASUK</span></div>' +
+        '<p class="hint">Log masuk untuk melihat data sebenar daripada database.</p>';
+      return;
+    }
+
+    var baris = '';
+    if (ralatKuliah) {
+      baris = '<p class="hint" style="color:var(--bad)">Ralat membaca kuliah: ' + ralatKuliah.message + '</p>';
+    } else if (!kuliah || !kuliah.length) {
+      baris = '<p class="hint">Tiada kuliah yang boleh dicapai oleh akaun ini.</p>';
+    } else {
+      baris = '<div class="row-list">' + kuliah.map(function (k) {
+        var vip = k.akses === 'ahli';
+        return '<div class="row-item ' + (vip ? 'warn' : 'done') + '">' +
+          '<div class="rt"><b>' + k.tajuk + '</b>' +
+          '<small>' + (vip ? 'Ahli penuh' : 'Percuma') +
+          ' · video_uid: <em class="' + (vip ? 'warn' : 'done') + '">' +
+          (k.video_uid || 'tersembunyi') + '</em></small></div>' +
+          '<span class="badge ' + (vip ? 'vip' : 'free') + '">' + (vip ? 'AHLI' : 'PERCUMA') + '</span>' +
+          '</div>';
+      }).join('') + '</div>';
+    }
+
+    var tr = taraf();
+    kad.innerHTML =
+      '<div class="panel-title"><h3>Sambungan Supabase</h3>' +
+      '<span class="badge live">HIDUP</span></div>' +
+      '<div class="switch-row" style="margin-bottom:14px">' +
+        '<div class="sr"><b>' + namaPapar() + '</b>' +
+        '<small>' + state.user.email + ' · keahlian: ' + tr + '</small></div>' +
+        '<span class="badge ' + (tr === 'Percuma' ? 'free' : 'vip') + '">' + tr.toUpperCase() + '</span>' +
+      '</div>' +
+      '<p class="kicker" style="margin-bottom:10px">Kuliah yang akaun ini boleh capai</p>' +
+      baris +
+      '<p class="hint" style="margin-top:14px">Senarai ini datang terus daripada database. ' +
+      'Kuliah berbayar hanya muncul apabila langganan aktif — disekat oleh RLS, bukan oleh kod di pelayar.</p>';
+  }
+
+  /* ================= PASANG ================= */
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var fLogin  = $('#formLogin');
+    var fDaftar = $('#formDaftar');
+    if (fLogin)  fLogin.addEventListener('submit', masuk);
+    if (fDaftar) fDaftar.addEventListener('submit', daftar);
+
+    if (!sedia) {
+      renderKeluar();
+      console.warn('[Kuliah Haraki] ' + mesejTakSedia());
+      return;
+    }
+
+    sb.auth.onAuthStateChange(function (peristiwa) {
+      if (peristiwa === 'SIGNED_OUT') renderKeluar();
+    });
+
+    muatSesi();
+  });
+})();
+</script>
+
+</body>
+</html>
