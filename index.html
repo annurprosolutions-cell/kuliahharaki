@@ -2019,6 +2019,7 @@ h2{font-weight:600}
           <button role="tab" aria-selected="false" data-atab="muatnaik">Muat naik</button>
           <button role="tab" aria-selected="false" data-atab="ahli">Ahli</button>
           <button role="tab" aria-selected="false" data-atab="langganan">Yuran</button>
+          <button role="tab" aria-selected="false" data-atab="pelan">Pelan</button>
           <button role="tab" aria-selected="false" data-atab="tetapan">Tetapan laman</button>
         </div>
         <div class="topbar-right">
@@ -2579,6 +2580,28 @@ h2{font-weight:600}
                   <b class="tnum">RM19</b>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PELAN LANGGANAN (SUPERADMIN) ===== -->
+        <div data-apane="pelan" hidden>
+          <div class="page-head" style="margin-bottom:16px">
+            <div class="page-head-top">
+              <div>
+                <h1>Pelan yuran</h1>
+                <p class="sub">Tambah, ubah harga dan sembunyikan pelan tanpa sentuh kod</p>
+              </div>
+              <button class="btn primary" id="pelanBaharu">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Pelan baharu
+              </button>
+            </div>
+          </div>
+          <div id="pelanKandungan">
+            <div class="panel-card">
+              <div class="panel-title"><h3>Pelan yuran</h3><span class="badge draft">MENUNGGU</span></div>
+              <p class="hint">Log masuk sebagai pentadbir untuk memuat senarai pelan.</p>
             </div>
           </div>
         </div>
@@ -3628,6 +3651,7 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
 
     renderSenaraiKuliah();
     renderBorangTetapan();
+    if (window.KH_HOOK) window.KH_HOOK();
   }
 
   function renderKeluar() {
@@ -3649,7 +3673,22 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
     }
     renderSenaraiKuliah();
     renderBorangTetapan();
+    if (window.KH_HOOK) window.KH_HOOK();
   }
+
+  /* ---------------------------------------------------------------------
+     Dedahkan sedikit sahaja kepada skrip Fasa 5, supaya bahagian
+     bayaran boleh guna sesi dan klien yang sama.
+     --------------------------------------------------------------------- */
+  window.KH = {
+    get sb()     { return sb; },
+    get state()  { return state; },
+    get sedia()  { return sedia; },
+    go: go, say: say, esc: esc, sibuk: sibuk, jam: jam,
+    isPentadbir: isPentadbir, taraf: taraf, namaPapar: namaPapar,
+    muatSesi: muatSesi, mesejTakSedia: mesejTakSedia,
+    $: $, $$: $$, SB_URL: SB_URL, SB_ANON: SB_ANON
+  };
 
   /* =====================================================================
      PASANG
@@ -3702,5 +3741,455 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
 })();
 </script>
 
+<style>
+/* --- fasa 5: pelan & bayaran --- */
+.pelan-kad{border:1px solid var(--line,#E3E7EC);border-radius:14px;padding:18px 20px;margin-bottom:14px;background:var(--surface,#fff)}
+.pelan-kad.disyorkan{border-color:var(--brand,#0B6B4F);box-shadow:0 0 0 1px var(--brand,#0B6B4F) inset}
+.pelan-kad .pk-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.pelan-kad .pk-head b{font-size:15px}
+.pelan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.pelan-grid .field{display:flex;flex-direction:column;gap:6px}
+.pelan-grid .field.penuh{grid-column:1/-1}
+.pelan-grid label{font-size:12.5px;font-weight:600;color:var(--ink-2,#41505F)}
+.pk-tindakan{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+.sub-kad{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.sub-kad .baki{font-size:13px;color:var(--ink-3,#6B7684)}
+.sub-bar{height:6px;border-radius:99px;background:var(--line,#E3E7EC);overflow:hidden;margin:10px 0 4px}
+.sub-bar i{display:block;height:100%;background:var(--brand,#0B6B4F)}
+.sub-bar.hampir i{background:var(--warn,#B8860B)}
+</style>
+<script>
+/* =====================================================================
+   FASA 5 — PELAN LANGGANAN + BAYARAN FPX (Bayarcash)
+
+   - Superadmin urus pelan sendiri dari panel admin (tab "Pelan")
+   - Halaman harga awam dijana dari database
+   - Butang naik taraf panggil Edge Function "mula-bayaran"
+   - Status Ahli Penuh hanya boleh diberi oleh webhook, bukan dari sini
+   ===================================================================== */
+(function () {
+  "use strict";
+
+  function K() { return window.KH || null; }
+
+  var pelanSenarai = [];
+  var langgananSaya = null;
+
+  function wang(sen) {
+    return 'RM' + (sen / 100).toFixed(2).replace(/\.00$/, '');
+  }
+  function tarikh(iso) {
+    if (!iso) return '-';
+    var d = new Date(iso);
+    return ('0' + d.getDate()).slice(-2) + '/' +
+           ('0' + (d.getMonth() + 1)).slice(-2) + '/' + d.getFullYear();
+  }
+
+  /* =====================================================================
+     MUAT DATA
+     ===================================================================== */
+
+  async function muatPelan() {
+    var kh = K(); if (!kh || !kh.sedia) return;
+    var r = await kh.sb.from('pelan_langganan')
+      .select('id, kod, nama, harga_sen, tempoh_hari, huraian, ciri, disyorkan, aktif, urutan')
+      .order('urutan');
+    if (r.error) { console.warn('[pelan]', r.error.message); return; }
+    pelanSenarai = r.data || [];
+    renderHargaAwam();
+  }
+
+  async function muatLangganan() {
+    var kh = K(); if (!kh || !kh.sedia || !kh.state.user) { langgananSaya = null; return; }
+    var r = await kh.sb.from('langganan_saya')
+      .select('pelan_nama, pelan_kod, tamat_pada, baki_hari')
+      .order('tamat_pada', { ascending: false }).limit(1);
+    langgananSaya = (r.data && r.data[0]) || null;
+  }
+
+  /* =====================================================================
+     HALAMAN HARGA AWAM
+     ===================================================================== */
+
+  function renderHargaAwam() {
+    var kh = K(); if (!kh) return;
+    var aktif = pelanSenarai.filter(function (p) { return p.aktif; });
+    if (!aktif.length) return;
+
+    var disyorkan = aktif.filter(function (p) { return p.disyorkan; })[0] || aktif[0];
+
+    // kad harga utama pada laman utama
+    var b = kh.$('[data-price]');
+    var s = kh.$('[data-period]');
+    if (b) b.textContent = wang(disyorkan.harga_sen);
+    if (s) s.textContent = disyorkan.tempoh_hari >= 300 ? '/tahun'
+                         : disyorkan.tempoh_hari >= 25  ? '/bulan'
+                         : '/' + disyorkan.tempoh_hari + ' hari';
+
+    // senarai ciri
+    var kadPelan = b && b.closest('.plan');
+    if (kadPelan && disyorkan.ciri) {
+      var ul = kadPelan.querySelector('ul');
+      if (ul) {
+        ul.innerHTML = disyorkan.ciri.split('\n')
+          .filter(function (x) { return x.trim(); })
+          .map(function (c) {
+            return '<li><span class="check">&check;</span> ' + kh.esc(c.trim()) + '</li>';
+          }).join('');
+      }
+    }
+
+    // butang tukar kitaran: guna pelan sebenar
+    var bulanan = aktif.filter(function (p) { return p.tempoh_hari < 300; })[0];
+    var tahunan = aktif.filter(function (p) { return p.tempoh_hari >= 300; })[0];
+    kh.$$('[data-cycle]').forEach(function (btn) {
+      var mahuTahun = btn.dataset.cycle === 'tahun';
+      var p = mahuTahun ? tahunan : bulanan;
+      if (!p) { btn.style.display = 'none'; return; }
+      btn.dataset.pelanKod = p.kod;
+    });
+
+    // modal naik taraf
+    var amt = kh.$('.modal-plan .amt');
+    if (amt) {
+      amt.innerHTML = wang(disyorkan.harga_sen) + '<small>' +
+        (disyorkan.tempoh_hari >= 300 ? '/thn' : '/bln') + '</small>';
+    }
+    var mpTop = kh.$('.modal-plan .mp-top b');
+    if (mpTop) mpTop.textContent = disyorkan.nama;
+    var mpUl = kh.$('.modal-plan ul');
+    if (mpUl && disyorkan.ciri) {
+      mpUl.innerHTML = disyorkan.ciri.split('\n')
+        .filter(function (x) { return x.trim(); })
+        .map(function (c) {
+          return '<li><span class="check">&check;</span> ' + kh.esc(c.trim()) + '</li>';
+        }).join('');
+    }
+
+    // butang "Teruskan bayaran" dalam modal
+    var teruskan = kh.$('.modal-foot .btn.primary');
+    if (teruskan) {
+      teruskan.removeAttribute('data-demo');
+      teruskan.setAttribute('data-bayar', disyorkan.kod);
+    }
+  }
+
+  /* =====================================================================
+     MULA BAYARAN
+     ===================================================================== */
+
+  async function mulaBayaran(kod, btn) {
+    var kh = K(); if (!kh) return;
+
+    if (!kh.sedia) { kh.say(kh.mesejTakSedia(), 5000); return; }
+    if (!kh.state.user) {
+      kh.say('Sila log masuk atau daftar dahulu sebelum membuat bayaran.', 4500);
+      kh.go('auth');
+      return;
+    }
+
+    kh.sibuk(btn, true);
+    try {
+      var sesi = await kh.sb.auth.getSession();
+      var token = sesi.data.session && sesi.data.session.access_token;
+
+      var r = await fetch(kh.SB_URL + '/functions/v1/mula-bayaran', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
+          'apikey': kh.SB_ANON
+        },
+        body: JSON.stringify({ pelan_kod: kod })
+      });
+
+      var hasil = await r.json().catch(function () { return {}; });
+      kh.sibuk(btn, false);
+
+      if (!r.ok || !hasil.url) {
+        kh.say('Gagal mula bayaran — ' + (hasil.ralat || 'sila cuba lagi.'), 5500);
+        console.error('[bayaran]', r.status, hasil);
+        return;
+      }
+
+      kh.say('Membawa anda ke halaman bayaran...', 4000);
+      window.location.href = hasil.url;
+    } catch (e) {
+      kh.sibuk(btn, false);
+      kh.say('Gagal menghubungi pelayan bayaran. Semak sambungan internet.', 5000);
+      console.error(e);
+    }
+  }
+
+  /* =====================================================================
+     KAD LANGGANAN PADA DASHBOARD
+     ===================================================================== */
+
+  function renderKadLangganan() {
+    var kh = K(); if (!kh) return;
+    var induk = kh.$('#view-dash .dash-right');
+    if (!induk || !kh.state.user) return;
+
+    var kad = kh.$('#panelLangganan');
+    if (!kad) {
+      kad = document.createElement('div');
+      kad.className = 'panel-card';
+      kad.id = 'panelLangganan';
+      induk.insertBefore(kad, induk.firstChild);
+    }
+
+    if (!langgananSaya) {
+      var pilihan = pelanSenarai.filter(function (p) { return p.aktif; });
+      var disyorkan = pilihan.filter(function (p) { return p.disyorkan; })[0] || pilihan[0];
+      kad.innerHTML =
+        '<div class="panel-title"><h3>Keahlian</h3><span class="badge free">PERCUMA</span></div>' +
+        '<p class="hint" style="margin-bottom:14px">Anda sedang menggunakan akses percuma. ' +
+        'Naik taraf untuk membuka semua siri peralihan dan lanjutan.</p>' +
+        (disyorkan
+          ? '<button class="btn primary block" data-bayar="' + kh.esc(disyorkan.kod) + '">' +
+            'Jadi ahli penuh · ' + wang(disyorkan.harga_sen) + '</button>'
+          : '<p class="hint">Tiada pelan aktif buat masa ini.</p>');
+      return;
+    }
+
+    var baki = langgananSaya.baki_hari;
+    var hampir = baki <= 7;
+    var jumlahHari = 30;
+    var p = pelanSenarai.filter(function (x) { return x.kod === langgananSaya.pelan_kod; })[0];
+    if (p) jumlahHari = p.tempoh_hari;
+    var peratus = Math.max(4, Math.min(100, Math.round((baki / jumlahHari) * 100)));
+
+    kad.innerHTML =
+      '<div class="panel-title"><h3>Keahlian</h3><span class="badge vip">AHLI PENUH</span></div>' +
+      '<div class="sub-kad"><div><b>' + kh.esc(langgananSaya.pelan_nama || 'Ahli Penuh') + '</b>' +
+      '<div class="baki">Tamat ' + tarikh(langgananSaya.tamat_pada) + '</div></div></div>' +
+      '<div class="sub-bar' + (hampir ? ' hampir' : '') + '"><i style="width:' + peratus + '%"></i></div>' +
+      '<p class="hint">' + baki + ' hari lagi</p>' +
+      (hampir && p
+        ? '<button class="btn primary block" style="margin-top:12px" data-bayar="' + kh.esc(p.kod) + '">' +
+          'Sambung sekarang · ' + wang(p.harga_sen) + '</button>' +
+          '<p class="hint" style="margin-top:8px">Tempoh baharu disambung dari tarikh tamat, ' +
+          'bukan dari hari ini. Anda tidak rugi hari.</p>'
+        : '');
+  }
+
+  /* =====================================================================
+     PANEL ADMIN — URUS PELAN
+     ===================================================================== */
+
+  function renderPanelPelan() {
+    var kh = K(); if (!kh) return;
+    var wadah = kh.$('#pelanKandungan');
+    if (!wadah) return;
+
+    if (!kh.sedia) {
+      wadah.innerHTML = '<div class="panel-card"><p class="hint">' +
+        kh.esc(kh.mesejTakSedia()) + '</p></div>';
+      return;
+    }
+    if (!kh.isPentadbir()) {
+      wadah.innerHTML = '<div class="panel-card"><div class="panel-title"><h3>Pelan yuran</h3>' +
+        '<span class="badge draft">AKSES DITOLAK</span></div>' +
+        '<p class="hint">Hanya pentadbir boleh mengurus pelan. Database akan menolak ' +
+        'sebarang percubaan lain walaupun borang ini dipaksa buka.</p></div>';
+      return;
+    }
+
+    wadah.innerHTML = pelanSenarai.map(kadPelan).join('') ||
+      '<div class="panel-card"><p class="hint">Belum ada pelan. Klik "Pelan baharu" untuk mula.</p></div>';
+  }
+
+  function kadPelan(p) {
+    var kh = K();
+    return '<div class="pelan-kad' + (p.disyorkan ? ' disyorkan' : '') + '" data-pelan="' + kh.esc(p.id) + '">' +
+      '<div class="pk-head"><b>' + kh.esc(p.nama) + '</b>' +
+      '<span class="badge ' + (p.aktif ? 'live' : 'hold') + '">' + (p.aktif ? 'AKTIF' : 'TERSEMBUNYI') + '</span>' +
+      (p.disyorkan ? '<span class="badge vip">DISYORKAN</span>' : '') +
+      '<span class="hint" style="margin-left:auto">' + wang(p.harga_sen) + ' / ' + p.tempoh_hari + ' hari</span></div>' +
+      '<div class="pelan-grid">' +
+        medan(p, 'kod', 'Kod rujukan', 'text') +
+        medan(p, 'nama', 'Nama pelan', 'text') +
+        medan(p, 'harga_sen', 'Harga (RM)', 'harga') +
+        medan(p, 'tempoh_hari', 'Tempoh (hari)', 'number') +
+        medan(p, 'urutan', 'Urutan papar', 'number') +
+        medan(p, 'disyorkan', 'Tonjolkan pelan ini', 'suis') +
+        medan(p, 'aktif', 'Papar di laman', 'suis') +
+        '<div class="field penuh"><label>Huraian pendek</label>' +
+          '<input class="input" data-medan="huraian" type="text" value="' + kh.esc(p.huraian || '') + '"></div>' +
+        '<div class="field penuh"><label>Ciri (satu baris satu ciri)</label>' +
+          '<textarea class="textarea" data-medan="ciri" rows="4">' + kh.esc(p.ciri || '') + '</textarea></div>' +
+      '</div>' +
+      '<div class="pk-tindakan">' +
+        '<button class="btn sm outline" data-padam-pelan="' + kh.esc(p.id) + '">Padam</button>' +
+        '<button class="btn sm primary" data-simpan-pelan="' + kh.esc(p.id) + '">Simpan pelan</button>' +
+      '</div></div>';
+  }
+
+  function medan(p, nama, label, jenis) {
+    var kh = K();
+    var nilai = p[nama];
+    var isi;
+    if (jenis === 'suis') {
+      isi = '<select class="select" data-medan="' + nama + '">' +
+        '<option value="tidak"' + (nilai ? '' : ' selected') + '>Tidak</option>' +
+        '<option value="ya"' + (nilai ? ' selected' : '') + '>Ya</option></select>';
+    } else if (jenis === 'harga') {
+      isi = '<input class="input" data-medan="harga_sen" type="number" step="0.01" min="5" ' +
+            'value="' + (nilai / 100).toFixed(2) + '">';
+    } else {
+      isi = '<input class="input" data-medan="' + nama + '" type="' + jenis + '" ' +
+            'value="' + kh.esc(nilai == null ? '' : nilai) + '">';
+    }
+    return '<div class="field"><label>' + kh.esc(label) + '</label>' + isi + '</div>';
+  }
+
+  function bacaKad(kadEl) {
+    var data = {};
+    Array.prototype.slice.call(kadEl.querySelectorAll('[data-medan]')).forEach(function (el) {
+      var n = el.dataset.medan, v = el.value;
+      if (n === 'harga_sen')      data[n] = Math.round(parseFloat(v || '0') * 100);
+      else if (n === 'tempoh_hari' || n === 'urutan') data[n] = parseInt(v || '0', 10);
+      else if (n === 'disyorkan' || n === 'aktif')    data[n] = (v === 'ya');
+      else data[n] = v;
+    });
+    return data;
+  }
+
+  async function simpanPelan(id, btn) {
+    var kh = K();
+    var kadEl = kh.$('[data-pelan="' + id + '"]');
+    if (!kadEl) return;
+    var data = bacaKad(kadEl);
+
+    if (!data.kod || !data.nama) { kh.say('Kod dan nama pelan wajib diisi.', 4000); return; }
+    if (!(data.harga_sen >= 500)) { kh.say('Harga minimum RM5.00 (had Bayarcash).', 4500); return; }
+    if (!(data.tempoh_hari >= 1)) { kh.say('Tempoh mesti sekurang-kurangnya 1 hari.', 4000); return; }
+
+    kh.sibuk(btn, true);
+    var r = await kh.sb.from('pelan_langganan').update(data).eq('id', id).select('id');
+    kh.sibuk(btn, false);
+
+    if (r.error) { kh.say('Gagal simpan — ' + r.error.message, 5500); return; }
+    if (!r.data || !r.data.length) { kh.say('Ditolak oleh RLS (bukan pentadbir).', 5000); return; }
+
+    // Kalau pelan ini ditandakan disyorkan, tanggalkan tanda dari yang lain
+    if (data.disyorkan) {
+      await kh.sb.from('pelan_langganan').update({ disyorkan: false }).neq('id', id);
+    }
+    await muatPelan();
+    renderPanelPelan();
+    renderKadLangganan();
+    kh.say('Pelan disimpan dan laman dikemas kini.', 4000);
+  }
+
+  async function padamPelan(id, btn) {
+    var kh = K();
+    var kadEl = kh.$('[data-pelan="' + id + '"]');
+    var nama = kadEl ? kadEl.querySelector('.pk-head b').textContent : 'pelan ini';
+
+    if (btn.dataset.sahkan !== '1') {
+      btn.dataset.sahkan = '1';
+      btn.textContent = 'Klik sekali lagi untuk padam';
+      btn.classList.add('primary');
+      setTimeout(function () {
+        if (btn.dataset.sahkan === '1') {
+          btn.dataset.sahkan = ''; btn.textContent = 'Padam'; btn.classList.remove('primary');
+        }
+      }, 4000);
+      return;
+    }
+
+    kh.sibuk(btn, true);
+    var r = await kh.sb.from('pelan_langganan').delete().eq('id', id).select('id');
+    kh.sibuk(btn, false);
+    btn.dataset.sahkan = '';
+
+    if (r.error) { kh.say('Gagal padam — ' + r.error.message, 5500); return; }
+    await muatPelan();
+    renderPanelPelan();
+    kh.say('Pelan "' + nama + '" dipadam.', 4000);
+  }
+
+  async function pelanBaharu(btn) {
+    var kh = K();
+    if (!kh.isPentadbir()) { kh.say('Hanya pentadbir boleh tambah pelan.', 4000); return; }
+
+    var kodBaharu = 'pelan-' + Date.now().toString(36).slice(-4);
+    kh.sibuk(btn, true);
+    var r = await kh.sb.from('pelan_langganan').insert({
+      kod: kodBaharu,
+      nama: 'Pelan baharu',
+      harga_sen: 1900,
+      tempoh_hari: 30,
+      huraian: '',
+      ciri: 'Ciri pertama\nCiri kedua',
+      aktif: false,
+      urutan: (pelanSenarai.length + 1) * 10
+    }).select('id');
+    kh.sibuk(btn, false);
+
+    if (r.error) { kh.say('Gagal cipta pelan — ' + r.error.message, 5500); return; }
+    await muatPelan();
+    renderPanelPelan();
+    kh.say('Pelan baharu dicipta sebagai tersembunyi. Isi butiran, kemudian tukar "Papar di laman" kepada Ya.', 6500);
+  }
+
+  /* =====================================================================
+     PASANG
+     ===================================================================== */
+
+  window.KH_HOOK = async function () {
+    await muatLangganan();
+    renderKadLangganan();
+    renderPanelPelan();
+  };
+
+  document.addEventListener('click', function (e) {
+    var kh = K(); if (!kh) return;
+
+    var t = e.target.closest('[data-bayar]');
+    if (t) { e.preventDefault(); mulaBayaran(t.dataset.bayar, t); return; }
+
+    t = e.target.closest('[data-simpan-pelan]');
+    if (t) { e.preventDefault(); simpanPelan(t.dataset.simpanPelan, t); return; }
+
+    t = e.target.closest('[data-padam-pelan]');
+    if (t) { e.preventDefault(); padamPelan(t.dataset.padamPelan, t); return; }
+
+    if (e.target.id === 'pelanBaharu') { e.preventDefault(); pelanBaharu(e.target); return; }
+
+    // butang kitaran harga: hantar kod pelan sebenar ke modal
+    t = e.target.closest('[data-cycle]');
+    if (t && t.dataset.pelanKod) {
+      var teruskan = kh.$('.modal-foot .btn.primary');
+      if (teruskan) teruskan.setAttribute('data-bayar', t.dataset.pelanKod);
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Tunggu sebentar supaya skrip Fasa 4 sempat cipta klien Supabase
+    setTimeout(function () {
+      muatPelan().then(function () {
+        return muatLangganan();
+      }).then(function () {
+        renderKadLangganan();
+        renderPanelPelan();
+      });
+    }, 350);
+
+    // Kalau pengguna baru balik dari halaman bayaran Bayarcash,
+    // muat semula sesi supaya status keahlian terkini dipapar.
+    if (/[?&]status=/.test(location.search) || /bayar=1/.test(location.search)) {
+      setTimeout(function () {
+        var kh = K();
+        if (kh && kh.sedia) {
+          kh.muatSesi();
+          kh.say('Menyemak status bayaran anda...', 4000);
+        }
+      }, 1200);
+    }
+  });
+})();
+</script>
 </body>
 </html>
