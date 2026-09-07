@@ -3922,6 +3922,48 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
   }
 
   /* =====================================================================
+     SEMAK STATUS BAYARAN
+     Jaring keselamatan bila callback tidak sampai.
+     ===================================================================== */
+
+  async function semakBayaran(senyap) {
+    var kh = K();
+    if (!kh || !kh.sedia || !kh.state.user) return false;
+
+    try {
+      var sesi = await kh.sb.auth.getSession();
+      var token = sesi.data.session && sesi.data.session.access_token;
+      if (!token) return false;
+
+      var r = await fetch(kh.SB_URL + '/functions/v1/semak-bayaran', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
+          'apikey': kh.SB_ANON
+        },
+        body: '{}'
+      });
+      var hasil = await r.json().catch(function () { return {}; });
+
+      if (hasil.berubah) {
+        await kh.muatSesi();
+        await muatLangganan();
+        renderKadLangganan();
+        kh.say('Bayaran disahkan. Keahlian anda sudah aktif.', 5000);
+        return true;
+      }
+      if (!senyap && hasil.laporan && hasil.laporan.length) {
+        kh.say('Bayaran masih belum disahkan oleh bank. Cuba lagi sebentar.', 5000);
+      }
+      return false;
+    } catch (e) {
+      console.warn('[semak bayaran]', e);
+      return false;
+    }
+  }
+
+  /* =====================================================================
      KAD LANGGANAN PADA DASHBOARD
      ===================================================================== */
 
@@ -3948,7 +3990,9 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
         (disyorkan
           ? '<button class="btn primary block" data-bayar="' + kh.esc(disyorkan.kod) + '">' +
             'Jadi ahli penuh · ' + wang(disyorkan.harga_sen) + '</button>'
-          : '<p class="hint">Tiada pelan aktif buat masa ini.</p>');
+          : '<p class="hint">Tiada pelan aktif buat masa ini.</p>') +
+        '<button class="btn outline block" id="semakBayaran" style="margin-top:10px">' +
+        'Sudah bayar? Semak sekarang</button>';
       return;
     }
 
@@ -4158,6 +4202,14 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
 
     if (e.target.id === 'pelanBaharu') { e.preventDefault(); pelanBaharu(e.target); return; }
 
+    if (e.target.id === 'semakBayaran') {
+      e.preventDefault();
+      var btn = e.target;
+      kh.sibuk(btn, true);
+      semakBayaran(false).then(function () { kh.sibuk(btn, false); });
+      return;
+    }
+
     // butang kitaran harga: hantar kod pelan sebenar ke modal
     t = e.target.closest('[data-cycle]');
     if (t && t.dataset.pelanKod) {
@@ -4177,17 +4229,10 @@ const SB_ANON = 'sb_publishable_WZtVeWjj4X6sK0fMM7FM-w_bU9Eog4n';
       });
     }, 350);
 
-    // Kalau pengguna baru balik dari halaman bayaran Bayarcash,
-    // muat semula sesi supaya status keahlian terkini dipapar.
-    if (/[?&]status=/.test(location.search) || /bayar=1/.test(location.search)) {
-      setTimeout(function () {
-        var kh = K();
-        if (kh && kh.sedia) {
-          kh.muatSesi();
-          kh.say('Menyemak status bayaran anda...', 4000);
-        }
-      }, 1200);
-    }
+    // Selepas balik dari halaman bayaran, sahkan status terus dengan
+    // gateway. Jangan bergantung semata-mata pada callback — kalau ia
+    // tersesat, pelanggan yang sudah bayar akan tersekat tanpa akses.
+    setTimeout(semakBayaran, 1400);
   });
 })();
 </script>
