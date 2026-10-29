@@ -27,7 +27,7 @@ Platform pembelajaran untuk satu kuliah (single-tenant). Pelajar tonton video pe
 - Advance membuka **semua** course berbayar.
 - Tempoh langganan = 30 hari dari tarikh bayar. Kalau renew awal, tambah 30 hari dari tarikh tamat semasa.
 - Sijil kekal milik pelajar walaupun langganan tamat. Progress juga kekal.
-- Gateway bayaran belum dipilih (Toyyibpay atau Bayarcash). Kod ditulis di belakang satu antara muka supaya boleh tukar.
+- Gateway: **Bayarcash** (dipilih 29/10/2026, syarikat SSM pemilik sudah berdaftar). Kod tetap ditulis di belakang satu antara muka supaya boleh tukar.
 
 ## 4. Peranan
 
@@ -66,9 +66,9 @@ Semua wang disimpan dalam sen (integer). Semua masa dalam UTC, dipaparkan GMT+8.
 
 **Akses premium** (video, nota, komen eksklusif jika ada) hanya jika status `aktif` atau `tangguh`. Semakan dibuat di server pada setiap permintaan. Course percuma dan subject pratonton sentiasa terbuka.
 
-**Aliran bayaran:**
-1. Pelajar tekan Langgan. Server cipta `bayaran` (menunggu) dan bawa pelajar ke gateway.
-2. Gateway hantar webhook ke server. Server sahkan tandatangan, cari `bayaran` ikut rujukan, dan hanya kemas kini jika masih `menunggu` (idempotent, tiada bayaran berganda).
+**Aliran bayaran (Bayarcash, API v3):**
+1. Pelajar tekan Langgan. Server cipta `bayaran` (menunggu) dengan `order_number` (maks 30 aksara) dan bawa pelajar ke URL yang dipulangkan oleh `createPaymentIntent`. Jumlah dihantar sebagai RM dengan dua perpuluhan (contoh `10.00`).
+2. Bayarcash hantar callback server-ke-server (POST form-encoded) ke `callback_url`. Server sahkan `checksum` (HMAC-SHA256, lihat `docs/FASA0.md`), cari `bayaran` ikut `order_number`, dan hanya kemas kini jika masih `menunggu` (idempotent, tiada bayaran berganda). `status` `3` = berjaya, `2` = gagal, `4` = dibatalkan.
 3. Bayaran berjaya: cipta atau lanjutkan `langganan`.
 4. Halaman pulang (redirect) hanya paparan. Ia tidak mengubah status. Hanya webhook dan cron rekonsiliasi yang boleh.
 
@@ -117,7 +117,7 @@ Admin ubah dari panel: harga Advance, hari tangguh, banner halaman utama (gambar
 | Emel | Resend (free) |
 | Anti-bot | Cloudflare Turnstile |
 | Video | YouTube unlisted (fasa awal), Bunny Stream (kemudian) |
-| Bayaran | Toyyibpay atau Bayarcash (FPX), belum dipilih |
+| Bayaran | Bayarcash (FPX), API v3. FPX Direct Debit (auto-debit) disokong oleh API tetapi ditangguh ke fasa kemudian |
 
 ## 14. Had tier Percuma yang mempengaruhi reka bentuk
 
@@ -139,11 +139,10 @@ Sumber: dokumentasi Cloudflare (Workers limits, D1 limits). Angka cron dan R2 pi
 
 ## 16. Kos (anggaran)
 
-Infra tier Percuma: domain sahaja (~RM60–80 setahun). Yuran gateway ~RM0.80–1.00 setiap bayaran ([Toyyibpay](https://www.toyyibpay.com/toyyibpay/pricing-plans), Bayarcash belum disahkan). Naik ke Cloudflare Paid $5 sebulan bila perlu. Bunny dikira ikut penggunaan, kadar Asia belum disahkan.
+Infra tier Percuma: domain sahaja (~RM60–80 setahun). Yuran Bayarcash pelan percuma (laman pihak ketiga, [malaysiapg.com.my](https://malaysiapg.com.my/gateway/bayarcash/), belum disahkan dengan Bayarcash): FPX ~RM1.00 setiap transaksi B2C, direct debit ~RM1.50, belum termasuk SST 8%. Pada harga RM10, itu 10% (FPX) dan 15% (direct debit) sebelum SST. Naik ke Cloudflare Paid $5 sebulan bila perlu. Bunny dikira ikut penggunaan, kadar Asia belum disahkan.
 
 ## 17. Perkara terbuka
 
-1. Pilih gateway.
-2. Kaedah login (10).
-3. Sahkan angka belum disahkan: cron percuma, R2 percuma, API kelompok Resend.
-4. Lulus semua item di bahagian 3.
+1. Kaedah login (10): ukuran awal di `docs/FASA0.md`, keputusan akhir selepas ujian di Cloudflare sebenar.
+2. Sahkan angka belum disahkan: kadar Bayarcash sebenar, cron percuma, R2 percuma, API kelompok Resend.
+3. Lulus semua item di bahagian 3.
